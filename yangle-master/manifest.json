@@ -1,0 +1,337 @@
+{
+    "@platforms": ["android", "iPhone", "iPad"],
+    "id": "H5EC1DC7D",
+    "name": "养乐",
+    "version": {
+        "name": "1.0",
+        "code": ""
+    },
+    "description": "",
+    "icons": {
+        "72": "icon.png"
+    },
+    "launch_path": "dist/index.html",
+    "developer": {
+        "name": "",
+        "email": "",
+        "url": ""
+    },
+    "permissions": {
+        "Messaging":{
+        	"description": "短彩邮件插件"
+        },
+        "Cache": {
+            "description": "管理应用缓存"
+        },
+        "Console": {
+            "description": "跟踪调试输出日志"
+        },
+        "Contacts": {
+            "description": "访问系统联系人信息"
+        },
+        "Events": {
+            "description": "应用扩展事件"
+        },
+        "Maps": {
+            "description": "管理地图插件"
+        },
+        "Speech": {
+            "description": "管理语音识别插件"
+        }
+    },
+    "plus": {
+        "popGesture": "close",
+        "runmode": "normal",
+        "signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",
+        "distribute": {
+            "apple": {
+                "appid": "com.atersoft.yl",
+                "mobileprovision": "yl_yam.mobileprovision",
+                "password": "P@ssword0",
+                "p12": "certForHBuilder.p12",
+                "devices": "universal",
+                "frameworks":["CoreText.framework",
+								"ImageIO.framework",
+								"JavaScriptCore.framework",
+								"WebKit.framework",
+								"CoreTelephony.framework",
+								"MobileCoreServices.framework",
+								"SystemConfiguration.framework",
+								"MediaPlayer.framework",
+								"AudioToolbox.framework",
+								"Security.framework",
+								"QuartzCore.framework",
+								"CFNetwork.framework",
+								"Foundation.framework",
+								"CoreFoundation.framework",
+								"CoreGraphics.framework",
+								"UIKit.framework",
+								"libstdc++.6.dylib",
+								"libxml2.dylib",
+								"libz.dylib",
+								"libsqlite3.0.tbd"
+                ],
+                "plistcmds": [
+			    ]
+            },
+            "google": {
+                "packagename": "",
+                "keystore": "",
+                "password": "",
+                "aliasname": "",
+               "permissions": ["<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"]
+            },
+            "orientation": [
+                "portrait-primary"
+            ],
+            "icons": {
+                "ios": {
+                    "prerendered": true, 
+                     
+                    "iphone": {
+                        "normal": "", 
+                        "retina": "",
+                         
+			 
+                        "spotlight-normal": "",
+                        "spotlight-retina": "", 
+                         
+                        "settings-normal": "", 
+                         
+			"app@2x":"unpackage/res/icons/120x120.png","app@3x":"unpackage/res/icons/180x180.png","settings@3x":"unpackage/res/icons/87x87.png","settings@2x":"unpackage/res/icons/58x58.png","spotlight@2x":"unpackage/res/icons/80x80.png","spotlight@3x":"unpackage/res/icons/120x120.png","notification@3x":"unpackage/res/icons/60x60.png","notification@2x":"unpackage/res/icons/40x40.png" 
+                    },
+                    "ipad": {
+                        "normal": "", 
+                        "retina": "", 
+                        
+                         
+                        "spotlight-normal": "", 
+                        "spotlight-retina": "", 
+                        
+                        
+                        
+                        "app":"unpackage/res/icons/76x76.png","app@2x":"unpackage/res/icons/152x152.png","settings":"unpackage/res/icons/29x29.png","proapp@2x":"unpackage/res/icons/167x167.png","spotlight":"unpackage/res/icons/40x40.png","settings@2x":"unpackage/res/icons/58x58.png","spotlight@2x":"unpackage/res/icons/80x80.png","notification":"unpackage/res/icons/20x20.png","notification@2x":"unpackage/res/icons/40x40.png"
+                    },"appstore":"unpackage/res/icons/1024x1024.png"
+                },
+                "android": {
+                    "mdpi": "unpackage/res/icons/48x48.png", 
+                    "ldpi": "unpackage/res/icons/48x48.png", 
+                    "hdpi": "unpackage/res/icons/72x72.png", 
+                    "xhdpi": "unpackage/res/icons/96x96.png",
+                    "xxhdpi": "unpackage/res/icons/144x144.png","xxxhdpi":"unpackage/res/icons/192x192.png"
+                }
+            },
+            "splashscreen": {
+                
+            }
+        },"adid":"125363140006"
+    },
+	"dependencies": {
+		"pages": {
+			"dist/index.html": {
+				"resources": [
+					"dist/static/js/app.df59da9dc961a1b7e1a6.js",
+					"dist/static/js/vendor.40ff1ee6d616d96d8b54.js",
+					"dist/static/js/manifest.3ad1d5771e9b13dbdad2.js",
+					"dist/static/js/app.a3d71125aa8a13180ccf.js",
+					"dist/static/js/vendor.c1736ca4a9159993555c.js",
+					"dist/static/css/app.b0d9ce37bd0d684e53a534a699a0a221.css",
+					"dist/static/js/app.eca07bccb659f37c00db.js",
+					"dist/static/js/vendor.6b6bee02cd3d76c72577.js",
+					"dist/static/js/app.6d6f3f868aaa565fa952.js",
+					"dist/static/css/app.1bdf0c3ac6a6ab2c465e5947922d95f0.css",
+					"dist/static/js/app.94a56842c2fbbfb2e98f.js",
+					"dist/static/css/app.88c8c8740550b0b57e44ca603d12b72d.css",
+					"dist/static/css/app.6409ddcb87cb782061ef3b99514de1bd.css",
+					"dist/static/js/app.3c78081647860d151cb2.js"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"src/style/app.css",
+				"src/style/consult.css",
+				"dist/static/img/task_detail_background.8261846.png",
+				"src/js/mui.locker.js",
+				"src/assets/login_password_selected.png",
+				"src/js/mui.zoom.js",
+				"src/js/mui.pullToRefresh.js",
+				"src/components/home/home.vue",
+				"dist/static/js/manifest.3ad1d5771e9b13dbdad2.js.map",
+				"src/style/mui.picker.all.css",
+				"package.json",
+				"src/style/fetalheartDetail.css",
+				"config/dev.env.js",
+				"README.md",
+				"src/js/mui.poppicker.js",
+				"src/assets/image/pregnant_mother_background.png",
+				"src/style/fetalheart.css",
+				"src/assets/consult_normal.png",
+				"image/go.png",
+				"src/style/mui.picker.min.css",
+				"src/style/mui.picker.css",
+				"src/main.js",
+				"src/style/person.css",
+				"dist/static/css/app.d33bc3261ed0307c451260ffc0fab30b.css",
+				"src/js/city.data-3.js",
+				"src/assets/setting.png",
+				"src/assets/icon_XL.png",
+				"src/assets/person_normal.png",
+				"src/components/expecProductDate/expecProductDate.vue",
+				"src/assets/task_background.png",
+				"src/assets/pregnancy_knowledge_big.png",
+				"src/components/homepage/todayTaskDetail.vue",
+				"src/js/mui.min.js",
+				"src/assets/image/xiangXIAJianTou.png",
+				"src/js/city.data.js",
+				"build/logo.png",
+				"dist/static/js/vendor.c1736ca4a9159993555c.js.map",
+				"src/assets/fhr_no_data.png",
+				"src/assets/abnormal.png",
+				"config/prod.env.js",
+				"yl_app.rar",
+				"build/webpack.base.conf.js",
+				"src/components/clickComponents/click.vue",
+				"src/assets/assistant_selected.png",
+				"src/assets/image/QQ.png",
+				"src/assets/consult_selected.png",
+				"src/assets/pregnancy_knowledge_small.png",
+				"src/assets/login_person_selected.png",
+				"src/assets/login_eye_open.png",
+				"src/assets/login_person_normal.png",
+				"dist/static/img/pregnant_mother_background.cf239eb.png",
+				"src/assets/matters_needing_attention.png",
+				"src/js/mui.lazyload.img.js",
+				"dist/static/img/fhr_course2.8d81d4a.png",
+				"src/assets/horn.png",
+				"src/assets/task_heart.png",
+				"src/assets/feedback.png",
+				"build/check-versions.js",
+				"src/style/expecProductDate.css",
+				"src/style/register.css",
+				"src/assets/image/tuiYuanXing.png",
+				"dist/static/fonts/element-icons.6f0a763.ttf",
+				"src/js/webviewGroup.js",
+				"src/assets/connect_bt.png",
+				"src/assets/camera_icon.png",
+				"src/assets/icon_yes.png",
+				"static/pregnant_mother_background.png",
+				"image/Rectangle 7.png",
+				"dist/static/css/app.d33bc3261ed0307c451260ffc0fab30b.css.map",
+				"src/js/mui.previewimage.js",
+				"src/js/mui.picker.js",
+				"dist/static/js/app.6d9852dd2f1c80b06885.js",
+				"src/assets/fh_konwledge.png",
+				"src/assets/home_normal.png",
+				"src/assets/recommend.png",
+				"src/assets/image/lanYa.png",
+				"src/js/95516.js",
+				"src/assets/image/baby.png",
+				"src/style/assistant.css",
+				"src/assets/message.png",
+				"src/assets/image/motherbaby.png",
+				"src/assets/integral.png",
+				"src/assets/image/Rectangle 7.png",
+				"src/assets/uploaded.png",
+				"src/assets/login_password_normal.png",
+				"src/router/index.js",
+				"src/style/home.css",
+				"src/assets/fhr_course1.png",
+				"src/components/commen/city-select.vue",
+				"src/assets/fhr_course2.png",
+				"src/assets/image/dian1.png",
+				"src/style/mui.imageviewer.css",
+				"dist/static/img/tuiYuanXing.1805281.png",
+				"src/js/update.js",
+				"src/components/fetalheart/fetalheart.vue",
+				"src/style/login.css",
+				"src/js/mui.listpicker.js",
+				"dist/static/img/pregnancy_knowledge_big.c5a2b11.png",
+				"src/assets/go.png",
+				"image/icon_yes.png",
+				"src/assets/icon_QQ.png",
+				"src/js/feedback.js",
+				"dist/static/img/task_board.b1a5ddd.png",
+				"src/assets/task-line-left.png",
+				"src/js/mui.js",
+				"package-lock.json",
+				"src/assets/image/fetal-heart-background.png",
+				"dist/static/js/app.6d9852dd2f1c80b06885.js.map",
+				"build/webpack.dev.conf.js",
+				"index.html",
+				"src/style/todayTaskDetail.css",
+				"dist/static/img/fhr_course1.ae7add7.png",
+				"src/assets/order.png",
+				"src/js/mui.view.js",
+				"src/components/homepage/homepage.vue",
+				"src/js/mui.picker.min.js",
+				"config/index.js",
+				"src/assets/home_selected.png",
+				"src/style/mui.indexedlist.css",
+				"src/assets/pregnant_mother_background.png",
+				"src/assets/use_course.png",
+				"src/components/fetalheart/myFetalHeart.vue",
+				"src/components/homepage/todayTask.vue",
+				"src/js/arttmpl.js",
+				"src/assets/assistant_normal.png",
+				"src/style/mui.poppicker.css",
+				"src/components/person/person.vue",
+				"src/style/icons-extra.css",
+				"src/components/person/login.vue",
+				"src/js/mui.imageViewer.js",
+				"src/App.vue",
+				"src/assets/task_board.png",
+				"src/js/mui.indexedlist.js",
+				"dist/static/img/task_background.375f65a.png",
+				"src/js/beecloud.js",
+				"src/assets/task_locking.png",
+				"src/assets/image/icon_yes.png",
+				"src/assets/collect.png",
+				"src/assets/task_detail_background.png",
+				"image/1.png",
+				"src/style/mui.min.css",
+				"src/components/person/register.vue",
+				"src/assets/image/jiaoCheng.png",
+				"src/js/mui.pullToRefresh.material.js",
+				"src/style/mui.dtpicker.css",
+				"dist/static/pregnant_mother_background.png",
+				"src/components/person/userInfo.vue",
+				"src/assets/icon_WX.png",
+				"src/assets/image/xiangShangJianTou.png",
+				"src/components/person/retriPwd.vue",
+				"src/js/mui.lazyload.js",
+				"src/components/fetalheart/fetalheartDetail.vue",
+				"src/style/mui.listpicker.css",
+				"src/style/homepage.css",
+				"src/style/todayTask.css",
+				"src/style/myfetalheart.css",
+				"src/base.js",
+				"new_file.html",
+				"src/assets/normal.png",
+				"build/utils.js",
+				"src/components/commen/titleH.vue",
+				"src/assets/person_selected.png",
+				"image/QQ.png",
+				"src/assets/fetal_heart.png",
+				"src/js/mui.dtpicker.js",
+				"build/vue-loader.conf.js",
+				"src/style/userInfo.css",
+				"src/components/assistant/assistant.vue",
+				"src/assets/image/doctor.png",
+				"build/build.js",
+				"src/assets/draft.png",
+				"src/assets/image/go.png",
+				"src/js/mui.picker.all.js",
+				"src/style/feedback.css",
+				"image/2.png",
+				"src/components/consult/consult.vue",
+				"dist/static/img/fhr_no_data.2cda929.png",
+				"src/assets/login_eye_close.png",
+				"src/assets/person_background.png",
+				"build/webpack.prod.conf.js"
+			]
+		}
+	}
+}

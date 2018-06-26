@@ -1,0 +1,58 @@
+.expecProductDate {
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	background: url(../../static/pregnant_mother_background.png) no-repeat;
+	background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+}
+
+.expecProductDate h2 {
+	text-align: center;
+	color: #333;
+}
+
+.expecProductDate .dianji {
+	position: absolute;
+	top: -0.5rem;
+	left: -16rem;
+	margin: 0;
+	padding: 0;
+	width: 15rem;
+	height: 2rem;
+}
+
+.div-content .mt-field-yourBirth {
+	margin-top: 3rem;
+}
+
+.div-content .mt-field-setEPD {
+	margin: 1rem 0;
+}
+
+.div-content .span-no-know-epd {
+	margin-left: 0.3rem;
+	color: #acacac;
+}
+
+.div-content .mt-field-countEPD {
+	margin-top: 0.5rem;
+}
+
+.div-content .btn-start-use {
+	width: 100%;
+	padding: 1rem 0;
+	background: #ffffff;
+	outline: none;
+	border: none;
+	margin-top: 5rem;
+	font-weight: bold;
+	font-size: 1.1rem;
+}
+
+.div-content .p-register {
+	text-align: center;
+	color: #888;
+}

@@ -1,0 +1,152 @@
+<template>
+	<div class="fetalheart">
+		<mt-header title="胎心监测">
+			<mt-button @click="goMyFh()" slot="right">我的胎心</mt-button>
+		</mt-header>
+		<div class="div-content">
+			<div class="div-connect-bt">
+				<ul v-if="tip == 0" class="ul-big">
+					<li><img src="../../assets/image/jiaoCheng.png" class="img-connect-bt" @click="goNativeBt()" /></li>
+					<li><img src="../../assets/image/dian1.png" class="yuanDian" /></li>
+					<li><img src="../../assets/image/dian1.png" class="yuanDian" /></li>
+					<li><img src="../../assets/image/dian1.png" class="yuanDian" /></li>
+					<li><img src="../../assets/image/lanYa.png" class="img-connect-bt" @click="goNativeBt()" />
+						<p class="p-bt-tip">点击连接胎心设备</p>
+					</li>
+				</ul>
+
+				<ul v-if="tip == 1" class="ul-small">
+					<li><img src="../../assets/image/jiaoCheng.png" class="img-connect-bt" @click="goNativeBt()" /></li>
+					<li><img src="../../assets/image/dian1.png" class="yuanDian" /></li>
+					<li><img src="../../assets/image/dian1.png" class="yuanDian" /></li>
+					<li><img src="../../assets/image/dian1.png" class="yuanDian" /></li>
+					<li><img src="../../assets/image/lanYa.png" class="img-connect-bt" @click="goNativeBt()" />
+						<p class="p-bt-tip">点击连接胎心设备</p>
+					</li>
+				</ul>
+
+			</div>
+			<div style="text-align: right;" v-if="tip == 0" @click="clickhelp">
+				<span class="tip" @click="help">找不到胎心？看这里～</span>
+				<img class="img-doctor" src="../../assets/image/doctor.png" alt="">
+			</div>
+			<p v-if="tip == 1" style="text-align: left;padding: 1rem 0.5rem 0 0.5rem;font-size: 1rem;border-top: 3px solid #eee;margin-top: 2rem;"><span>找不到胎心?看这里～</span><span class="el-icon-arrow-down float-right" @click="goHide"></span></p>
+			<div class="div-fhr-course scorll-container" v-if="tip == 1" style="position: absolute;height: 30%;overflow: auto;margin-bottom: 2.5rem;">
+				<img src="../../assets/fhr_course1.png" />
+				<img src="../../assets/fhr_course2.png" />
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		name: 'fetalheart',
+		data() {
+			return {
+				tip: 0,
+			}
+		},
+		created() {
+			var userId = localStorage.getItem('userId');
+			var userInfor = {
+				userId: userId,
+				userRole: "test",
+				phone: "test"
+			};
+			this.base_saveUserInfo(userInfor);
+//			this.receiveParam();
+//			alert(this.fhrId);
+//			if(this.fhrId != null) {
+//			   this.$router.push({
+//			   	path: '/fetalheartDetail',
+//			   	query: {
+//			   		fhrId: this.fhrId
+//			   	}
+//			   })
+//			}
+		},
+		mounted() {
+			
+		},
+		watch: {
+
+		},
+		methods: {
+			/**
+			 * 点击右下角的医生图片展开胎心教程
+			 */
+			clickhelp() {
+				this.tip = 1;
+			},
+
+			/**
+			 * 点击帮助右上角的向下按钮
+			 */
+			goHide() {
+				this.tip = 0;
+			},
+
+			/**
+			 * 跳转原生蓝牙页面
+			 */
+			goNativeBt() {
+				var userId = localStorage.getItem('userId');
+				if(userId == null || userId == '') {
+					this.jumpRouterById('/login', this.jumpRouterIds[0]);
+					return;
+				}
+
+				this.base_naviblue();
+			},
+
+			/**
+			 * 还没有设备
+			 */
+			goNoDevice() {
+
+			},
+
+			/**
+			 * 跳转使用教程
+			 */
+			goUseCourse() {
+
+			},
+
+			/**
+			 * 跳转注意事项
+			 */
+			goAttention() {
+
+			},
+
+			/**
+			 * 跳转胎心知识
+			 */
+			goFhKnowledge() {
+
+			},
+
+			goMyFh() {
+				this.checkanddirect(function() {}, '/myFetalHeart', function() {}, '/login', this.jumpRouterIds[0]);
+			}
+
+		}
+	}
+</script>
+
+<style scoped>
+	@import url("../../style/fetalheart.css");
+</style>
+
+<style scoped>
+	.mint-header {
+		background: #FC9FD7;
+		;
+	}
+	
+	.scorll-container::-webkit-scrollbar {
+		display: none;
+	}
+</style>

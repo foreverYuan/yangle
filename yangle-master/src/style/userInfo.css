@@ -1,0 +1,23 @@
+.userInfo {
+	width: 100%;
+	height: 100%;
+	text-align: left;
+}
+
+.div-content {
+	padding: 1rem 0.5rem;
+}
+
+.p-info {
+	width: 100%;
+	padding: 1rem 0;
+}
+
+.btn-signOut {
+	width: 100%;
+	height: 3rem;
+	background: #eee;
+	border: none;
+	outline: none;
+}
+

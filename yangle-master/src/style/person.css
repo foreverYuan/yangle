@@ -1,0 +1,111 @@
+.person {
+	width: 100%;
+	height: 100%;
+	background: #F6F6F6;
+	overflow-x: hidden;
+}
+
+.btn-goLogin {
+	margin: 10rem 10%;
+	width: 80%;
+	height: 3rem;
+	background: rgb(252, 159, 215);
+	border: none;
+	border-radius: 10rem;
+	outline: none;
+}
+
+.div-detail p {
+	padding-bottom: 1rem;
+}
+
+.div-top {
+	width: 100%;
+	height: 15rem;
+	background: url(../assets/person_background.png) no-repeat;
+	background-size: cover;
+	border: none;
+}
+
+
+/*background: url(../assets/person_background.png);*/
+
+.div-top .span-modify {
+	padding: 0.6rem 0.5rem 3em 3rem;
+	font-size: 1.05rem;
+}
+
+.div-detail {
+	height: 70%;
+	text-align: left;
+	padding: 0 0.8rem;
+	font-size: 1.05rem;
+}
+
+.div-detail p {
+	padding-bottom: 1rem;
+}
+
+.div-detail p img {
+	margin-right: 0.5rem;
+}
+
+.p-userName {
+	font-size: 1rem;
+}
+
+.p-state {
+	width: 15%;
+	color: white;
+	font-size: 0.8rem;
+	border-radius: 2rem;
+	background: #FF87CF;
+	padding: 0.2rem 0;
+	margin: 0 43%;
+}
+
+.div-my-info {
+	display: flex;
+	background: #fff;
+	border: 1px solid #EFEFEF;
+	border-radius: 0.5rem;
+	text-align: center;
+	height: 6rem;
+}
+
+.div-service p.p-title, .div-other p.p-title {
+	border-bottom: 1px solid #EFEFEF;
+	width: 100%;
+	color: #ccc;
+	margin-left: 1rem;
+}
+
+.div-big-block{
+	display: flex;
+	height: 4.5rem;
+}
+
+.div-small-block {
+	text-align: center;
+	width: 25%;
+}
+
+.div-small-block img {
+	height: 1.5rem;
+}
+
+.div-small-block p {
+	color: #333;
+}
+
+.div-service-other {
+	background: white;
+	border: 1px solid #EFEFEF;
+	border-radius: 0.5rem;
+	margin-top: 1rem;
+	margin-bottom: 5rem;
+}
+
+.div-padding-top {
+	padding-top: 1rem;
+}

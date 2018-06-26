@@ -1,0 +1,76 @@
+.fetalheart {
+	width: 100%;
+	height: 100%;
+}
+
+.div-content {
+	padding: 1rem 0;
+	background: #fff;
+}
+
+.div-tx-module span {
+	width: 4rem;
+	padding: 0 0.5rem;
+}
+
+
+/*.p-bt-tip {
+	color: #aaa;
+	margin-top: 3rem;
+}*/
+
+.div-connect-bt {
+	margin-top: 1.5rem;
+}
+
+.img-connect-bt {
+	width: 9rem;
+	height: 9rem;
+}
+
+.div-connect-bt .ul-big .img-connect-bt {
+	width: 30%;
+	height: 30%;
+}
+
+.div-connect-bt .ul-big .yuanDian {
+	width: 0.8rem;
+	margin: 0.4rem;
+}
+
+.div-connect-bt .ul-small .img-connect-bt {
+	width: 17%;
+	height: 17%;
+}
+
+.div-connect-bt .ul-small .yuanDian {
+	width: 0.3rem;
+	margin: 0.2rem;
+}
+
+.img-doctor {
+	width: 2rem;
+	height: auto;
+	position: absolute;
+	right: 1rem;
+	bottom: 7rem;
+}
+
+.tip {
+	position: absolute;
+	right: 1.5rem;
+	bottom: 7rem;
+	padding: 0.7rem 2rem 0.7rem 1rem;
+	border-radius: 5rem;
+	border: 1px solid #ccc;
+}
+
+.div-fhr-course {
+	text-align: left;
+	padding: 0.5rem;
+}
+
+.div-fhr-course img {
+	width: 100%;
+	height: auto;
+}
