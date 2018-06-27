@@ -49,7 +49,7 @@
 				<!-- 孕期描述 end -->
 			</div>
 			<!-- 任务列表  start -->
-			<div style="background-color:rgb(246,246,246);padding: 0.6rem 0;">
+			<div style="background-color:rgb(246,246,246);padding: 0.6rem 0;" @click="goTask">
 				<div style="background-color:white;padding: 0.6rem;">
 					<p style="margin:0;">
 						<span style="color: #ffd8d5;">今日任务</span>
@@ -58,19 +58,19 @@
 						<span class="el-icon-arrow-right"></span>-->
 						</span>
 					</p>
-					<ul v-for="item in taskkList" class="ul-task">
+					<ul v-for="item in taskList" class="ul-task">
 						<li>
-							<span>{{item.title}}</span>
+							<span>{{item.taskName}}</span>
 							<div style="float: right;align-items: center;">
-								<span v-if="item.finish_state == 1">
+								<span v-if="item.taskStatus == 2">
 							       <img src="../../assets/icon_yes.png"/>
 							       <span style="color: #EC9FDC;">已完成</span>
 								</span>
-								<span v-if="item.finish_state == 2">
+								<span v-if="item.taskStatus == 1">
 							       <img src="../../assets/go.png"/>
 							       <span style="color: #EC9FDC;">去完成</span>
 								</span>
-								<span v-if="item.finish_state == 3">
+								<span v-if="item.taskStatus == 0">
 							       <img src="../../assets/task_locking.png"/>
 							       <span style="color: #AAA;">未解锁</span>
 								</span>
@@ -233,7 +233,7 @@
 				this.axios.post('/pregnancy/firstMenu', {
 					birthday: localStorage.getItem('yourBirth'),
 					lastMenstruation: localStorage.getItem('endMenses'),
-					pregnancyDate: this.pregnancyDate, //预产日期,必填
+					pregnancyDate: localStorage.getItem("pregnancyDate"), //预产日期,必填
 					equipmentId: _this.base_uuid,
 					userId: this.userId, //用户id,非必填
 				}).then((response) => {
