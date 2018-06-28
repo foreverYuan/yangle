@@ -5,7 +5,7 @@
 		</mt-header>
 
 		<div class="div-content">
-			<div class="div-task-canvas" v-for="item in taskList">
+			<div class="div-task-canvas" v-for="item in taskkList">
 					<!-- 已完成 -->
 					<div class="div-task" v-if="item.taskStatus == 2" @click="goTaskDetail(item)">
 						<p>{{item.taskName}}</p>
@@ -76,7 +76,7 @@
 		},
 
 		mounted() {
-			
+			this.addTask();
 		},
 		
 		updated() {

@@ -2,7 +2,7 @@
 	<div class="homepage" style="margin: 0;">
 		<div class="top">
 			<mt-header :title="babyStatus.pregnancyWeek" style="background: rgb(252, 159, 215);">
-				<mt-button @click="signIn()" slot="left">签到</mt-button>
+				<mt-button @click="dialogVisible = true" slot="left">签到</mt-button>
 				<!--<mt-button @click="" slot="right">
 					<img src="../../assets/camera_icon.png" style="width: 1.5rem;" />
 				</mt-button>-->
@@ -58,7 +58,7 @@
 						<span class="el-icon-arrow-right"></span>-->
 						</span>
 					</p>
-					<ul v-for="item in taskList" class="ul-task">
+					<ul v-for="item in taskkList" class="ul-task">
 						<li>
 							<span>{{item.taskName}}</span>
 							<div style="float: right;align-items: center;">
@@ -118,6 +118,54 @@
 			</div>
 			<!-- 孕期知识 end -->
 		</div>
+
+		<el-dialog :visible.sync="dialogVisible">
+			<div class="div-sign-dialog">
+				<div class="div-days">
+					<h1>3</h1>
+					<p>连续签到天数</p>
+				</div>
+				<div style="margin-top: 2rem;">
+					<span>今日可获得</span>
+					<span><img src="../../assets/my_integral.png" style="width: 1rem;"/><span style="color: #FC9FD7;">x{{todayIntegral}}</span><span>积分</span></span>
+					<!--<div style="text-align: left;width: 80%;height: 10rem;position: absolute;">
+						<img src="../../assets/integral3-red.png" id="integral3-red" />
+						<img src="../../assets/integral_line_red.png" class="integral-horizontal-line" />
+						<img src="../../assets/integral3-red.png" id="integral3-red" />
+						<img src="../../assets/integral_line_red.png" class="integral-horizontal-line" />
+						<img src="../../assets/integral3-red.png" id="integral3-red" />
+						<img src="../../assets/integral_line_red.png" class="integral-vertical-line" />
+						<img src="../../assets/integral3-red.png" id="integral3-red" class="integral-vertical-pic" />
+						<img src="../../assets/integral_line_red.png" class="integral-vertical-line" />
+						<img src="../../assets/integral3-red.png" id="integral3-red" class="integral-vertical-pic" />
+
+						<div style="margin-top:-10%">
+							<img src="../../assets/integral20-red.png" id="integral3-red" />
+							<img src="../../assets/integral_line_red.png" class="integral-horizontal-line" style="margin-left: -7%;" />
+							<img src="../../assets/integral15-red.png" id="integral3-red" />
+							<img src="../../assets/integral_line_red.png" class="integral-horizontal-line" style="margin-left: -7%;" />
+						</div>
+						<img src="../../assets/integral3-red.png" />
+					</div>-->
+				</div>
+				<img src="../../assets/sign-close.png" style="position: absolute;top: -1rem;right: -1rem;" @click="dialogVisible = false" />
+			</div>
+			<canvas id="myCanvas" width="200" height="120"></canvas>
+			<!--<el-button @click="dialogVisible = false">已签到</el-button>-->
+			<el-button type="primary" @click="signIn" style="width: 60%;position: absolute;bottom: 1rem;left: 20%;">签到</el-button>
+		</el-dialog>
+		<div style="display: none;">
+			<img src="../../assets/integral3-red.png" id="integral0-red" />
+			<img src="../../assets/integral3-gray.png" id="integral0-gray" />
+			<img src="../../assets/integral5-red.png" id="integral1-red" />
+			<img src="../../assets/integral5-gray.png" id="integral1-gray" />
+			<img src="../../assets/integral10-red.png" id="integral2-red" />
+			<img src="../../assets/integral10-gray.png" id="integral2-gray" />
+			<img src="../../assets/integral15-red.png" id="integral3-red" />
+			<img src="../../assets/integral15-gray.png" id="integral3-gray" />
+			<img src="../../assets/integral20-red.png" id="integral4-red" />
+			<img src="../../assets/integral20-gray.png" id="integral4-gray" />
+		</div>
 	</div>
 </template>
 
@@ -141,16 +189,16 @@
 				],
 				//今日任务
 				taskkList: [{
-						"title": "吃几个核桃",
-						"finish_state": "1"
+						"taskName": "吃几个核桃",
+						"taskStatus": "0"
 					},
 					{
-						"title": "喝多少牛奶",
-						"finish_state": "2"
+						"taskName": "喝多少牛奶",
+						"taskStatus": "1"
 					},
 					{
-						"title": "睡几个钟头",
-						"finish_state": "3"
+						"taskName": "睡几个钟头",
+						"taskStatus": "2"
 					},
 				],
 				//今日知识
@@ -186,6 +234,19 @@
 				knowledgeList: '', //知识列表
 				taskList: '', //任务列表
 				/* 首页接口  end */
+				dialogVisible: false,
+				todayIntegral: 3, //今日可获得的积分
+				lianxuSignDays: 1, //连续签到天数
+				isTodaySign: false, //今日是否已签到
+				signPicRed: ["../../assets/integral3-red.png", "../../assets/integral5-red.png", "../../assets/integral10-red.png", "../../assets/integral15-red.png", "../../assets/integral20-red.png"],
+				signPicGray: ["../../assets/integral3-gray.png", "../../assets/integral5-gray.png", "../../assets/integral10-gray.png", "../../assets/integral15-gray.png", "../../assets/integral20-gray.png"],
+				firstIntegralPic: '',
+				secondIntegralPic: '',
+				thirdIntegralPic: '',
+				fourthIntegralPic: '',
+				fiveIntegralPic: '',
+				sixIntegralPic: '',
+				sevenIntegralPic: '',
 			}
 		},
 
@@ -195,6 +256,15 @@
 		},
 		mounted() {
 			this.isShow = true;
+			//			this.drawSignIntegral();
+		},
+		updated() {
+			this.$nextTick(function() {
+				if(this.dialogVisible) {
+					this.showSign();
+				}
+			})
+
 		},
 		watch: {
 
@@ -254,6 +324,106 @@
 			},
 
 			/**
+			 * 画签到积分图
+			 */
+			drawSignIntegral() {
+				//				var myCanvas = document.getElementById("myCanvas");
+				//				var ctx = myCanvas.getContext("2d");
+				//				var integral3_red = document.getElementById("integral3-red");
+				//				ctx.drawImage(integral3_red, 30, 30);
+				var integral3_red = document.getElementById("integral3-red");
+			},
+
+			/**
+			 * 关于签到的显示
+			 */
+			showSign() {
+				var c = document.getElementById("myCanvas");
+				var ctx = c.getContext("2d");
+				var imgReds = new Array(5);
+				var imgGrays = new Array(5);
+				var index;
+				var space = 5;
+				for(var i = 0; i < imgReds.length; i++) {
+					imgReds[i] = document.getElementById("integral" + i + "-red");
+				}
+				for(var i = 0; i < imgGrays.length; i++) {
+					imgGrays[i] = document.getElementById("integral" + i + "-gray");
+				}
+				var xPicCoor = [space, c.width / 2 - imgReds[0].width / 2, c.width - imgReds[0].width - space];
+				var yPicCoor = [0, c.height / 2 - imgReds[0].height / 2, c.height - imgReds[0].height];
+				var xLineCoor = [space + imgReds[0].width - space, c.width / 2 - imgReds[0].width / 2, c.width / 2 + imgReds[0].width / 2 - space,
+					c.width - imgReds[0].width - space, c.width - imgReds[0].width / 2 - space
+				];
+				var yLineCoor = [imgReds[0].height / 2, imgReds[0].height, c.height / 2 - imgReds[0].height / 2, c.height / 2 + imgReds[0].height / 2,
+					c.height - imgReds[0].height, c.height - imgReds[0].height / 2
+				];
+				var firstIntegralPic, secondIntegralPic, thirdIntegralPic, fourthIntegralPic, fiveIntegralPic, sixIntegralPic, sevenIntegralPic;
+				var dayText = ['第1天', '第2天', '第3天', '第4天', '第5天', '第6天', '第7天'];
+				var fontSpace = [15, 5];
+				var lineColor = ['#FF98E0', '#E8E8E8']; //线的颜色,已签到显示亮色，未签到显示暗色
+
+				/*style*/
+				var fontColor = ['#333333', '#aaaaaa']; //字体颜色,已签到显示深色，未签到显示浅色
+				ctx.lineWidth = 3;
+				ctx.strokeStyle = lineColor[1];
+				ctx.fillStyle = fontColor[0];
+				firstIntegralPic = imgReds[0];
+				/*第一天*/
+				ctx.drawImage(firstIntegralPic, xPicCoor[0], yPicCoor[0]);
+				ctx.fillText(dayText[0], xPicCoor[0], imgReds[0].height + fontSpace[0]);
+				if(this.lianxuSignDays == 0 || (this.lianxuSignDays == 1 && this.isTodaySign)) {
+					secondIntegralPic = imgGrays[0];
+					ctx.strokeStyle = lineColor[1];
+					ctx.fillStyle = fontColor[1];
+				} else {
+					secondIntegralPic = imgReds[0];
+					ctx.strokeStyle = lineColor[0];
+					ctx.fillStyle = fontColor[0];
+				}
+				/*第二天*/
+				ctx.moveTo(xLineCoor[0], yLineCoor[0]);
+				ctx.lineTo(xLineCoor[1], yLineCoor[0]);
+				ctx.drawImage(secondIntegralPic, xPicCoor[1], yPicCoor[0]);
+				ctx.fillText(dayText[1], xPicCoor[1], imgReds[0].height + fontSpace[0]);
+				if(this.lianxuSignDays < 2 || (this.lianxuSignDays == 2 && this.isTodaySign)) {
+					thirdIntegralPic = imgGrays[1];
+					ctx.strokeStyle = lineColor[1];
+					ctx.fillStyle = fontColor[1];
+				} else {
+					thirdIntegralPic = imgReds[1];
+					ctx.strokeStyle = lineColor[0];
+					ctx.fillStyle = fontColor[0];
+				}
+				/*第三天*/
+				ctx.moveTo(xLineCoor[2], yLineCoor[0]);
+				ctx.lineTo(xLineCoor[3], yLineCoor[0]);
+				ctx.drawImage(thirdIntegralPic, xPicCoor[2], yPicCoor[0]);
+				ctx.fillText(dayText[2], xPicCoor[2], imgReds[0].height + fontSpace[0]);
+				/*第四天*/
+				//				ctx.moveTo(xLineCoor[4], yLineCoor[1]);
+				//				ctx.lineTo(xLineCoor[4], yLineCoor[2]);
+				//				ctx.drawImage(fourthIntegralPic, xPicCoor[2], yPicCoor[1]);
+				//				ctx.fillText(dayText[3], xPicCoor[2] - imgReds[0].width, yPicCoor[1] + fontSpace[0]);
+				/*第五天*/
+				//				ctx.moveTo(xLineCoor[4], yLineCoor[3]);
+				//				ctx.lineTo(xLineCoor[4], yLineCoor[4]);
+				//				ctx.drawImage(fiveIntegralPic, xPicCoor[2], yPicCoor[2]);
+				//				ctx.fillText(dayText[4], xPicCoor[2], yPicCoor[2] - fontSpace[1]);
+				/*第六天*/
+				//				ctx.moveTo(xLineCoor[2], yLineCoor[5]);
+				//				ctx.lineTo(xLineCoor[3], yLineCoor[5]);
+				//				ctx.drawImage(sixIntegralPic, xPicCoor[1], yPicCoor[2]);
+				//				ctx.fillText(dayText[5], xPicCoor[1], yPicCoor[2] - fontSpace[1]);
+				/*第七天*/
+				//				ctx.moveTo(xLineCoor[0], yLineCoor[5]);
+				//				ctx.lineTo(xLineCoor[1], yLineCoor[5]);
+				//				ctx.drawImage(sevenIntegralPic, xPicCoor[0], yPicCoor[2]);
+				//				ctx.fillText(dayText[6], xPicCoor[0], yPicCoor[2] - fontSpace[1]);
+				ctx.stroke();
+			},
+
+			/**
 			 * 签到
 			 */
 			signIn() {
@@ -278,7 +448,10 @@
 
 <style scoped>
 	@import url("../../style/homepage.css");
-	.grad {
+</style>
+
+<style>
+	.homepage .grad {
 		height: 100%;
 		background: -webkit-linear-gradient(left, #FFF8FC, #FFC3E7, #FFF8FC);
 		/* Safari 5.1 - 6.0 */
@@ -288,7 +461,7 @@
 		/* 标准的语法 */
 	}
 	
-	.grad2 {
+	.homepage .grad2 {
 		height: 5rem;
 		background: -webkit-linear-gradient(left, #FFF9FD, #FDB7E1, #FFF9FD);
 		/* Safari 5.1 - 6.0 */
@@ -298,13 +471,13 @@
 		/* 标准的语法 */
 	}
 	
-	.top {
+	.homepage .top {
 		width: 100%;
 		position: relative;
 		/* background: url('../../assets/camera_icon.png'); */
 	}
 	
-	.tip-left {
+	.homepage .tip-left {
 		background: rgb(252, 197, 230);
 		text-align: center;
 		font-size: 0.85rem;
@@ -318,7 +491,7 @@
 		animation: float13 20s infinite linear;
 	}
 	
-	.tip-right {
+	.homepage .tip-right {
 		background: rgb(252, 197, 230);
 		text-align: center;
 		font-size: 0.85rem;
@@ -330,5 +503,15 @@
 		top: 25%;
 		border-radius: 50%;
 		animation: float13 20s infinite linear;
+	}
+	
+	.homepage .el-dialog {
+		width: 80%;
+		height: 50%;
+		border-radius: 10px;
+	}
+	
+	.homepage .el-dialog__headerbtn .el-dialog__close {
+		display: none;
 	}
 </style>
