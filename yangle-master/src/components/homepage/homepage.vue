@@ -2,7 +2,7 @@
 	<div class="homepage" style="margin: 0;">
 		<div class="top">
 			<mt-header :title="babyStatus.pregnancyWeek" style="background: rgb(252, 159, 215);">
-				<mt-button @click="dialogVisible = true" slot="left">签到</mt-button>
+				<mt-button @click="showSignDialog" slot="left">签到</mt-button>
 				<!--<mt-button @click="" slot="right">
 					<img src="../../assets/camera_icon.png" style="width: 1.5rem;" />
 				</mt-button>-->
@@ -126,7 +126,7 @@
 					<p>连续签到天数</p>
 				</div>
 				<div style="margin-top: 2rem;">
-					<span>今日可获得</span>
+					<span>今日{{getIntegralState}}获得</span>
 					<span><img src="../../assets/my_integral.png" style="width: 1rem;"/><span style="color: #FC9FD7;">x{{todayIntegral}}</span><span>积分</span></span>
 					<!--<div style="text-align: left;width: 80%;height: 10rem;position: absolute;">
 						<img src="../../assets/integral3-red.png" id="integral3-red" />
@@ -152,7 +152,8 @@
 			</div>
 			<canvas id="myCanvas" width="200" height="120"></canvas>
 			<!--<el-button @click="dialogVisible = false">已签到</el-button>-->
-			<el-button type="primary" @click="signIn" style="width: 60%;position: absolute;bottom: 1rem;left: 20%;">签到</el-button>
+			<el-button @click="signIn" class="btn-sign" v-if="!isTodaySign">签到</el-button>
+			<el-button @click="signIn" class="btn-sign" v-if="isTodaySign">已签到</el-button>
 		</el-dialog>
 		<div style="display: none;">
 			<img src="../../assets/integral3-red.png" id="integral0-red" />
@@ -235,9 +236,10 @@
 				taskList: '', //任务列表
 				/* 首页接口  end */
 				dialogVisible: false,
+				getIntegralState: '可',
 				todayIntegral: 3, //今日可获得的积分
-				lianxuSignDays: 1, //连续签到天数
-				isTodaySign: false, //今日是否已签到
+				lianxuSignDays: 2, //连续签到天数
+				isTodaySign: true, //今日是否已签到
 				signPicRed: ["../../assets/integral3-red.png", "../../assets/integral5-red.png", "../../assets/integral10-red.png", "../../assets/integral15-red.png", "../../assets/integral20-red.png"],
 				signPicGray: ["../../assets/integral3-gray.png", "../../assets/integral5-gray.png", "../../assets/integral10-gray.png", "../../assets/integral15-gray.png", "../../assets/integral20-gray.png"],
 				firstIntegralPic: '',
@@ -321,6 +323,51 @@
 					console.log(error);
 				});
 
+			},
+			
+			/**
+			 * 显示签到弹框
+			 */
+			showSignDialog() {
+				this.dialogVisible = true;
+				this.getSignIntegral();
+			},
+			
+			/**
+			 * 获取连续签到的积分
+			 */
+			getSignIntegral() {
+				switch(this.lianxuSignDays) {
+					case 0:
+						this.todayIntegral = 3;
+						break;
+
+					case 1:
+						this.todayIntegral = 3;
+						break;
+
+					case 2:
+						this.isTodaySign == true ? this.todayIntegral = 3 : 5;
+						break;
+
+					case 3:
+						this.isTodaySign == true ? this.todayIntegral = 5 : 5;
+						break;
+
+					case 4:
+						this.isTodaySign == true ? this.todayIntegral = 5 : 10;
+						break;
+
+					case 5:
+						this.isTodaySign == true ? this.todayIntegral = 10 : 15;
+						break;
+						
+					case 6:
+						this.isTodaySign == true ? this.todayIntegral = 15 : 20;
+						break;
+
+				}
+				this.isTodaySign == true ? this.getIntegralState = '已' : '可';
 			},
 
 			/**
@@ -427,6 +474,9 @@
 			 * 签到
 			 */
 			signIn() {
+				if(this.isTodaySign) {
+					return alert('今日已签到');
+				}
 				this.axios.post('/pregnancy/sign', {
 					userId: this.userId, //用户id
 					userRole: this.userRole, //用户角色
