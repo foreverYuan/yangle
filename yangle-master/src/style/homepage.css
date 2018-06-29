@@ -106,11 +106,16 @@ p.p_pg_desc {
 }
 .div-sign-dialog .div-days {
 	width:100%;
-	height: 18%; 
+	height: 4.5rem; 
 	background: #FC9FD7;
 	position: absolute;
 	left: 0;top: 0;
 	border-radius: 10px 10px 0 0;
+}
+
+.div-today {
+	/*position: absolute;*/
+	margin-top: 1rem;
 }
 
 .div-days p {
@@ -153,11 +158,18 @@ p.p_pg_desc {
 	position: absolute;
 	bottom: 1rem;
 	left: 20%;
-	background: #FC9FD7;
 	color: white;
 	outline: none;
 	border: none;
 	font-size: 1.1rem;
+}
+
+.sign {
+	background: #FC9FD7;
+}
+
+.signed {
+	background: #ccc;
 }
 
 #myCanvas {

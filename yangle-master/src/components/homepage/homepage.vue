@@ -122,10 +122,10 @@
 		<el-dialog :visible.sync="dialogVisible">
 			<div class="div-sign-dialog">
 				<div class="div-days">
-					<h1>3</h1>
+					<h1>{{lianxuSignDays}}</h1>
 					<p>连续签到天数</p>
 				</div>
-				<div style="margin-top: 2rem;">
+				<div class="div-today">
 					<span>今日{{getIntegralState}}获得</span>
 					<span><img src="../../assets/my_integral.png" style="width: 1rem;"/><span style="color: #FC9FD7;">x{{todayIntegral}}</span><span>积分</span></span>
 					<!--<div style="text-align: left;width: 80%;height: 10rem;position: absolute;">
@@ -152,8 +152,8 @@
 			</div>
 			<canvas id="myCanvas" width="200" height="120"></canvas>
 			<!--<el-button @click="dialogVisible = false">已签到</el-button>-->
-			<el-button @click="signIn" class="btn-sign" v-if="!isTodaySign">签到</el-button>
-			<el-button @click="signIn" class="btn-sign" v-if="isTodaySign">已签到</el-button>
+			<el-button @click="signIn" class="btn-sign sign" v-if="!isTodaySign">签到</el-button>
+			<el-button @click="signIn" class="btn-sign signed" v-if="isTodaySign">已签到</el-button>
 		</el-dialog>
 		<div style="display: none;">
 			<img src="../../assets/integral3-red.png" id="integral0-red" />
@@ -237,18 +237,16 @@
 				/* 首页接口  end */
 				dialogVisible: false,
 				getIntegralState: '可',
-				todayIntegral: 3, //今日可获得的积分
-				lianxuSignDays: 2, //连续签到天数
-				isTodaySign: true, //今日是否已签到
+				integralPic: new Array(7),
+				imgReds: new Array(5),
+				imgGrays: new Array(5),
+				lineColor: ['#FF98E0', '#E8E8E8'],
+				fontColor: ['#333333', '#aaaaaa'],
+				todayIntegral: 3, //今日可获得的积分 
+				lianxuSignDays: 2, //连续签到天数   需后台返回，暂时先写在这里   todo
+				isTodaySign: false, //今日是否已签到   需后台返回，暂时先写在这里   todo
 				signPicRed: ["../../assets/integral3-red.png", "../../assets/integral5-red.png", "../../assets/integral10-red.png", "../../assets/integral15-red.png", "../../assets/integral20-red.png"],
 				signPicGray: ["../../assets/integral3-gray.png", "../../assets/integral5-gray.png", "../../assets/integral10-gray.png", "../../assets/integral15-gray.png", "../../assets/integral20-gray.png"],
-				firstIntegralPic: '',
-				secondIntegralPic: '',
-				thirdIntegralPic: '',
-				fourthIntegralPic: '',
-				fiveIntegralPic: '',
-				sixIntegralPic: '',
-				sevenIntegralPic: '',
 			}
 		},
 
@@ -324,7 +322,7 @@
 				});
 
 			},
-			
+
 			/**
 			 * 显示签到弹框
 			 */
@@ -332,7 +330,7 @@
 				this.dialogVisible = true;
 				this.getSignIntegral();
 			},
-			
+
 			/**
 			 * 获取连续签到的积分
 			 */
@@ -361,7 +359,7 @@
 					case 5:
 						this.isTodaySign == true ? this.todayIntegral = 10 : 15;
 						break;
-						
+
 					case 6:
 						this.isTodaySign == true ? this.todayIntegral = 15 : 20;
 						break;
@@ -371,103 +369,101 @@
 			},
 
 			/**
-			 * 画签到积分图
-			 */
-			drawSignIntegral() {
-				//				var myCanvas = document.getElementById("myCanvas");
-				//				var ctx = myCanvas.getContext("2d");
-				//				var integral3_red = document.getElementById("integral3-red");
-				//				ctx.drawImage(integral3_red, 30, 30);
-				var integral3_red = document.getElementById("integral3-red");
-			},
-
-			/**
 			 * 关于签到的显示
 			 */
 			showSign() {
 				var c = document.getElementById("myCanvas");
 				var ctx = c.getContext("2d");
-				var imgReds = new Array(5);
-				var imgGrays = new Array(5);
 				var index;
 				var space = 5;
-				for(var i = 0; i < imgReds.length; i++) {
-					imgReds[i] = document.getElementById("integral" + i + "-red");
+				for(var i = 0; i < this.imgReds.length; i++) {
+					this.imgReds[i] = document.getElementById("integral" + i + "-red");
 				}
-				for(var i = 0; i < imgGrays.length; i++) {
-					imgGrays[i] = document.getElementById("integral" + i + "-gray");
+				for(var i = 0; i < this.imgGrays.length; i++) {
+					this.imgGrays[i] = document.getElementById("integral" + i + "-gray");
 				}
-				var xPicCoor = [space, c.width / 2 - imgReds[0].width / 2, c.width - imgReds[0].width - space];
-				var yPicCoor = [0, c.height / 2 - imgReds[0].height / 2, c.height - imgReds[0].height];
-				var xLineCoor = [space + imgReds[0].width - space, c.width / 2 - imgReds[0].width / 2, c.width / 2 + imgReds[0].width / 2 - space,
-					c.width - imgReds[0].width - space, c.width - imgReds[0].width / 2 - space
+				var xPicCoor = [space, c.width / 2 - this.imgReds[0].width / 2, c.width - this.imgReds[0].width - space];
+				var yPicCoor = [0, c.height / 2 - this.imgReds[0].height / 2, c.height - this.imgReds[0].height];
+				var xLineCoor = [space + this.imgReds[0].width - space, c.width / 2 - this.imgReds[0].width / 2, c.width / 2 + this.imgReds[0].width / 2 - space,
+					c.width - this.imgReds[0].width - space, c.width - this.imgReds[0].width / 2 - space
 				];
-				var yLineCoor = [imgReds[0].height / 2, imgReds[0].height, c.height / 2 - imgReds[0].height / 2, c.height / 2 + imgReds[0].height / 2,
-					c.height - imgReds[0].height, c.height - imgReds[0].height / 2
+				var yLineCoor = [this.imgReds[0].height / 2, this.imgReds[0].height, c.height / 2 - this.imgReds[0].height / 2, c.height / 2 + this.imgReds[0].height / 2,
+					c.height - this.imgReds[0].height, c.height - this.imgReds[0].height / 2
 				];
-				var firstIntegralPic, secondIntegralPic, thirdIntegralPic, fourthIntegralPic, fiveIntegralPic, sixIntegralPic, sevenIntegralPic;
 				var dayText = ['第1天', '第2天', '第3天', '第4天', '第5天', '第6天', '第7天'];
 				var fontSpace = [15, 5];
-				var lineColor = ['#FF98E0', '#E8E8E8']; //线的颜色,已签到显示亮色，未签到显示暗色
-
-				/*style*/
-				var fontColor = ['#333333', '#aaaaaa']; //字体颜色,已签到显示深色，未签到显示浅色
-				ctx.lineWidth = 3;
-				ctx.strokeStyle = lineColor[1];
-				ctx.fillStyle = fontColor[0];
-				firstIntegralPic = imgReds[0];
+				
+				ctx.lineWidth = 5;
+				ctx.strokeStyle = this.lineColor[0];
+				ctx.fillStyle = this.fontColor[0];
+				this.integralPic[0] = this.imgReds[0];
 				/*第一天*/
-				ctx.drawImage(firstIntegralPic, xPicCoor[0], yPicCoor[0]);
-				ctx.fillText(dayText[0], xPicCoor[0], imgReds[0].height + fontSpace[0]);
-				if(this.lianxuSignDays == 0 || (this.lianxuSignDays == 1 && this.isTodaySign)) {
-					secondIntegralPic = imgGrays[0];
-					ctx.strokeStyle = lineColor[1];
-					ctx.fillStyle = fontColor[1];
-				} else {
-					secondIntegralPic = imgReds[0];
-					ctx.strokeStyle = lineColor[0];
-					ctx.fillStyle = fontColor[0];
-				}
+				ctx.drawImage(this.integralPic[0], xPicCoor[0], yPicCoor[0]);
+				ctx.fillText(dayText[0], xPicCoor[0], this.imgReds[0].height + fontSpace[0]);
+				
+				this.setDrawStyle(1, 0, ctx);
 				/*第二天*/
 				ctx.moveTo(xLineCoor[0], yLineCoor[0]);
 				ctx.lineTo(xLineCoor[1], yLineCoor[0]);
-				ctx.drawImage(secondIntegralPic, xPicCoor[1], yPicCoor[0]);
-				ctx.fillText(dayText[1], xPicCoor[1], imgReds[0].height + fontSpace[0]);
-				if(this.lianxuSignDays < 2 || (this.lianxuSignDays == 2 && this.isTodaySign)) {
-					thirdIntegralPic = imgGrays[1];
-					ctx.strokeStyle = lineColor[1];
-					ctx.fillStyle = fontColor[1];
-				} else {
-					thirdIntegralPic = imgReds[1];
-					ctx.strokeStyle = lineColor[0];
-					ctx.fillStyle = fontColor[0];
-				}
+				ctx.drawImage(this.integralPic[1], xPicCoor[1], yPicCoor[0]);
+				ctx.fillText(dayText[1], xPicCoor[1], this.imgReds[0].height + fontSpace[0]);
+				ctx.stroke();
+				
+				this.setDrawStyle(2, 1, ctx);
 				/*第三天*/
 				ctx.moveTo(xLineCoor[2], yLineCoor[0]);
 				ctx.lineTo(xLineCoor[3], yLineCoor[0]);
-				ctx.drawImage(thirdIntegralPic, xPicCoor[2], yPicCoor[0]);
-				ctx.fillText(dayText[2], xPicCoor[2], imgReds[0].height + fontSpace[0]);
-				/*第四天*/
-				//				ctx.moveTo(xLineCoor[4], yLineCoor[1]);
-				//				ctx.lineTo(xLineCoor[4], yLineCoor[2]);
-				//				ctx.drawImage(fourthIntegralPic, xPicCoor[2], yPicCoor[1]);
-				//				ctx.fillText(dayText[3], xPicCoor[2] - imgReds[0].width, yPicCoor[1] + fontSpace[0]);
-				/*第五天*/
-				//				ctx.moveTo(xLineCoor[4], yLineCoor[3]);
-				//				ctx.lineTo(xLineCoor[4], yLineCoor[4]);
-				//				ctx.drawImage(fiveIntegralPic, xPicCoor[2], yPicCoor[2]);
-				//				ctx.fillText(dayText[4], xPicCoor[2], yPicCoor[2] - fontSpace[1]);
-				/*第六天*/
-				//				ctx.moveTo(xLineCoor[2], yLineCoor[5]);
-				//				ctx.lineTo(xLineCoor[3], yLineCoor[5]);
-				//				ctx.drawImage(sixIntegralPic, xPicCoor[1], yPicCoor[2]);
-				//				ctx.fillText(dayText[5], xPicCoor[1], yPicCoor[2] - fontSpace[1]);
-				/*第七天*/
-				//				ctx.moveTo(xLineCoor[0], yLineCoor[5]);
-				//				ctx.lineTo(xLineCoor[1], yLineCoor[5]);
-				//				ctx.drawImage(sevenIntegralPic, xPicCoor[0], yPicCoor[2]);
-				//				ctx.fillText(dayText[6], xPicCoor[0], yPicCoor[2] - fontSpace[1]);
+				ctx.drawImage(this.integralPic[2], xPicCoor[2], yPicCoor[0]);
+				ctx.fillText(dayText[2], xPicCoor[2], this.imgReds[0].height + fontSpace[0]);
 				ctx.stroke();
+				
+				this.setDrawStyle(3, 1, ctx);
+				/*第四天*/
+				ctx.moveTo(xLineCoor[4], yLineCoor[1]);
+				ctx.lineTo(xLineCoor[4], yLineCoor[2]);
+				ctx.drawImage(this.integralPic[3], xPicCoor[2], yPicCoor[1]);
+				ctx.fillText(dayText[3], xPicCoor[2] - this.imgReds[0].width, yPicCoor[1] + fontSpace[0]);
+				ctx.stroke();
+				
+				this.setDrawStyle(4, 2, ctx);
+				/*第五天*/
+				ctx.moveTo(xLineCoor[4], yLineCoor[3]);
+				ctx.lineTo(xLineCoor[4], yLineCoor[4]);
+				ctx.drawImage(this.integralPic[4], xPicCoor[2], yPicCoor[2]);
+				ctx.fillText(dayText[4], xPicCoor[2], yPicCoor[2] - fontSpace[1]);
+				ctx.stroke();
+				
+				this.setDrawStyle(5, 3, ctx);
+				/*第六天*/
+				ctx.moveTo(xLineCoor[2], yLineCoor[5]);
+				ctx.lineTo(xLineCoor[3], yLineCoor[5]);
+				ctx.drawImage(this.integralPic[5], xPicCoor[1], yPicCoor[2]);
+				ctx.fillText(dayText[5], xPicCoor[1], yPicCoor[2] - fontSpace[1]);
+				ctx.stroke();
+				
+				this.setDrawStyle(6, 4, ctx);
+				/*第七天*/
+				ctx.moveTo(xLineCoor[0], yLineCoor[5]);
+				ctx.lineTo(xLineCoor[1], yLineCoor[5]);
+				ctx.drawImage(this.integralPic[6], xPicCoor[0], yPicCoor[2]);
+				ctx.fillText(dayText[6], xPicCoor[0], yPicCoor[2] - fontSpace[1]);
+				ctx.stroke();
+			},
+
+			/**
+			 * 设置绘制的样式
+			 */
+			setDrawStyle(lianxuDays, index, ctx) {
+				if(this.lianxuSignDays < lianxuDays || (this.lianxuSignDays == lianxuDays && this.isTodaySign)) {
+					this.integralPic[lianxuDays] = this.imgGrays[index];
+					ctx.strokeStyle = this.lineColor[1];
+					ctx.fillStyle = this.fontColor[1];
+				} else {
+					this.integralPic[lianxuDays] = this.imgReds[index];
+					ctx.strokeStyle = this.lineColor[0];
+					ctx.fillStyle = this.fontColor[0];
+				}
+				ctx.beginPath();
 			},
 
 			/**
@@ -557,7 +553,7 @@
 	
 	.homepage .el-dialog {
 		width: 80%;
-		height: 50%;
+		height: 53%;
 		border-radius: 10px;
 	}
 	
