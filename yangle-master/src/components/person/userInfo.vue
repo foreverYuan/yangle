@@ -17,10 +17,10 @@
 				<span class="el-icon-arrow-right"></span></span>
 			</p>
 			<p class="p-info" style="clear: both;" @click="stateDialog = true"><span>状态</span><span class="float-right">
-				<!--<span>孕育中</span>-->
-				<select style="background: none;border: none;" v-model="state">
+				<span>孕育中</span>
+				<!--<select style="background: none;border: none;" v-model="state" id="stateSelect">
 					<option v-for="item in states" :key="item.value" :label="item.label" :value="item.value"></option>
-				</select>
+				</select>-->
 				<span class="el-icon-arrow-right"></span></span>
 			</p>
 			<p class="p-info" style="clear: both;" v-on:click="openEndMensesPicker"><span>末次月经</span><span class="float-right">
@@ -86,19 +86,7 @@ import lianDong from '@/components/person/lianDong';
 				endBirthDate: new Date(),
 				states: [{
 					value: '选项1',
-					label: '孕育中1'
-				}, {
-					value: '选项2',
-					label: '孕育中2'
-				}, {
-					value: '选项3',
-					label: '孕育中3'
-				}, {
-					value: '选项4',
-					label: '孕育中4'
-				}, {
-					value: '选项5',
-					label: '孕育中5'
+					label: '孕育中'
 				}],
 			}
 		},
@@ -108,11 +96,15 @@ import lianDong from '@/components/person/lianDong';
 		},
 
 		created() {
-
+            this.state = this.states[0];
 		},
 
 		mounted() {
 			this.getUserInfo();
+		},
+		
+		updated() {
+			
 		},
 
 		methods: {
@@ -207,6 +199,7 @@ import lianDong from '@/components/person/lianDong';
 						if(isShow) {
 							alert('修改成功');
 						}
+						localStorage.setItem('userName', _this.nickName);
 						_this.getUserInfo(); //刷新数据源
 						_this.dialogVisible = false; //隐藏修改昵称的弹框
 					} else {

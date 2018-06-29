@@ -219,12 +219,13 @@
 			},
 
 			goBack() {
-				//				this.$router.go(-1);
 				var id = localStorage.getItem('/login-id');
 				if(id == this.jumpRouterIds[0]) {
 					this.path = '/home/fetalheart';
 				} else if(id == this.jumpRouterIds[1]) {
 					this.path = '/home/person';
+				} else {
+					this.path = '/home/homepage';
 				}
 			},
 			

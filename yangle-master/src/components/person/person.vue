@@ -6,7 +6,7 @@
 		<div class="div-top">
 			<span class="float-right span-modify" @click="goUserInfo">修改</span>
 			<div style="padding-top: 0.6rem;padding-bottom: 0.5rem;">
-				<h3 style="margin-left: 5.5rem;font-size: 1.2rem;color: #333;">孕1周+2天</h3>
+				<h3 style="margin-left: 5.5rem;font-size: 1.2rem;color: #333;">{{pregnancyWeek}}</h3>
 				<img src="../../assets/icon_QQ.png" style="width: 3.5rem;height: 3.5rem;clear: both;margin-left: 5.5rem;margin-top: 0.5rem;" />
 				<p class="p-userName">{{userName}}</p>
 				<p class="p-state">孕育中</p>
@@ -131,7 +131,8 @@
 						}
 					]
 
-				}
+				},
+				pregnancyWeek: localStorage.getItem('pregnancyWeek'), //孕育时长
 			}
 		},
 		created() {

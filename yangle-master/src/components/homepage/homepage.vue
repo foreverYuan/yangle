@@ -150,13 +150,13 @@
 				</div>
 				<img src="../../assets/sign-close.png" style="position: absolute;top: -1rem;right: -1rem;" @click="dialogVisible = false" />
 			</div>
-			<canvas id="myCanvas" width="200" height="120"></canvas>
+				<canvas id="myCanvas" width="screenWidth * 15/5 * 3" height="screenHeight * 7/4 * 3" style="width: screenWidth * 15/5;height: screenHeight * 7/4;"></canvas>
 			<!--<el-button @click="dialogVisible = false">已签到</el-button>-->
-			<el-button @click="signIn" class="btn-sign sign" v-if="!isTodaySign">签到</el-button>
-			<el-button @click="signIn" class="btn-sign signed" v-if="isTodaySign">已签到</el-button>
+			<el-button @click="signIn" class="btn-sign sign" v-if="isTodaySign == 0">签到</el-button>
+			<el-button @click="signIn" class="btn-sign signed" v-if="isTodaySign == 1">已签到</el-button>
 		</el-dialog>
 		<div style="display: none;">
-			<img src="../../assets/integral3-red.png" id="integral0-red" />
+			<img src="../../assets/integral3-red.png" id="integral0-red"/>
 			<img src="../../assets/integral3-gray.png" id="integral0-gray" />
 			<img src="../../assets/integral5-red.png" id="integral1-red" />
 			<img src="../../assets/integral5-gray.png" id="integral1-gray" />
@@ -244,18 +244,25 @@
 				fontColor: ['#333333', '#aaaaaa'],
 				todayIntegral: 3, //今日可获得的积分 
 				lianxuSignDays: 2, //连续签到天数   需后台返回，暂时先写在这里   todo
-				isTodaySign: false, //今日是否已签到   需后台返回，暂时先写在这里   todo
+				isTodaySign: 0, //今日是否已签到   需后台返回，暂时先写在这里   todo
 				signPicRed: ["../../assets/integral3-red.png", "../../assets/integral5-red.png", "../../assets/integral10-red.png", "../../assets/integral15-red.png", "../../assets/integral20-red.png"],
 				signPicGray: ["../../assets/integral3-gray.png", "../../assets/integral5-gray.png", "../../assets/integral10-gray.png", "../../assets/integral15-gray.png", "../../assets/integral20-gray.png"],
+				screenWidth: window.screen.width,
+				screenHeight: window.screen.height,
 			}
 		},
 
 		created() {
 			//获取首页数据
 			this.getHomeData();
+//			alert(window.screen.width);
+//			alert(window.screen.height);
+//			alert(window.devicePixelRatio);
 		},
 		mounted() {
 			this.isShow = true;
+			console.log('aaaaaa', window.screen.width); 
+			console.log('bbbbbb', window.screen.height);
 			//			this.drawSignIntegral();
 		},
 		updated() {
@@ -282,6 +289,9 @@
 			 * 跳转任务页
 			 */
 			goTask() {
+				if(this.userId == null || this.userId == '') {
+					return this.jumpNormalRouter('/login');
+				}
 				this.$router.push({
 					path: '/todayTask'
 				})
@@ -315,6 +325,7 @@
 							this.taskList = response.data.taskList, //任务列表
 							this.babyStatus = response.data.BabyStatus, //婴儿状态
 							this.knowledgeList = response.data.knowledgeList //知识列表
+							localStorage.setItem('pregnancyWeek', this.babyStatus.pregnancyWeek);
 					}
 				}).catch((error) => {
 					//失败
@@ -327,8 +338,12 @@
 			 * 显示签到弹框
 			 */
 			showSignDialog() {
+				if(this.userId == null || this.userId == '') {
+					return this.jumpNormalRouter('/login');
+				}
 				this.dialogVisible = true;
 				this.getSignIntegral();
+				this.getSignInfo();
 			},
 
 			/**
@@ -345,27 +360,27 @@
 						break;
 
 					case 2:
-						this.isTodaySign == true ? this.todayIntegral = 3 : 5;
+						this.isTodaySign == 1 ? this.todayIntegral = 3 : 5;
 						break;
 
 					case 3:
-						this.isTodaySign == true ? this.todayIntegral = 5 : 5;
+						this.isTodaySign == 1 ? this.todayIntegral = 5 : 5;
 						break;
 
 					case 4:
-						this.isTodaySign == true ? this.todayIntegral = 5 : 10;
+						this.isTodaySign == 1 ? this.todayIntegral = 5 : 10;
 						break;
 
 					case 5:
-						this.isTodaySign == true ? this.todayIntegral = 10 : 15;
+						this.isTodaySign == 1 ? this.todayIntegral = 10 : 15;
 						break;
 
 					case 6:
-						this.isTodaySign == true ? this.todayIntegral = 15 : 20;
+						this.isTodaySign == 1 ? this.todayIntegral = 15 : 20;
 						break;
 
 				}
-				this.isTodaySign == true ? this.getIntegralState = '已' : '可';
+				this.isTodaySign == 1 ? this.getIntegralState = '已' : '可';
 			},
 
 			/**
@@ -374,6 +389,7 @@
 			showSign() {
 				var c = document.getElementById("myCanvas");
 				var ctx = c.getContext("2d");
+//				ctx.scale(2, 2);
 				var index;
 				var space = 5;
 				for(var i = 0; i < this.imgReds.length; i++) {
@@ -387,12 +403,12 @@
 				var xLineCoor = [space + this.imgReds[0].width - space, c.width / 2 - this.imgReds[0].width / 2, c.width / 2 + this.imgReds[0].width / 2 - space,
 					c.width - this.imgReds[0].width - space, c.width - this.imgReds[0].width / 2 - space
 				];
-				var yLineCoor = [this.imgReds[0].height / 2, this.imgReds[0].height, c.height / 2 - this.imgReds[0].height / 2, c.height / 2 + this.imgReds[0].height / 2,
+				var yLineCoor = [this.imgReds[0].height / 2, this.imgReds[0].height - 3, c.height / 2 - this.imgReds[0].height / 2, c.height / 2 + this.imgReds[0].height / 2 - 3,
 					c.height - this.imgReds[0].height, c.height - this.imgReds[0].height / 2
 				];
 				var dayText = ['第1天', '第2天', '第3天', '第4天', '第5天', '第6天', '第7天'];
 				var fontSpace = [15, 5];
-				
+
 				ctx.lineWidth = 5;
 				ctx.strokeStyle = this.lineColor[0];
 				ctx.fillStyle = this.fontColor[0];
@@ -400,7 +416,7 @@
 				/*第一天*/
 				ctx.drawImage(this.integralPic[0], xPicCoor[0], yPicCoor[0]);
 				ctx.fillText(dayText[0], xPicCoor[0], this.imgReds[0].height + fontSpace[0]);
-				
+
 				this.setDrawStyle(1, 0, ctx);
 				/*第二天*/
 				ctx.moveTo(xLineCoor[0], yLineCoor[0]);
@@ -408,7 +424,8 @@
 				ctx.drawImage(this.integralPic[1], xPicCoor[1], yPicCoor[0]);
 				ctx.fillText(dayText[1], xPicCoor[1], this.imgReds[0].height + fontSpace[0]);
 				ctx.stroke();
-				
+				ctx.fill();
+
 				this.setDrawStyle(2, 1, ctx);
 				/*第三天*/
 				ctx.moveTo(xLineCoor[2], yLineCoor[0]);
@@ -416,7 +433,8 @@
 				ctx.drawImage(this.integralPic[2], xPicCoor[2], yPicCoor[0]);
 				ctx.fillText(dayText[2], xPicCoor[2], this.imgReds[0].height + fontSpace[0]);
 				ctx.stroke();
-				
+				ctx.fill();
+
 				this.setDrawStyle(3, 1, ctx);
 				/*第四天*/
 				ctx.moveTo(xLineCoor[4], yLineCoor[1]);
@@ -424,7 +442,8 @@
 				ctx.drawImage(this.integralPic[3], xPicCoor[2], yPicCoor[1]);
 				ctx.fillText(dayText[3], xPicCoor[2] - this.imgReds[0].width, yPicCoor[1] + fontSpace[0]);
 				ctx.stroke();
-				
+				ctx.fill();
+
 				this.setDrawStyle(4, 2, ctx);
 				/*第五天*/
 				ctx.moveTo(xLineCoor[4], yLineCoor[3]);
@@ -432,7 +451,8 @@
 				ctx.drawImage(this.integralPic[4], xPicCoor[2], yPicCoor[2]);
 				ctx.fillText(dayText[4], xPicCoor[2], yPicCoor[2] - fontSpace[1]);
 				ctx.stroke();
-				
+				ctx.fill();
+
 				this.setDrawStyle(5, 3, ctx);
 				/*第六天*/
 				ctx.moveTo(xLineCoor[2], yLineCoor[5]);
@@ -440,7 +460,8 @@
 				ctx.drawImage(this.integralPic[5], xPicCoor[1], yPicCoor[2]);
 				ctx.fillText(dayText[5], xPicCoor[1], yPicCoor[2] - fontSpace[1]);
 				ctx.stroke();
-				
+				ctx.fill();
+
 				this.setDrawStyle(6, 4, ctx);
 				/*第七天*/
 				ctx.moveTo(xLineCoor[0], yLineCoor[5]);
@@ -448,6 +469,7 @@
 				ctx.drawImage(this.integralPic[6], xPicCoor[0], yPicCoor[2]);
 				ctx.fillText(dayText[6], xPicCoor[0], yPicCoor[2] - fontSpace[1]);
 				ctx.stroke();
+				ctx.fill();
 			},
 
 			/**
@@ -467,6 +489,28 @@
 			},
 
 			/**
+			 * 获取签到信息的接口
+			 */
+			getSignInfo() {
+				this.axios.post('/pregnancy/signInfo', {
+					userId: this.userId, //用户id
+					userRole: this.userRole, //用户角色
+				}).then((response) => {
+					if(response.data.resultCode == 200) {
+						//成功
+						this.lianxuSignDays = response.data.signSerialTimes; //连续签到的天数
+						this.isTodaySign = response.data.isSign; //今日是否签到
+//						alert(response.data.resultMsg);
+					} else {
+						//						alert(response.data.resultMsg);
+					}
+				}).catch((error) => {
+					//失败
+					console.log(error);
+				});
+			},
+
+			/**
 			 * 签到
 			 */
 			signIn() {
@@ -479,7 +523,8 @@
 				}).then((response) => {
 					if(response.data.resultCode == 200) {
 						//成功
-						alert(response.data.resultMsg);
+//						alert(response.data.resultMsg);
+                    this.getSignInfo();
 					} else {
 						alert(response.data.resultMsg);
 					}

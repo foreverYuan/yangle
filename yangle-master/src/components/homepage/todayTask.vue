@@ -42,22 +42,22 @@
 				taskkList: [{
 						"taskName": "吃几个核桃",
 						"taskContent": "由于核桃里边含有亚油酸。它是组成DHA的必备物质，而DHA的存在对大脑有很大的优点。",
-						"taskStatus": "0"
+						"taskStatus": "2"
 					},
 					{
 						"taskName": "喝多少牛奶",
 						"taskContent": "由于核桃里边含有亚油酸。它是组成DHA的必备物质，而DHA的存在对大脑有很大的优点。",
-						"taskStatus": "0"
+						"taskStatus": "1"
 					},
 					{
 						"taskName": "睡几个钟头",
 						"taskContent": "由于核桃里边含有亚油酸。它是组成DHA的必备物质，而DHA的存在对大脑有很大的优点。",
-						"taskStatus": "1"
+						"taskStatus": "0"
 					},
 					{
 						"taskName": "运动几分钟",
 						"taskContent": "由于核桃里边含有亚油酸。它是组成DHA的必备物质，而DHA的存在对大脑有很大的优点。",
-						"taskStatus": "2"
+						"taskStatus": "0"
 					},
 				],
 				//				

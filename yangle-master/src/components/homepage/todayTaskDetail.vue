@@ -20,12 +20,12 @@
 				<img src="../../assets/integral.png" style="text-align: center;"/>
 			</h1>
 			<h1 style="width: 33.3%;color: #FF6EA5;text-align: center;" id="text-integral">+</h1>
-			<h1 style="width: 33.3%;color: #FF6EA5;text-align: left;">10</h1>
+			<h1 style="width: 33.3%;color: #FF6EA5;text-align: left;">{{addedIntegral}}</h1>
 		</div>
 		<!--点击完成按钮弹框提示-->
 		<div v-if="isFinish" class="div-finish-remind">
 			<p>{{finishTaskText}}</p>
-			<img src="../../assets/task-remind-background.png"/>
+			<img src="../../assets/task-remind-background.png" />
 		</div>
 		<!--背景图-->
 		<img src="../../assets/task_detail_background.png" class="todayTaskDetail-background" />
@@ -48,9 +48,10 @@
 				isFinish: false,
 				finishTaskText: "",
 				isEnd: false, //是否只剩下最后一个未完成任务
+				addedIntegral: '', //完成任务增加的积分
 			}
 		},
-		
+
 		created() {
 			this.setRemindText();
 		},
@@ -59,7 +60,7 @@
 			goBack() {
 				this.$router.go(-1);
 			},
-			
+
 			/**
 			 * 设置点击完成按钮的提示文本
 			 */
@@ -75,11 +76,6 @@
 			 * 点击完成按钮
 			 */
 			goComplete() {
-				if(this.isFinish) {
-					this.isFinish = false;
-				} else {
-					this.isFinish = true;
-				}
 				console.log("this.userTaskId", this.task.taskId);
 				this.addIntegralStyle();
 				this.task.taskStatus = 2;
@@ -89,6 +85,12 @@
 					taskStatus: "2", //完成状态
 				}).then((response) => {
 					if(response.data.resultCode == 200) {
+						if(this.isFinish) {
+							this.isFinish = false;
+						} else {
+							this.isFinish = true;
+						}
+						this.addedIntegral = response.data.point; //完成任务增加的积分
 						//成功
 						this.getTaskDetail(); //刷新详情页信息
 					}
@@ -97,7 +99,7 @@
 					console.log(error);
 				});
 			},
-			
+
 			/**
 			 * 增加积分样式
 			 */
@@ -112,7 +114,7 @@
 				integral.style.marginLeft = '20%';
 				var integralImg = integral.getElementsByTagName('img');
 				integralImg[0].style.width = '3rem';
-//				integral.style.animation = "integral 5s";
+				//				integral.style.animation = "integral 5s";
 			},
 
 			/**

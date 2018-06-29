@@ -172,6 +172,10 @@ p.p_pg_desc {
 	background: #ccc;
 }
 
+/*.canvas-container {
+	zoom: 0.5;
+}*/
+
 #myCanvas {
 	margin-top: 1rem;
 	width: 100%;

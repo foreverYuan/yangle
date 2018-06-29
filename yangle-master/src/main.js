@@ -19,8 +19,9 @@ Vue.component('title-h', titleH)
 
 import base from './base'
 Vue.use(base);
-axios.defaults.baseURL = 'https://192.168.0.109:8080/yangle'
-// axios.defaults.baseURL = 'https:yl.atersoft.com:8080/yangle'
+//axios.defaults.baseURL = 'https://192.168.0.109:8080/yangle'
+   axios.defaults.baseURL = 'https:yl.atersoft.com:8080/yangle'
+// axios.defaults.baseURL = 'https://yl.ibao365.net:8080/yangle'
  // 引入echarts
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
