@@ -1,8 +1,8 @@
 exports.install = function(Vue, options) {
 	//获取设备UUID
 	Vue.prototype.base_uuid = function() {
-				return '866146034068365,866146034068373';
-//		return plus.device.uuid;
+		//				return '866146034068365,866146034068373';
+		return plus.device.uuid;
 	};
 
 	//	Vue.prototype.pregnancyDate = '2019-03-25';

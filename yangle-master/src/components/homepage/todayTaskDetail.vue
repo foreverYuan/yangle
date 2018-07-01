@@ -77,27 +77,25 @@
 			 */
 			goComplete() {
 				console.log("this.userTaskId", this.task.taskId);
-				this.addIntegralStyle();
-				this.task.taskStatus = 2;
 				this.axios.post('/yTaskUser/ytaskuser/toFinish', {
 					taskUserId: this.userTaskId, //任务id
 					userId: this.userId, //用户id
 					taskStatus: "2", //完成状态
 				}).then((response) => {
 					if(response.data.resultCode == 200) {
-						if(this.isFinish) {
-							this.isFinish = false;
-						} else {
-							this.isFinish = true;
-						}
+						this.isFinish = true;
+						this.addIntegralStyle();
 						this.addedIntegral = response.data.point; //完成任务增加的积分
 						//成功
 						this.getTaskDetail(); //刷新详情页信息
+					} else {
+						alert(response.data.resultMsg);
 					}
 				}).catch((error) => {
 					//失败
 					console.log(error);
 				});
+				this.isFinish = false;
 			},
 
 			/**

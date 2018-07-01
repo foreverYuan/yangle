@@ -127,7 +127,7 @@
 				</div>
 				<div class="div-today">
 					<span>今日{{getIntegralState}}获得</span>
-					<span><img src="../../assets/my_integral.png" style="width: 1rem;"/><span style="color: #FC9FD7;">x{{todayIntegral}}</span><span>积分</span></span>
+					<span style="margin-left: 0.3rem;"><img src="../../assets/my_integral.png" style="width: 1rem;"/><span style="color: #FC9FD7;">x{{todayIntegral}}</span><span style="margin-left: 0.3rem;">积分</span></span>
 					<!--<div style="text-align: left;width: 80%;height: 10rem;position: absolute;">
 						<img src="../../assets/integral3-red.png" id="integral3-red" />
 						<img src="../../assets/integral_line_red.png" class="integral-horizontal-line" />
@@ -150,13 +150,20 @@
 				</div>
 				<img src="../../assets/sign-close.png" style="position: absolute;top: -1rem;right: -1rem;" @click="dialogVisible = false" />
 			</div>
-				<canvas id="myCanvas" width="screenWidth * 15/5 * 3" height="screenHeight * 7/4 * 3" style="width: screenWidth * 15/5;height: screenHeight * 7/4;"></canvas>
+			<canvas id="myCanvas" width="240" height="135" style="width: 80;height: 45;"></canvas>
 			<!--<el-button @click="dialogVisible = false">已签到</el-button>-->
-			<el-button @click="signIn" class="btn-sign sign" v-if="isTodaySign == 0">签到</el-button>
-			<el-button @click="signIn" class="btn-sign signed" v-if="isTodaySign == 1">已签到</el-button>
+			<button @click="signIn" class="btn-sign sign" v-if="isTodaySign == 0" style="height: 2rem;border-radius: 0.5rem;">签到</button>
+			<button @click="signIn" class="btn-sign signed" v-if="isTodaySign == 1" style="height: 2rem;border-radius: 0.5rem;">已签到</button>
+			<div id="add-integral" class="div-add-integral">
+			<h1 style="width: 33.3%;">
+				<img src="../../assets/integral.png" style="text-align: center;"/>
+			</h1>
+			<h1 style="width: 33.3%;color: #FF6EA5;text-align: center;" id="text-integral">+</h1>
+			<h1 style="width: 33.3%;color: #FF6EA5;text-align: left;">{{todayIntegral}}</h1>
+		</div>
 		</el-dialog>
 		<div style="display: none;">
-			<img src="../../assets/integral3-red.png" id="integral0-red"/>
+			<img src="../../assets/integral3-red.png" id="integral0-red" />
 			<img src="../../assets/integral3-gray.png" id="integral0-gray" />
 			<img src="../../assets/integral5-red.png" id="integral1-red" />
 			<img src="../../assets/integral5-gray.png" id="integral1-gray" />
@@ -255,13 +262,13 @@
 		created() {
 			//获取首页数据
 			this.getHomeData();
-//			alert(window.screen.width);
-//			alert(window.screen.height);
-//			alert(window.devicePixelRatio);
+			//			alert(window.screen.width);
+			//			alert(window.screen.height);
+			//			alert(window.devicePixelRatio);
 		},
 		mounted() {
 			this.isShow = true;
-			console.log('aaaaaa', window.screen.width); 
+			console.log('aaaaaa', window.screen.width);
 			console.log('bbbbbb', window.screen.height);
 			//			this.drawSignIntegral();
 		},
@@ -325,13 +332,30 @@
 							this.taskList = response.data.taskList, //任务列表
 							this.babyStatus = response.data.BabyStatus, //婴儿状态
 							this.knowledgeList = response.data.knowledgeList //知识列表
-							localStorage.setItem('pregnancyWeek', this.babyStatus.pregnancyWeek);
+						localStorage.setItem('pregnancyWeek', this.babyStatus.pregnancyWeek);
 					}
 				}).catch((error) => {
 					//失败
 					console.log(error);
 				});
 
+			},
+			
+			/**
+			 * 增加积分样式
+			 */
+			addIntegralStyle() {
+				//积分动画效果，逐渐变大变淡往上平移
+				var integral = document.getElementById("add-integral");
+				integral.style.visibility = 'visible';
+				integral.style.width = '60%';
+				integral.style.opacity = 0;
+				integral.style.bottom = '80%';
+				integral.style.fontSize = '2rem';
+				integral.style.marginLeft = '20%';
+				var integralImg = integral.getElementsByTagName('img');
+				integralImg[0].style.width = '3rem';
+				//				integral.style.animation = "integral 5s";
 			},
 
 			/**
@@ -342,7 +366,6 @@
 					return this.jumpNormalRouter('/login');
 				}
 				this.dialogVisible = true;
-				this.getSignIntegral();
 				this.getSignInfo();
 			},
 
@@ -389,7 +412,7 @@
 			showSign() {
 				var c = document.getElementById("myCanvas");
 				var ctx = c.getContext("2d");
-//				ctx.scale(2, 2);
+				//				ctx.scale(2, 2);
 				var index;
 				var space = 5;
 				for(var i = 0; i < this.imgReds.length; i++) {
@@ -409,8 +432,9 @@
 				var dayText = ['第1天', '第2天', '第3天', '第4天', '第5天', '第6天', '第7天'];
 				var fontSpace = [15, 5];
 
-				ctx.lineWidth = 5;
+				ctx.lineWidth = 3;
 				ctx.strokeStyle = this.lineColor[0];
+				ctx.font = "0.7rem  Arial";
 				ctx.fillStyle = this.fontColor[0];
 				this.integralPic[0] = this.imgReds[0];
 				/*第一天*/
@@ -498,9 +522,10 @@
 				}).then((response) => {
 					if(response.data.resultCode == 200) {
 						//成功
-						this.lianxuSignDays = response.data.signSerialTimes; //连续签到的天数
-						this.isTodaySign = response.data.isSign; //今日是否签到
-//						alert(response.data.resultMsg);
+						this.lianxuSignDays = parseInt(response.data.signSerialTimes); //连续签到的天数
+						this.isTodaySign = parseInt(response.data.isSign); //今日是否签到
+						this.getSignIntegral();
+						//						alert(response.data.resultMsg);
 					} else {
 						//						alert(response.data.resultMsg);
 					}
@@ -523,8 +548,8 @@
 				}).then((response) => {
 					if(response.data.resultCode == 200) {
 						//成功
-//						alert(response.data.resultMsg);
-                    this.getSignInfo();
+						//						alert(response.data.resultMsg);
+						this.getSignInfo();
 					} else {
 						alert(response.data.resultMsg);
 					}

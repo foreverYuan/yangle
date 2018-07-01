@@ -6,11 +6,11 @@
 		<div class="div-content">
 			<div class="div-connect-bt">
 				<ul v-if="tip == 0" class="ul-big">
-					<li><img src="../../assets/image/jiaoCheng.png" class="img-connect-bt" @click="goNativeBt()" /></li>
-					<li><img src="../../assets/image/dian1.png" class="yuanDian" /></li>
-					<li><img src="../../assets/image/dian1.png" class="yuanDian" /></li>
-					<li><img src="../../assets/image/dian1.png" class="yuanDian" /></li>
-					<li><img src="../../assets/image/lanYa.png" class="img-connect-bt" @click="goNativeBt()" />
+					<li><img src="../../assets/image/jiaoCheng.png" class="img-connect-bt" @click="goNativeBt()"/></li>
+					<li><img src="../../assets/image/dian1.png" class="yuanDian" id="yuanDian1"/></li>
+					<li><img src="../../assets/image/dian1.png" class="yuanDian" id="yuanDian2"/></li>
+					<li><img src="../../assets/image/dian1.png" class="yuanDian" id="yuanDian3"/></li>
+					<li><img src="../../assets/image/lanYa.png" class="img-connect-bt" @click="goNativeBt()"/>
 						<p class="p-bt-tip">点击连接胎心设备</p>
 					</li>
 				</ul>
@@ -30,7 +30,8 @@
 				<span class="tip" @click="help">找不到胎心？看这里～</span>
 				<img class="img-doctor" src="../../assets/image/doctor.png" alt="">
 			</div>
-			<p v-if="tip == 1" style="text-align: left;padding: 1rem 0.5rem 0 0.5rem;font-size: 1rem;border-top: 3px solid #eee;margin-top: 2rem;"><span>找不到胎心?看这里～</span><span class="el-icon-arrow-down float-right" @click="goHide"></span></p>
+			<p style="box-shadow:0px 3px 10px 3px #eee;height: 0;" v-if="tip == 1"></p>
+			<p v-if="tip == 1" style="text-align: left;padding: 1rem 0.5rem 0 0.5rem;font-size: 1rem;margin-top: 1.5rem;"><span>找不到胎心?看这里～</span><span class="el-icon-arrow-down float-right" @click="goHide"></span></p>
 			<div class="div-fhr-course scorll-container" v-if="tip == 1" style="position: absolute;height: 30%;overflow: auto;margin-bottom: 2.5rem;">
 				<img src="../../assets/fhr_course1.png" />
 				<img src="../../assets/fhr_course2.png" />
@@ -55,19 +56,19 @@
 				phone: "test"
 			};
 			this.base_saveUserInfo(userInfor);
-//			this.receiveParam();
-//			alert(this.fhrId);
-//			if(this.fhrId != null) {
-//			   this.$router.push({
-//			   	path: '/fetalheartDetail',
-//			   	query: {
-//			   		fhrId: this.fhrId
-//			   	}
-//			   })
-//			}
+			//			this.receiveParam();
+			//			alert(this.fhrId);
+			//			if(this.fhrId != null) {
+			//			   this.$router.push({
+			//			   	path: '/fetalheartDetail',
+			//			   	query: {
+			//			   		fhrId: this.fhrId
+			//			   	}
+			//			   })
+			//			}
 		},
 		mounted() {
-			
+
 		},
 		watch: {
 

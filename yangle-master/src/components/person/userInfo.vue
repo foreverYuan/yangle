@@ -6,10 +6,10 @@
 		<div class="div-content">
 			<p class="p-info" style="height: 5rem;line-height: 5rem;">
 				<span>头像</span>
-				<span class="el-icon-arrow-right float-right" style="margin-top: 2rem;margin-left: 0.5rem;"></span>
-				<el-upload action="https://yl.atersoft.com:8080/yangle/pregnancy/fastdfsUpload" show-file-list="false" style="float: right;" v-model="userIcon" :on-success="handleSuccess">
-					<img :src="userInfo.userIcon" v-if="userInfo.userIcon != ''" class="float-right" size="small" type="primary" />
-					<img src="../../assets/icon_QQ.png" v-if="userInfo.userIcon == ''" class="float-right" />
+				<span class="el-icon-arrow-right float-right" style="margin-top: 1.5rem;margin-left: 0.5rem;"></span>
+				<el-upload action="https://yl.ibao365.net:8080/yangle/pregnancy/fastdfsUpload" show-file-list="false" style="float: right;" v-model="userIcon" :on-success="handleSuccess">
+					<img src="https://yl.ibao365.net:8080/yangle/resources/f3f0881f-3465-43cf-842f-5f7f4e6e6dea.png " v-if="userInfo.userIcon != ''" class="float-right" size="small" type="primary" width="55" height="55" style="border-radius: 55px;" />
+					<img src="../../assets/icon_QQ.png" v-if="userInfo.userIcon == null || userInfo.userIcon == ''" class="float-right" width="55" height="55" />
 				</el-upload>
 			</p>
 			<p class="p-info" style="clear: both;" @click="dialogVisible = true"><span>昵称</span><span class="float-right">
@@ -33,7 +33,7 @@
 				<span v-if="yourBirth">{{yourBirth}}</span>
 				<span class="el-icon-arrow-right"></span></span>
 			</p>
-			<lian-dong ref="liandong"></lian-dong>
+			<lian-dong ref="liandong" v-on:pickCallBack='pickCall' :userAddress='userInfo.userAddress'></lian-dong>
 			<!--<p class="p-info" style="clear: both;"><span>所在地</span><span class="float-right">
 				<span>{{userInfo.userAddress}}</span>
 				<span class="el-icon-arrow-right"></span></span>
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import lianDong from '@/components/person/lianDong';
+	import lianDong from '@/components/person/lianDong';
 	export default {
 		data() {
 			return {
@@ -90,21 +90,21 @@ import lianDong from '@/components/person/lianDong';
 				}],
 			}
 		},
-		components:{
+		components: {
 			lianDong,
-			
+
 		},
 
 		created() {
-            this.state = this.states[0];
+			this.state = this.states[0];
 		},
 
 		mounted() {
 			this.getUserInfo();
 		},
-		
+
 		updated() {
-			
+
 		},
 
 		methods: {
@@ -169,14 +169,14 @@ import lianDong from '@/components/person/lianDong';
 					console.log(error);
 				});
 			},
-            
-            /**
-             * 上传头像成功后修改个人头像信息
-             */
+
+			/**
+			 * 上传头像成功后修改个人头像信息
+			 */
 			handleSuccess(response, file, fileList) {
-                this.userIcon = response.url;
-                this.modifyInfo(true); //上传头像
-                console.log(response.url);
+				this.userIcon = response.filepath;
+				this.modifyInfo(true); //上传头像
+				console.log(response.url);
 			},
 			/**
 			 * 修改个人信息
@@ -191,7 +191,7 @@ import lianDong from '@/components/person/lianDong';
 					userRole: _this.userRole, //用户角色
 					userIcon: _this.userIcon, //用户头像
 					userName: _this.nickName, //用户名称
-					//					userAddress: , //用户地址
+					userAddress: _this.userAddress, //用户地址
 					lastMenstruation: _this.endMenses, //末次月经
 					userBirthday: _this.yourBirth, //用户生日
 				}).then(function(response) {
@@ -242,17 +242,17 @@ import lianDong from '@/components/person/lianDong';
 				minute = minute < 10 ? ('0' + minute) : minute;
 				return y + '-' + m + '-' + d + ' ';
 			},
-			
+
 			/**
 			 * 换算时间为hh:mm:ss
 			 * 
 			 * time   毫秒时间戳
 			 */
 			getFormatDate(time) {
-			    var data = new Date(time);
+				var data = new Date(time);
 				var year = data.getFullYear();
 				var month = data.getMonth() + 1;
-				month= month < 10 ? ('0' + month) : month;
+				month = month < 10 ? ('0' + month) : month;
 				var day = data.getDate();
 				day = day < 10 ? ('0' + day) : day;
 				var hour = data.getHours();
@@ -263,6 +263,10 @@ import lianDong from '@/components/person/lianDong';
 				second = second < 10 ? ('0' + second) : second;
 				return year + '-' + month + '-' + day;
 			},
+
+			pickCall: function(address) {
+				this.userAddress = address;
+			}
 
 		}
 	}
