@@ -1,131 +1,201 @@
 {
-    "@platforms": ["android", "iPhone", "iPad"],
-    "id": "H5EC1DC7D",
-    "name": "养乐",
-    "version": {
-        "name": "1.0",
-        "code": ""
-    },
-    "description": "",
-    "icons": {
-        "72": "icon.png"
-    },
-    "launch_path": "dist/index.html",
-    "developer": {
-        "name": "",
-        "email": "",
-        "url": ""
-    },
-    "permissions": {
-        "Messaging":{
-        	"description": "短彩邮件插件"
-        },
-        "Cache": {
-            "description": "管理应用缓存"
-        },
-        "Console": {
-            "description": "跟踪调试输出日志"
-        },
-        "Contacts": {
-            "description": "访问系统联系人信息"
-        },
-        "Events": {
-            "description": "应用扩展事件"
-        },
-        "Maps": {
-            "description": "管理地图插件"
-        },
-        "Speech": {
-            "description": "管理语音识别插件"
-        }
-    },
-    "plus": {
-        "popGesture": "close",
-        "runmode": "normal",
-        "signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",
-        "distribute": {
-            "apple": {
-                "appid": "com.atersoft.yl",
-                "mobileprovision": "yl_yam.mobileprovision",
-                "password": "P@ssword0",
-                "p12": "certForHBuilder.p12",
-                "devices": "universal",
-                "frameworks":["CoreText.framework",
-								"ImageIO.framework",
-								"JavaScriptCore.framework",
-								"WebKit.framework",
-								"CoreTelephony.framework",
-								"MobileCoreServices.framework",
-								"SystemConfiguration.framework",
-								"MediaPlayer.framework",
-								"AudioToolbox.framework",
-								"Security.framework",
-								"QuartzCore.framework",
-								"CFNetwork.framework",
-								"Foundation.framework",
-								"CoreFoundation.framework",
-								"CoreGraphics.framework",
-								"UIKit.framework",
-								"libstdc++.6.dylib",
-								"libxml2.dylib",
-								"libz.dylib",
-								"libsqlite3.0.tbd"
-                ],
-                "plistcmds": [
-			    ]
-            },
-            "google": {
-                "packagename": "",
-                "keystore": "",
-                "password": "",
-                "aliasname": "",
-               "permissions": ["<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"]
-            },
-            "orientation": [
-                "portrait-primary"
-            ],
-            "icons": {
-                "ios": {
-                    "prerendered": true, 
-                     
-                    "iphone": {
-                        "normal": "", 
-                        "retina": "",
-                         
-			 
-                        "spotlight-normal": "",
-                        "spotlight-retina": "", 
-                         
-                        "settings-normal": "", 
-                         
-			"app@2x":"unpackage/res/icons/120x120.png","app@3x":"unpackage/res/icons/180x180.png","settings@3x":"unpackage/res/icons/87x87.png","settings@2x":"unpackage/res/icons/58x58.png","spotlight@2x":"unpackage/res/icons/80x80.png","spotlight@3x":"unpackage/res/icons/120x120.png","notification@3x":"unpackage/res/icons/60x60.png","notification@2x":"unpackage/res/icons/40x40.png" 
-                    },
-                    "ipad": {
-                        "normal": "", 
-                        "retina": "", 
-                        
-                         
-                        "spotlight-normal": "", 
-                        "spotlight-retina": "", 
-                        
-                        
-                        
-                        "app":"unpackage/res/icons/76x76.png","app@2x":"unpackage/res/icons/152x152.png","settings":"unpackage/res/icons/29x29.png","proapp@2x":"unpackage/res/icons/167x167.png","spotlight":"unpackage/res/icons/40x40.png","settings@2x":"unpackage/res/icons/58x58.png","spotlight@2x":"unpackage/res/icons/80x80.png","notification":"unpackage/res/icons/20x20.png","notification@2x":"unpackage/res/icons/40x40.png"
-                    },"appstore":"unpackage/res/icons/1024x1024.png"
-                },
-                "android": {
-                    "mdpi": "unpackage/res/icons/48x48.png", 
-                    "ldpi": "unpackage/res/icons/48x48.png", 
-                    "hdpi": "unpackage/res/icons/72x72.png", 
-                    "xhdpi": "unpackage/res/icons/96x96.png",
-                    "xxhdpi": "unpackage/res/icons/144x144.png","xxxhdpi":"unpackage/res/icons/192x192.png"
-                }
-            },
-            "splashscreen": {
-                
-            }
-        },"adid":"125363140006"
-    },
+	"@platforms": [
+		"android",
+		"iPhone",
+		"iPad"
+	],
+	"id": "H5EC1DC7D",
+	"name": "养乐",
+	"version": {
+		"name": "1.0",
+		"code": ""
+	},
+	"description": "",
+	"icons": {
+		"72": "icon.png"
+	},
+	"launch_path": "dist/index.html",
+	"developer": {
+		"name": "",
+		"email": "",
+		"url": ""
+	},
+	"permissions": {
+		"Messaging": {
+			"description": "短彩邮件插件"
+		},
+		"Cache": {
+			"description": "管理应用缓存"
+		},
+		"Console": {
+			"description": "跟踪调试输出日志"
+		},
+		"Contacts": {
+			"description": "访问系统联系人信息"
+		},
+		"Events": {
+			"description": "应用扩展事件"
+		},
+		"Maps": {
+			"description": "管理地图插件"
+		},
+		"Speech": {
+			"description": "管理语音识别插件"
+		}
+	},
+	"plus": {
+		"popGesture": "close",
+		"runmode": "normal",
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",
+		"distribute": {
+			"apple": {
+				"appid": "com.atersoft.yl",
+				"mobileprovision": "yl_yam.mobileprovision",
+				"password": "P@ssword0",
+				"p12": "certForHBuilder.p12",
+				"devices": "universal",
+				"frameworks": [
+					"CoreText.framework",
+					"ImageIO.framework",
+					"JavaScriptCore.framework",
+					"WebKit.framework",
+					"CoreTelephony.framework",
+					"MobileCoreServices.framework",
+					"SystemConfiguration.framework",
+					"MediaPlayer.framework",
+					"AudioToolbox.framework",
+					"Security.framework",
+					"QuartzCore.framework",
+					"CFNetwork.framework",
+					"Foundation.framework",
+					"CoreFoundation.framework",
+					"CoreGraphics.framework",
+					"UIKit.framework",
+					"libstdc++.6.dylib",
+					"libxml2.dylib",
+					"libz.dylib",
+					"libsqlite3.0.tbd"
+				],
+				"plistcmds": []
+			},
+			"google": {
+				"packagename": "",
+				"keystore": "",
+				"password": "",
+				"aliasname": "",
+				"permissions": [
+					"<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+					"<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+					"<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+					"<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.CAMERA\"/>",
+					"<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+					"<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+					"<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+					"<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+					"<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+					"<uses-feature android:name=\"android.hardware.camera\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+				]
+			},
+			"orientation": [
+				"portrait-primary"
+			],
+			"icons": {
+				"ios": {
+					"prerendered": true,
+
+					"iphone": {
+						"normal": "",
+						"retina": "",
+
+
+						"spotlight-normal": "",
+						"spotlight-retina": "",
+
+						"settings-normal": "",
+
+						"app@2x": "unpackage/res/icons/120x120.png",
+						"app@3x": "unpackage/res/icons/180x180.png",
+						"settings@3x": "unpackage/res/icons/87x87.png",
+						"settings@2x": "unpackage/res/icons/58x58.png",
+						"spotlight@2x": "unpackage/res/icons/80x80.png",
+						"spotlight@3x": "unpackage/res/icons/120x120.png",
+						"notification@3x": "unpackage/res/icons/60x60.png",
+						"notification@2x": "unpackage/res/icons/40x40.png"
+					},
+					"ipad": {
+						"normal": "",
+						"retina": "",
+
+
+						"spotlight-normal": "",
+						"spotlight-retina": "",
+
+
+
+						"app": "unpackage/res/icons/76x76.png",
+						"app@2x": "unpackage/res/icons/152x152.png",
+						"settings": "unpackage/res/icons/29x29.png",
+						"proapp@2x": "unpackage/res/icons/167x167.png",
+						"spotlight": "unpackage/res/icons/40x40.png",
+						"settings@2x": "unpackage/res/icons/58x58.png",
+						"spotlight@2x": "unpackage/res/icons/80x80.png",
+						"notification": "unpackage/res/icons/20x20.png",
+						"notification@2x": "unpackage/res/icons/40x40.png"
+					},
+					"appstore": "unpackage/res/icons/1024x1024.png"
+				},
+				"android": {
+					"mdpi": "unpackage/res/icons/48x48.png",
+					"ldpi": "unpackage/res/icons/48x48.png",
+					"hdpi": "unpackage/res/icons/72x72.png",
+					"xhdpi": "unpackage/res/icons/96x96.png",
+					"xxhdpi": "unpackage/res/icons/144x144.png",
+					"xxxhdpi": "unpackage/res/icons/192x192.png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {
+						"iphonex": "src/assets/loading.png",
+						"retina47": "src/assets/loading.png",
+						"iphonexl": "src/assets/loading.png",
+						"retina35": "src/assets/loading.png",
+						"retina40": "src/assets/loading.png",
+						"retina55": "src/assets/loading.png",
+						"retina55l": "src/assets/loading.png"
+					},
+					"ipad": {
+						"portrait": "src/assets/loading.png",
+						"landscape": "src/assets/loading.png",
+						"portrait7": "src/assets/loading.png",
+						"landscape7": "src/assets/loading.png",
+						"portrait-retina": "src/assets/loading.png",
+						"portrait-retina7": "src/assets/loading.png",
+						"landscape-retina": "src/assets/loading.png",
+						"landscape-retina7": "src/assets/loading.png"
+					}
+				},
+				"android": {
+					"hdpi": "src/assets/loading.png",
+					"xhdpi": "src/assets/loading.png",
+					"xxhdpi": "src/assets/loading.png"
+				}
+			}
+		},
+		"adid": "125363140006"
+	},
 	"dependencies": {
 		"pages": {
 			"dist/index.html": {
