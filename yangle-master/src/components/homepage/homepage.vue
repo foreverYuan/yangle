@@ -49,7 +49,7 @@
 				<!-- 孕期描述 end -->
 			</div>
 			<!-- 任务列表  start -->
-			<div style="background-color:rgb(246,246,246);padding: 0.6rem 0;" @click="goTask">
+			<div style="background-color:rgb(246,246,246);padding: 0.6rem 0;" @click="goTask" v-if="taskList.length > 0">
 				<div style="background-color:white;padding: 0.6rem;">
 					<p style="margin:0;">
 						<span style="color: #ffd8d5;">今日任务</span>
@@ -58,7 +58,7 @@
 						<span class="el-icon-arrow-right"></span>-->
 						</span>
 					</p>
-					<ul v-for="item in taskkList" class="ul-task">
+					<ul v-for="item in taskList" class="ul-task">
 						<li>
 							<span>{{item.taskName}}</span>
 							<div style="float: right;align-items: center;">
@@ -86,7 +86,7 @@
 			<!-- 任务列表  end -->
 
 			<!-- 孕期知识 start -->
-			<div style="width: 100%;height: 10rem;">
+			<div style="width: 100%;height: 10rem;margin-top: 1rem;">
 				<mt-swipe :auto="3000">
 					<mt-swipe-item>
 						<img src="../../assets/pregnancy_knowledge_big.png" style="width: 100%;height: 100%;" />
@@ -322,17 +322,17 @@
 					lastMenstruation: localStorage.getItem('endMenses'),
 					pregnancyDate: localStorage.getItem("pregnancyDate"), //预产日期,必填
 					equipmentId: _this.base_uuid,
-					userId: this.userId, //用户id,非必填
+					userId: _this.userId, //用户id,非必填
 				}).then((response) => {
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
 						//成功
-						this.carouselList = response.data.sowMapList, //轮播列表数据
-							this.tip = response.data.tip, //任务提示语
-							this.taskList = response.data.taskList, //任务列表
-							this.babyStatus = response.data.BabyStatus, //婴儿状态
-							this.knowledgeList = response.data.knowledgeList //知识列表
-						localStorage.setItem('pregnancyWeek', this.babyStatus.pregnancyWeek);
+						_this.carouselList = response.data.sowMapList, //轮播列表数据
+							_this.tip = response.data.tip, //任务提示语
+							_this.taskList = response.data.taskList, //任务列表
+							_this.babyStatus = response.data.BabyStatus, //婴儿状态
+							_this.knowledgeList = response.data.knowledgeList //知识列表
+						localStorage.setItem('pregnancyWeek', _this.babyStatus.pregnancyWeek);
 					}
 				}).catch((error) => {
 					//失败

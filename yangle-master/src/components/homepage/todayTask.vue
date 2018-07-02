@@ -5,7 +5,7 @@
 		</mt-header>
 
 		<div class="div-content">
-			<div class="div-task-canvas" v-for="item in taskkList">
+			<div class="div-task-canvas" v-for="item in taskList">
 					<!-- 已完成 -->
 					<div class="div-task" v-if="item.taskStatus == 2" @click="goTaskDetail(item)">
 						<p>{{item.taskName}}</p>
@@ -135,7 +135,7 @@
 					path: '/todayTaskDetail',
 					query: {
 						task: JSON.stringify(task),
-						taskId: JSON.stringify(task.taskId), //任务id
+						taskId: task.taskId, //任务id
 					}
 				})
 				console.log("task", task);

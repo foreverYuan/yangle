@@ -1,8 +1,8 @@
 exports.install = function(Vue, options) {
 	//获取设备UUID
 	Vue.prototype.base_uuid = function() {
-		//				return '866146034068365,866146034068373';
-		return plus.device.uuid;
+//		return '866146034068365,866146034068373';
+				return plus.device.uuid;
 	};
 
 	//	Vue.prototype.pregnancyDate = '2019-03-25';
@@ -13,7 +13,8 @@ exports.install = function(Vue, options) {
 		var Helper = plus.android.importClass("com.ater.yangle.Helper");
 		this.fhrId = Helper.getFhrId();
 	}
-	//引导至蓝牙页面
+
+	// 引导至蓝牙页面
 	Vue.prototype.base_naviblue = function() {
 		if(plus.os.name == "iOS") {
 			var newVCobj = plus.ios.newObject("FindBLViewControler");
@@ -50,6 +51,7 @@ exports.install = function(Vue, options) {
 		}
 	};
 
+	//跳转原生胎心详情页
 	Vue.prototype.base_navidetail = function(fhrId) {
 		if(plus.os.name == "iOS") {
 			var UserDefaultsClass = plus.ios.importClass("NSUserDefaults");
@@ -66,13 +68,6 @@ exports.install = function(Vue, options) {
 			plus.ios.invoke(appRootController, "presentViewController:animated:completion:", newVCobj, "YES", null);
 
 		} else if(plus.os.name == "Android") { //跳转原生Android胎心详情页
-
-			//			this.$router.push({
-			//				path: '/fetalheartDetail',
-			//				query: {
-			//					fhrId: fhrId
-			//				}
-			//			})
 
 			//获取当前Activity
 			var main = plus.android.runtimeMainActivity();
@@ -99,6 +94,19 @@ exports.install = function(Vue, options) {
 			// }
 		} else if(plus.os.name == "Android") {
 			//todo
+		}
+	}
+
+	//从原生类获取保存在本地的未同步的胎心数据
+	Vue.prototype.getFileInfo = function() {
+		if(plus.os.name == "IOS") {
+
+		} else if(plus.os.name == "Android") {
+		    alert("Android数据");
+			var FileUtil = plus.android.importClass("com.ater.yangle.utils.FileUtil");
+//			alert(FileUtil.fhrTxtName);
+			var fhrTxt = FileUtil.getFile("1530518609731.txt");
+			alert(fhrTxt);
 		}
 	}
 

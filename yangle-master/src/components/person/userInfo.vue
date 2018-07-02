@@ -8,7 +8,7 @@
 				<span>头像</span>
 				<span class="el-icon-arrow-right float-right" style="margin-top: 1.5rem;margin-left: 0.5rem;"></span>
 				<el-upload action="https://yl.ibao365.net:8080/yangle/pregnancy/fastdfsUpload" show-file-list="false" style="float: right;" v-model="userIcon" :on-success="handleSuccess">
-					<img src="https://yl.ibao365.net:8080/yangle/resources/f3f0881f-3465-43cf-842f-5f7f4e6e6dea.png " v-if="userInfo.userIcon != ''" class="float-right" size="small" type="primary" width="55" height="55" style="border-radius: 55px;" />
+					<img src="userInfo.userIcon" v-if="userInfo.userIcon != ''" class="float-right" size="small" type="primary" width="55" height="55" style="border-radius: 55px;" />
 					<img src="../../assets/icon_QQ.png" v-if="userInfo.userIcon == null || userInfo.userIcon == ''" class="float-right" width="55" height="55" />
 				</el-upload>
 			</p>

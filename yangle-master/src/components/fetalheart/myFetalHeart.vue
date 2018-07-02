@@ -13,8 +13,7 @@
 			</div>
 
 			<div style="text-align:left;" v-if="allFhrList.length > 0">
-				<mt-loadmore :autoFill="false" :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @top-status-change="handleTopChange" :auto-fill="false" bottomPullText="上拉加载更多" 
-					:bottomLoadingText="bottomLoadingText" ref="loadmore" >
+				<mt-loadmore :autoFill="false" :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @top-status-change="handleTopChange" :auto-fill="false" bottomPullText="上拉加载更多" :bottomLoadingText="bottomLoadingText" ref="loadmore">
 					<ul>
 						<li v-for="item in allFhrList">
 							<p class="li1">{{item.startTime}}</p>
@@ -70,26 +69,29 @@
 
 		created() {
 			this.getMyFhrData();
-//		    this.back();
+			//		    this.back();
+		},
+
+		mounted() {
+			this.getFileInfo();
 		},
 
 		methods: {
 			goBack() {
 				this.$router.go(-1);
 			},
-			
-			/**
-             * 监听物理按键返回
-             */
-//			back() {
-//				var _this = this;
-//				if(plus.os.name == "Android") {
-//					plus.key.addEventListener("backbutton", function() {
-//						_this.goBack();
-//					});
-//				}
-//			},
 
+			/**
+			 * 监听物理按键返回
+			 */
+			//			back() {
+			//				var _this = this;
+			//				if(plus.os.name == "Android") {
+			//					plus.key.addEventListener("backbutton", function() {
+			//						_this.goBack();
+			//					});
+			//				}
+			//			},
 
 			/**
 			 * 跳转胎心详情
@@ -114,12 +116,12 @@
 							this.totalPage = response.data.data.totalPage, //总页数
 							this.page = response.data.data.currPage, //当前页码
 							this.todayTotal = response.data.data.todayTotal //今日条数
-						    this.fhrList = response.data.data.list //胎心列表
-						    for(var i = 0; i < this.fhrList.length; i++) {
-						    	this.allFhrList.push(this.fhrList[i]);
-						    }
-						    console.log('fhrList', this.fhrList)
-						    console.log('allFhrList', this.allFhrList)
+						this.fhrList = response.data.data.list //胎心列表
+						for(var i = 0; i < this.fhrList.length; i++) {
+							this.allFhrList.push(this.fhrList[i]);
+						}
+						console.log('fhrList', this.fhrList)
+						console.log('allFhrList', this.allFhrList)
 					}
 
 				}).catch((error) => {
@@ -149,7 +151,7 @@
 					return;
 				}
 				this.getMyFhrData();
-                this.$refs.loadmore.onBottomLoaded(); 
+				this.$refs.loadmore.onBottomLoaded();
 			},
 
 			handleTopChange(status) {
