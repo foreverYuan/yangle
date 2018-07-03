@@ -1,7 +1,8 @@
 <template>
 	<div class="home">
 		<router-view></router-view>
-		<mt-tabbar v-model="selected" style="position:fixed;height: 3.5rem;">
+		<img src="../../assets/bottom_navibar.png" width="100%" style="position: fixed;left: 0;bottom: 0;"/>
+		<mt-tabbar v-model="selected" style="position:fixed;height: 3.5rem;background: url(../../assets/bottom_navibar.png);background-size: 100% auto;">
 			<mt-tab-item id="1">
 				<img src="../../assets/home_selected.png" v-if="selected==1">
 				<img src="../../assets/home_normal.png" v-else>

@@ -99,7 +99,7 @@
 			goDetail(fhrId) {
 				this.base_navidetail(fhrId);
 			},
-
+			
 			/**
 			 * 获取我的胎心数据
 			 */

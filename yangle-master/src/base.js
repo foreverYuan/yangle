@@ -1,8 +1,8 @@
 exports.install = function(Vue, options) {
 	//获取设备UUID
 	Vue.prototype.base_uuid = function() {
-//		return '866146034068365,866146034068373';
-				return plus.device.uuid;
+		//		return '866146034068365,866146034068373';
+		return plus.device.uuid;
 	};
 
 	//	Vue.prototype.pregnancyDate = '2019-03-25';
@@ -100,14 +100,58 @@ exports.install = function(Vue, options) {
 	//从原生类获取保存在本地的未同步的胎心数据
 	Vue.prototype.getFileInfo = function() {
 		if(plus.os.name == "IOS") {
+			//todo
 
 		} else if(plus.os.name == "Android") {
-		    alert("Android数据");
+			alert("开始同步数据");
 			var FileUtil = plus.android.importClass("com.ater.yangle.utils.FileUtil");
-//			alert(FileUtil.fhrTxtName);
-			var fhrTxt = FileUtil.getFile("1530518609731.txt");
+			//			alert(FileUtil.fhrTxtName);
+			var fhrTxt = FileUtil.getFile(FileUtil.FHR_FILE_NAME);
 			alert(fhrTxt);
+			if(fhrTxt.trim().charAt(0) == ',') {
+				fhrTxt = fhrTxt.substring(1, fhrTxt.length);
+			}
+			if(fhrTxt.trim().charAt(fhrTxt.length - 1) == ',') {
+				fhrTxt = fhrTxt.substring(0, fhrTxt.length - 1);
+			}
+			alert(fhrTxt);
+			var fhrFiles = fhrTxt.split(FileUtil.SEPARATOR_COMMA);
+			for(var i = 0; i < fhrFiles.length; i++) {
+				alert(fhrFiles[i]);
+				var fhrFileContent = FileUtil.getFile(fhrFiles[i]);
+				var fhrFileJson = JSON.parse(fhrFileContent); //转换成json对象
+				if(fhrFileJson.moveId == null || fhrFileJson.moveId.length <= 0) {
+					this.uploadFhrData('/yFetalMovement/yfetalmovement/saveFetalHeart', fhrFileJson, fhrFiles[i]);
+				} else {
+					this.uploadFhrData('/yFetalMovement/yfetalmovement/update', fhrFileJson, fhrFiles[i]);
+				}
+			}
 		}
+	}
+
+	/**
+	 * 保存胎心数据
+	 */
+	Vue.prototype.uploadFhrData = function(url, fhrFileJson, fhrFile) {
+		this.axios.post(url, {
+			moveId: fhrFileJson.moveId, //胎心id
+			meanHeartRate: fhrFileJson.meanHeartRate, //平均心率
+			monitoringTime: fhrFileJson.monitoringTime, //监测时间
+			startTime: fhrFileJson.startTime, //开始时间
+			heartRecord: fhrFileJson.heartRecord, //胎心数据
+			fetalMove: fhrFileJson.fetalMove, //胎动
+			userId: fhrFileJson.userId, //用户id
+		}).then((response) => {
+			console.log(response.data);
+			if(response.data.resultCode == 200) {
+				alert("上传成功")
+				var FileUtil = plus.android.importClass("com.ater.yangle.utils.FileUtil");
+				FileUtil.deleteFile(fhrFile);
+			}
+
+		}).catch((error) => {
+			console.log(error);
+		});
 	}
 
 	Vue.prototype.checkanddirect = function(passFunc, passValue, failedFunc, failedValue, id) {
