@@ -1,7 +1,7 @@
 exports.install = function(Vue, options) {
 	//获取设备UUID
 	Vue.prototype.base_uuid = function() {
-		//		return '866146034068365,866146034068373';
+		//				return '866146034068365,866146034068373';
 		return plus.device.uuid;
 	};
 
@@ -154,6 +154,41 @@ exports.install = function(Vue, options) {
 		});
 	}
 
+	var nativeWebview, imm, InputMethodManager;
+	var initNativeObjects = function() {
+		if(plus.os.name == "Android") {
+			var main = plus.android.runtimeMainActivity();
+			var Context = plus.android.importClass("android.content.Context");
+			InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
+			imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
+		} else {
+			nativeWebview = plus.webview.currentWebview().nativeInstanceObject();
+		}
+	};
+	var showSoftInput = function() {
+		var nativeWebview = plus.webview.currentWebview().nativeInstanceObject();
+		if(plus.os.name == "Android") {
+			//强制当前webview获得焦点
+			plus.android.importClass(nativeWebview);
+			nativeWebview.requestFocus();
+			imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+		} else {
+			nativeWebview.plusCallMethod({
+				"setKeyboardDisplayRequiresUserAction": false
+			});
+		}
+		setTimeout(function() {
+			//此处可写具体逻辑设置获取焦点的input
+			var inputElem = document.getElementsByTagName('input');
+			for(var i = 0; i < inputElem.length; i++) {
+				inputElem[i].focus();
+			}
+		}, 200);
+	};
+	document.addEventListener('plusready', function() {
+		initNativeObjects();
+		showSoftInput();
+	});
 	Vue.prototype.checkanddirect = function(passFunc, passValue, failedFunc, failedValue, id) {
 		var userId = localStorage.getItem('userId');
 		if(userId != null && userId != '') {
