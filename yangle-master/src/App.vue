@@ -40,6 +40,10 @@
 		float: right;
 	}
 	
+	.block {
+		display: block;
+	}
+	
 	/*.mint-header {
 		background: none;
 	}*/

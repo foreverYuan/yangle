@@ -2,6 +2,7 @@
 	width: 100%;
 	height: 100%;
 	text-align: left;
+	background: #fff;
 }
 
 .div_content {
@@ -13,6 +14,7 @@
 	text-align: center;
 	line-height: 3rem;
 	color: #333;
+	font-size: 1.05rem;
 }
 
 .img_pg_konw {
@@ -25,6 +27,7 @@
 }
 
 .div_pg_know .desc {
+	font-size: 1rem;
 	color: #aaa;
 	line-height: 1.8;
 	word-break: break-all;
@@ -81,10 +84,6 @@ p.p_pg_desc {
 	width: 1.2rem;
 	height: 1.2rem;
 	margin-right: 0.3rem;
-}
-
-.span_today_knowledge {
-	font-size: 1.1rem;
 }
 
 .div-sign-dialog {
@@ -205,4 +204,80 @@ p.p_pg_desc {
 	transition: all 3s;
 	-moz-transition: all 3s;
 	-webkit-transition: all 3s;
+}
+
+.baby-name {
+	color: #333;
+	font-size: 1.15rem;
+}
+
+.home-title {
+	color: #333;
+	font-size: 1.25rem;
+	font-weight: bold;
+	border-left: 3px solid #333;
+	padding-left: 0.3rem;
+}
+
+.knowledge-name {
+	color: #333;
+	font-size: 1.1rem;
+}
+
+.task-tip {
+	padding: 0.5rem;
+	color: #bbb;
+	border-top: 10px solid #f5f5f5; 
+	border-bottom: 10px solid #f5f5f5;
+	display: flex;
+}
+
+
+.task-tip img {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.task-tip span {
+	/*width: 80%;*/
+	font-size: 0.9rem;
+	margin-left: 1rem;
+	color: #555;
+	font-weight: bold;
+}
+.baby-state {
+	background: url(../assets/1x/qipao.png);
+	margin-top: -20%;
+}
+
+.know-carousel {
+	width: 100%;
+	height: 10rem;
+	border-top: 10px solid #f5f5f5;
+	border-bottom: 10px solid #f5f5f5;
+}
+
+.home-search {
+	position: absolute;
+	top: 0.6rem;
+	left: 1.5rem;
+	width: 80%;
+	background: #FE99CC;
+	outline: none;
+	border: none;
+	border-radius: 1rem;
+	padding: 0.5rem 0;
+	text-align: center;
+}
+
+.sign-red-point {
+	position: absolute;
+	top: 7px;
+	right: 0;
+	width: 10px;
+	height: 10px;
+}
+
+.mint-header {
+	padding-right: 7px;
 }

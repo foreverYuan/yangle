@@ -1,7 +1,12 @@
 <template>
 	<div class="login">
-
-		<div style="display: flex;height: 3rem;">
+		<img src="../../assets/1x/login-top-background.png" class="top-login-img"/>
+		<!--<img src="../../assets/1x/login-top-background-layer.png" class="layer" />-->
+		<p class="login-top-text"><span>来自新生命的对话</span><span>...</span></p>
+		<router-link :to="path">
+			<span class="el-icon-arrow-left span-back"></span>
+		</router-link>
+		<!--<div style="display: flex;height: 3rem;">
 			<router-link :to="path">
 				<span class="el-icon-arrow-left span-back"></span>
 			</router-link>
@@ -13,7 +18,7 @@
 					<div class='toggle-text-on'>密码登录</div>
 				</div>
 			</div>
-		</div>
+		</div>-->
 		<div class="div_content">
 			<!-- 输入手机号和密码 -->
 			<div class="div_account">
@@ -37,17 +42,16 @@
 				<span v-if="!isOnSwitch" id="it-code" class="span-it" style="padding-left: 2.5rem;">600s</span>
 				</span>
 			</div>
+			<!-- 注册新用户&忘记密码 -->
+			<p>
+				<span class="forget-pwd" @click="goForgetPwd()">忘记密码?</span>
+				<span class="float-right idCode-login" @click="">验证码登录</span>
+			</p>
 
 			<!-- 登录按钮 -->
 			<button class="btn_login" @click="login" v-if="allowLogin == 0">登录</button>
 			<button class="light_btn_login" @click="login" v-if="allowLogin == 1">登录</button>
-
-			<!-- 注册新用户&忘记密码 -->
-			<p>
-				<span class="register-pwd" @click="goRegister()">注册新用户</span>
-				<span class="float-right forget-pwd" @click="goForgetPwd()">忘记密码?</span>
-			</p>
-
+            <span class="register-pwd" @click="goRegister()">注册新用户</span>
 			<!-- 第三方登录 -->
 			<!--<div class="third-login">
 				<p>第三方登录</p>
@@ -98,7 +102,7 @@
 		},
 		created() {
 			this.goBack();
-//			this.back();
+			//			this.back();
 			//	         else if (id == this.jumpRouterIds[2]) {
 			//	         	this.path = '/register';
 			//	         }
@@ -228,18 +232,18 @@
 					this.path = '/home/homepage';
 				}
 			},
-			
+
 			/**
-             * 监听物理按键返回
-             */
-//			back() {
-//				var _this = this;
-//				if(plus.os.name == "Android") {
-//					plus.key.addEventListener("backbutton", function() {
-//						_this.goBack();
-//					});
-//				}
-//			},
+			 * 监听物理按键返回
+			 */
+			//			back() {
+			//				var _this = this;
+			//				if(plus.os.name == "Android") {
+			//					plus.key.addEventListener("backbutton", function() {
+			//						_this.goBack();
+			//					});
+			//				}
+			//			},
 
 			/**
 			 * 手机号获取焦点事件

@@ -28,7 +28,10 @@
 	line-height: 3rem;
 	font-size: 1.2rem;
 	font-weight: bold;
-	color: #333;
+	color: #FDEDF4;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 .bottom-line{
@@ -57,10 +60,11 @@
 	width: 100%;
 	height: 3rem;
 	border-radius: 10rem;
-	margin-top: 10rem;
+	margin-top: 1rem;
 	text-align: center;
 	background: #eee;
 	color: #333;
+	font-size: 1.1rem;
 	border: none;
 	outline: none;
 }
@@ -70,14 +74,23 @@
 }
 
 .light_btn_login {
-	background: #FC9FD7;
+	background: #FF6DB6;
 }
 
- .register-pwd {  /*注册新用户*/
+ .forget-pwd {  /*注册新用户*/
 	color: rgb(252, 159, 215);
 }
 
-.forget-pwd {
+.register-pwd {
+	position: absolute;
+	bottom: 10%;
+	width: 20%;
+	text-align: center;
+	left: 40%;
+	color: #ccc;
+}
+
+.idCode-login {
 	color: #ccc;
 }
 
@@ -221,5 +234,29 @@
     opacity: 1;
     -webkit-transition: opacity 1s;
     transition: opacity 1s;
+}
+
+.layer {
+	position: absolute;
+	top: -60%;
+}
+
+.login-top-text {
+	position: absolute;
+	top: 7%;
+	left: 20%;
+	width: 60%;
+	text-align: center;
+	font-size: 1.3rem;
+	color: #fff;
+}
+
+.login-top-text span:last-child {
+	color: #FEE47F;
+	font-size: 2rem;
+}
+
+.top-login-img {
+	width: 100%;
 }
 

@@ -1,11 +1,11 @@
 <template>
 	<div class="home">
 		<router-view></router-view>
-		<img src="../../assets/bottom_navibar.png" width="100%" style="position: fixed;left: 0;bottom: 0;"/>
-		<mt-tabbar v-model="selected" style="position:fixed;height: 3.5rem;background: url(../../assets/bottom_navibar.png);background-size: 100% auto;">
+		<!--<img src="../../assets/bottom_navibar.png" width="100%" style="position: fixed;left: 0;bottom: 0;"/>-->
+		<mt-tabbar v-model="selected" class="tabbar">
 			<mt-tab-item id="1">
-				<img src="../../assets/home_selected.png" v-if="selected==1">
-				<img src="../../assets/home_normal.png" v-else>
+				<img src="../../assets/1x/home-icon.png" v-if="selected==1">
+				<img src="../../assets/1x/home-icon.png" v-else>
 				<p style="-webkit-margin-before:0.3rem;">首页</p>
 			</mt-tab-item>
 			<!-- <mt-tab-item id="2">
@@ -14,9 +14,9 @@
 				<p>咨询</p>
 			</mt-tab-item> -->
 			<mt-tab-item id="3">
-				<img src="../../assets/fetal_heart.png" v-if="selected==3" style="margin-top: -2rem;width: 4.3rem;height: 4.3rem;">
-				<img src="../../assets/fetal_heart.png" v-else style="margin-top: -2rem;width: 4.3rem;height: 4.3rem;">
-				<!--<p style="-webkit-margin-before:1.1rem;">胎心</p>-->
+				<img src="../../assets/1x/heart-icon.png" v-if="selected==3" style="margin-top: -0.7rem;">
+				<img src="../../assets/1x/heart-icon.png" v-else style="margin-top: -0.7rem;">
+				<p style="-webkit-margin-before:0.3rem;">胎心</p>
 			</mt-tab-item>
 			<!-- <mt-tab-item id="4">
 				<img src="../../assets/assistant_selected.png" v-if="selected==4">
@@ -24,8 +24,8 @@
 				<p>助手</p>
 			</mt-tab-item> -->
 			<mt-tab-item id="5">
-				<img src="../../assets/person_selected.png" v-if="selected==5">
-				<img src="../../assets/person_normal.png" v-else>
+				<img src="../../assets/1x/person-icon.png" v-if="selected==5">
+				<img src="../../assets/1x/person-icon.png" v-else>
 				<p style="-webkit-margin-before:0.3rem;">个人</p>
 			</mt-tab-item>
 		</mt-tabbar>
