@@ -1,8 +1,7 @@
 <template>
 	<div class="login">
 		<img src="../../assets/1x/login-top-background.png" class="top-login-img"/>
-		<!--<img src="../../assets/1x/login-top-background-layer.png" class="layer" />-->
-		<p class="login-top-text"><span>来自新生命的对话</span><span>...</span></p>
+		<p class="login-top-text"><img src="../../assets/1x/login-top-text.png" /></p>
 		<router-link :to="path">
 			<span class="el-icon-arrow-left span-back"></span>
 		</router-link>
@@ -22,28 +21,28 @@
 		<div class="div_content">
 			<!-- 输入手机号和密码 -->
 			<div class="div_account">
-				<img src="../../assets/login_person_normal.png" v-if="!phoneFocus" />
-				<img src="../../assets/login_person_selected.png" v-if="phoneFocus" />
-				<span class="bottom-line">
-				<input placeholder="请输入手机号" v-model="phone" type="number" @focus="focusPhone" @blur="blurPhone" />
-				<img v-if="isOnSwitch" style="padding-left: 3rem;"/>
+				<img src="../../assets/1x/login-person-normal.png" v-if="!phoneFocus" />
+				<img src="../../assets/1x/login-person-normal.png" v-if="phoneFocus" />
+				<!--<span class="bottom-line">-->
+				<input placeholder="用户名/手机号" v-model="phone" type="number" @focus="focusPhone" @blur="blurPhone" />
+				<!--<img v-if="isOnSwitch" style="padding-left: 3rem;"/>-->
 				<span v-if="!isOnSwitch" style="color: #FC9FD7;" id="re-get-it" class="span-it" @click="getItCode">获取验证码</span>
-				</span>
+				<!--</span>-->
 			</div>
 
 			<div class="div_password">
-				<img src="../../assets/login_password_normal.png" v-if="!pwdFocus" />
-				<img src="../../assets/login_password_selected.png" v-if="pwdFocus" />
-				<span class="bottom-line">
-				<input placeholder="请输入密码" v-model="pwd" :type="pwdType" @focus="focusPwd" @blur="blurPwd" v-if="isOnSwitch"/>
+				<img src="../../assets/1x/login-password-normal.png" v-if="!pwdFocus" />
+				<img src="../../assets/1x/login-password-normal.png" v-if="pwdFocus" />
+				<!--<span class="bottom-line">-->
+				<input placeholder="密码" v-model="pwd" :type="pwdType" @focus="focusPwd" @blur="blurPwd" v-if="isOnSwitch"/>
 				<input placeholder="请输入验证码" v-model="itCode" :type="pwdType" @focus="focusPwd" @blur="blurPwd" v-if="!isOnSwitch"/>
-				<img src="../../assets/login_eye_close.png" v-if="isEncrypt && isOnSwitch" @click="encrypt" style="padding-left: 3.3rem;width: 1.2rem;"/>
-				<img src="../../assets/login_eye_open.png" v-if="!isEncrypt && isOnSwitch" @click="encrypt" style="padding-left: 3.3rem;width: 1.2rem;"/>
+				<img src="../../assets/login_eye_close.png" v-if="isEncrypt && isOnSwitch" @click="encrypt" class="float-right pwd-eye"/>
+				<img src="../../assets/login_eye_open.png" v-if="!isEncrypt && isOnSwitch" @click="encrypt" class="float-right pwd-eye"/>
 				<span v-if="!isOnSwitch" id="it-code" class="span-it" style="padding-left: 2.5rem;">600s</span>
-				</span>
+				<!--</span>-->
 			</div>
 			<!-- 注册新用户&忘记密码 -->
-			<p>
+			<p class="forget-pwd-idcode-login">
 				<span class="forget-pwd" @click="goForgetPwd()">忘记密码?</span>
 				<span class="float-right idCode-login" @click="">验证码登录</span>
 			</p>
@@ -51,7 +50,7 @@
 			<!-- 登录按钮 -->
 			<button class="btn_login" @click="login" v-if="allowLogin == 0">登录</button>
 			<button class="light_btn_login" @click="login" v-if="allowLogin == 1">登录</button>
-            <span class="register-pwd" @click="goRegister()">注册新用户</span>
+            <!--<span class="register-pwd" @click="goRegister()">注册新用户</span>-->
 			<!-- 第三方登录 -->
 			<!--<div class="third-login">
 				<p>第三方登录</p>

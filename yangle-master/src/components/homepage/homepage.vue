@@ -4,12 +4,12 @@
 			<mt-header style="background: none;">
 				<!--:title="babyStatus.pregnancyWeek"-->
 				<mt-button @click="showSignDialog" slot="right" style="color: #fff;padding-right: 3px;">签到
-					<img src="../../assets/red-point.png" v-if="isTodaySign == 0" class="sign-red-point" /></mt-button>
+					<img src="../../assets/red-point.png" v-if="isTodaySign == 0 && userId != null && userId != null" class="sign-red-point" /></mt-button>
 				<!--<mt-button @click="" slot="right">
 					<img src="../../assets/camera_icon.png" style="width: 1.5rem;" />
 				</mt-button>-->
 			</mt-header>
-			<img src="../../assets/1x/search-icon.png" style="position: absolute;top: 1rem;left: 5rem;z-index: 1;" />
+			<img src="../../assets/1x/search-icon.png" style="position: absolute;top: 1rem;left: 18%;z-index: 1;" />
 			<input placeholder="宝宝老是闹肚子怎么办?" class="home-search" />
 
 			<img src="../../assets/3x/home-top-background@3x.png" style="width:100%;height:12rem;margin-top: -13%;" alt="">
@@ -61,7 +61,7 @@
 			<!-- 孕期描述 end -->
 		</div>
 		<!-- 任务列表  start -->
-		<div style="padding: 0.6rem 0;" @click="goTask" v-if="">
+		<div style="padding: 0.6rem 0;" @click="goTask" v-if="taskList">
 			<!--taskList.length > 0-->
 			<!--todo-->
 			<p class="task-tip">
@@ -72,18 +72,18 @@
 				<p style="margin:0;">
 					<span class="home-title">今日任务</span>
 					<span style="float: right;">
-							<span style="color: #FE6EB6;">3</span>
+							<span style="color: #FE6EB6;">{{showTaskNum}}</span>
 					<!--todo-->
-					<span>/5</span>
+					<span>/{{taskList.length}}</span>
 					<!--todo-->
 					<!--<span style="color: #aaa;">开始任务</span>
 						<span class="el-icon-arrow-right"></span>-->
 					</span>
 				</p>
-				<ul v-for="item in taskkList" class="ul-task">
+				<ul v-for="item in taskList" class="ul-task">
 					<li style="display: flex;">
 						<div style="width: 20%;">
-							<img src="../../assets/3x/hetao@3x.png" style="width: 50%;height: auto;" />
+							<img src="../../assets/3x/hetao@3x.png" id="task-left-pic" />   <!--item.taskPicture-->
 						</div>
 						<div style="width: 62%;">
 							<span style="display: block;color: #ED6EB6;font-weight: bold;font-size: 1.15rem;">{{item.taskName}}</span>
@@ -270,6 +270,7 @@
 				canvasWidth: window.screen.availWidth * 7 / 10,
 				canvasHeight: window.screen.height * 1 / 4,
 				dpr: window.devicePixelRatio, //屏幕像素分辨率
+				showTaskNum: 3, //显示任务数量
 			}
 		},
 
@@ -345,6 +346,7 @@
 							_this.taskList = response.data.taskList, //任务列表
 							_this.babyStatus = response.data.BabyStatus, //婴儿状态
 							_this.knowledgeList = response.data.knowledgeList //知识列表
+							_this.showTaskNum = _this.taskList.length >= 3 ? 3 : _this.taskList.length
 						localStorage.setItem('pregnancyWeek', _this.babyStatus.pregnancyWeek);
 					}
 				}).catch((error) => {
@@ -653,8 +655,8 @@
 		text-align: center;
 		font-size: 0.85rem;
 		padding: 0.5rem;
-		width: auto;
-		height: 4rem;
+		width: 9rem;
+		height: 7rem;
 		position: absolute;
 		left: 10%;
 		top: 28%;

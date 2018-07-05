@@ -4,8 +4,8 @@
 		<!--<img src="../../assets/bottom_navibar.png" width="100%" style="position: fixed;left: 0;bottom: 0;"/>-->
 		<mt-tabbar v-model="selected" class="tabbar">
 			<mt-tab-item id="1">
-				<img src="../../assets/1x/home-icon.png" v-if="selected==1">
-				<img src="../../assets/1x/home-icon.png" v-else>
+				<img src="../../assets/1x/home-icon-selected.png" v-if="selected==1">
+				<img src="../../assets/1x/home-icon-normal.png" v-else>
 				<p style="-webkit-margin-before:0.3rem;">首页</p>
 			</mt-tab-item>
 			<!-- <mt-tab-item id="2">
@@ -24,8 +24,8 @@
 				<p>助手</p>
 			</mt-tab-item> -->
 			<mt-tab-item id="5">
-				<img src="../../assets/1x/person-icon.png" v-if="selected==5">
-				<img src="../../assets/1x/person-icon.png" v-else>
+				<img src="../../assets/1x/person-icon-selected.png" v-if="selected==5">
+				<img src="../../assets/1x/person-icon-normal.png" v-else>
 				<p style="-webkit-margin-before:0.3rem;">个人</p>
 			</mt-tab-item>
 		</mt-tabbar>
@@ -78,11 +78,4 @@
 
 <style scoped>
 	@import url("../../style/home.css");
-</style>
-
-<style scoped>
-	.mint-tabbar>.mint-tab-item.is-selected {
-		background: none;
-		color: rgb(252, 159, 215);
-	}
 </style>

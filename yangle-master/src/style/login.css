@@ -6,14 +6,20 @@
 
 .div_content {
 	margin-top: 3.5rem;
-	padding: 0 5%;
+	padding: 0 10%;
+}
+
+.div_account,
+.div_password {
+	border-bottom: 1px solid #ddd;
 }
 
 .div_password {
 	margin-top: 2rem;
 }
 
-.div_account input, .div_password input {
+.div_account input,
+.div_password input {
 	width: 60%;
 	background: none;
 	border: none;
@@ -34,7 +40,7 @@
 	left: 0;
 }
 
-.bottom-line{
+.bottom-line {
 	border-bottom: 1px solid #eee;
 	padding-bottom: 0.5rem;
 	margin-left: 1rem;
@@ -50,35 +56,47 @@
 	height: auto;
 }
 
+.pwd-eye {
+	width: 1.2rem;
+	padding-top: 1rem;
+}
+
 .span-it {
 	text-align: right;
 	font-size: 0.9rem;
 	color: #FC9FD7;
 }
 
-.btn_login, .light_btn_login {
+.btn_login,
+.light_btn_login {
 	width: 100%;
-	height: 3rem;
+	height: 3.7rem;
 	border-radius: 10rem;
-	margin-top: 1rem;
+	margin-top: 1.5rem;
 	text-align: center;
 	background: #eee;
-	color: #333;
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 	border: none;
 	outline: none;
 }
 
 .btn_login {
+	color: #333;
 	background: #eee;
 }
 
 .light_btn_login {
+	color: #fff;
 	background: #FF6DB6;
 }
 
- .forget-pwd {  /*注册新用户*/
-	color: rgb(252, 159, 215);
+.forget-pwd-idcode-login {
+	margin-top: 1.5rem;
+}
+
+.forget-pwd {
+	/*注册新用户*/
+	color: #999;
 }
 
 .register-pwd {
@@ -91,7 +109,7 @@
 }
 
 .idCode-login {
-	color: #ccc;
+	color: #FF90C6;
 }
 
 .third-login {
@@ -117,123 +135,128 @@
 	height: 3rem;
 }
 
-#switch{
-    width: 7rem;
-    height: 2.5rem;
+#switch {
+	width: 7rem;
+	height: 2.5rem;
 }
 
-.toggle{
-    position: absolute;
-    border-radius: 20px;
-    -webkit-transition: border-color .6s  ease-out;
-    transition: border-color .6s  ease-out;
-    box-sizing: border-box;
-    background: #FC9FD7;
-    display: inline;
-    line-height: 3rem;
-    margin-left: 30%;
-    width: 30%;
-    margin-top: 0.5rem;
+.toggle {
+	position: absolute;
+	border-radius: 20px;
+	-webkit-transition: border-color .6s ease-out;
+	transition: border-color .6s ease-out;
+	box-sizing: border-box;
+	background: #FC9FD7;
+	display: inline;
+	line-height: 3rem;
+	margin-left: 30%;
+	width: 30%;
+	margin-top: 0.5rem;
 }
 
-.toggle.toggle-on{
-    border-color: rgba(137, 194, 217, .4);
-    -webkit-transition: all .5s .15s ease-out;
-    transition: all .5s .15s ease-out;
+.toggle.toggle-on {
+	border-color: rgba(137, 194, 217, .4);
+	-webkit-transition: all .5s .15s ease-out;
+	transition: all .5s .15s ease-out;
 }
 
-.toggle-button{
-    position: absolute;
-    top: 4px;
-    width: 28px;
-    bottom: 4px;
-    right: 5rem;
-    background-color: #fff;
-    border-radius: 19px; 
-    cursor: pointer;
-    -webkit-transition: all .3s .1s, width .1s, top .1s, bottom .1s;
-    transition: all .3s .1s, width .1s, top .1s, bottom .1s;
+.toggle-button {
+	position: absolute;
+	top: 4px;
+	width: 28px;
+	bottom: 4px;
+	right: 5rem;
+	background-color: #fff;
+	border-radius: 19px;
+	cursor: pointer;
+	-webkit-transition: all .3s .1s, width .1s, top .1s, bottom .1s;
+	transition: all .3s .1s, width .1s, top .1s, bottom .1s;
 }
 
-.toggle-on .toggle-button{
-    top: 4px;
-    width: 28px;
-    bottom: 4px;
-    right: 0;
-    border-radius: 19px;
-    background-color: #fff;
-    box-shadow: 0 0 16px #4b7a8d;
-    -webkit-transition: all .2s .1s, right .1s;
-    transition: all .2s .1s, right .1s;
+.toggle-on .toggle-button {
+	top: 4px;
+	width: 28px;
+	bottom: 4px;
+	right: 0;
+	border-radius: 19px;
+	background-color: #fff;
+	box-shadow: 0 0 16px #4b7a8d;
+	-webkit-transition: all .2s .1s, right .1s;
+	transition: all .2s .1s, right .1s;
 }
 
-
-.toggle-text-on{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 6px;
-    right: 0;
-    line-height: 36px;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 1rem;
-    font-weight: normal;
-    cursor: pointer;
-    font-weight: bold;
-    -webkit-user-select: none; /* Chrome/Safari */    
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+ */
-    color: rgba(0,0,0,0);
+.toggle-text-on {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 6px;
+	right: 0;
+	line-height: 36px;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1rem;
+	font-weight: normal;
+	cursor: pointer;
+	font-weight: bold;
+	-webkit-user-select: none;
+	/* Chrome/Safari */
+	-moz-user-select: none;
+	/* Firefox */
+	-ms-user-select: none;
+	/* IE10+ */
+	color: rgba(0, 0, 0, 0);
 }
 
-.toggle-on .toggle-text-on{
-    color: #333;
-    -webkit-transition: color .3s .15s ;
-    transition: color .3s .15s ;
+.toggle-on .toggle-text-on {
+	color: #333;
+	-webkit-transition: color .3s .15s;
+	transition: color .3s .15s;
 }
 
-.toggle-text-off{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 6px;
-    line-height: 36px;
-    text-align: center;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.9rem;
-    font-weight: bold;
-    -webkit-user-select: none; /* Chrome/Safari */        
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+ */
-
-    cursor: pointer;
-
-    color: #333;
+.toggle-text-off {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 6px;
+	line-height: 36px;
+	text-align: center;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 0.9rem;
+	font-weight: bold;
+	-webkit-user-select: none;
+	/* Chrome/Safari */
+	-moz-user-select: none;
+	/* Firefox */
+	-ms-user-select: none;
+	/* IE10+ */
+	cursor: pointer;
+	color: #333;
 }
 
-.toggle-on .toggle-text-off{
-    color: rgba(0,0,0,0);
+.toggle-on .toggle-text-off {
+	color: rgba(0, 0, 0, 0);
 }
+
 
 /* used for streak effect */
-.glow-comp{
-    position: absolute;
-    opacity: 0;
-    top: 10px;
-    bottom: 10px;
-    left: 10px;
-    right: 10px;
-    border-radius: 6px;
-    background-color: rgba(75, 122, 141, .1);
-    box-shadow: 0 0 12px rgba(75, 122, 141, .2);
-    -webkit-transition: opacity 4.5s 1s;
-    transition: opacity 4.5s 1s;
+
+.glow-comp {
+	position: absolute;
+	opacity: 0;
+	top: 10px;
+	bottom: 10px;
+	left: 10px;
+	right: 10px;
+	border-radius: 6px;
+	background-color: rgba(75, 122, 141, .1);
+	box-shadow: 0 0 12px rgba(75, 122, 141, .2);
+	-webkit-transition: opacity 4.5s 1s;
+	transition: opacity 4.5s 1s;
 }
 
-.toggle-on .glow-comp{
-    opacity: 1;
-    -webkit-transition: opacity 1s;
-    transition: opacity 1s;
+.toggle-on .glow-comp {
+	opacity: 1;
+	-webkit-transition: opacity 1s;
+	transition: opacity 1s;
 }
 
 .layer {
@@ -260,3 +283,29 @@
 	width: 100%;
 }
 
+.login input {
+	padding: 1rem 0 1rem 2rem;
+}
+
+.login input::-webkit-input-placeholder {
+	color: #ccc;
+	font-size: 1.3rem;
+}
+
+.login input::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: #ccc;
+	font-size: 1.3rem;
+}
+
+.login input:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #ccc;
+	font-size: 1.3rem;
+}
+
+.login input:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: #ccc;
+	font-size: 1.3rem;
+}

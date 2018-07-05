@@ -244,6 +244,7 @@ p.p_pg_desc {
 	margin-left: 1rem;
 	color: #555;
 	font-weight: bold;
+	padding-top: 3px;
 }
 .baby-state {
 	background: url(../assets/1x/qipao.png);
@@ -280,4 +281,9 @@ p.p_pg_desc {
 
 .mint-header {
 	padding-right: 7px;
+}
+
+#task-left-pic {
+	width: 50%;
+	height: auto;
 }
