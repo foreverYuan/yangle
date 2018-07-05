@@ -105,20 +105,14 @@ exports.install = function(Vue, options) {
 		} else if(plus.os.name == "Android") {
 			alert("开始同步数据");
 			var FileUtil = plus.android.importClass("com.ater.yangle.utils.FileUtil");
-			//			alert(FileUtil.fhrTxtName);
 			var fhrTxt = FileUtil.getFile(FileUtil.FHR_FILE_NAME);
-			alert(fhrTxt);
-			if(fhrTxt.trim().charAt(0) == ',') {
-				fhrTxt = fhrTxt.substring(1, fhrTxt.length);
-			}
-			if(fhrTxt.trim().charAt(fhrTxt.length - 1) == ',') {
-				fhrTxt = fhrTxt.substring(0, fhrTxt.length - 1);
-			}
-			alert(fhrTxt);
-			var fhrFiles = fhrTxt.split(FileUtil.SEPARATOR_COMMA);
-			for(var i = 0; i < fhrFiles.length; i++) {
-				alert(fhrFiles[i]);
-				var fhrFileContent = FileUtil.getFile(fhrFiles[i]);
+		    var fileNames = JSON.parse(fhrTxt);
+		    alert("fileNames" + fileNames);
+		    alert("fileNames.length" + fileNames.length);
+			for(var i = 0; i < fileNames.length; i++) {
+				alert(fileNames[i]);
+				var fhrFileContent = FileUtil.getFile(fileNames[i]);
+				alert("json:" + fhrFileContent);
 				var fhrFileJson = JSON.parse(fhrFileContent); //转换成json对象
 				if(fhrFileJson.moveId == null || fhrFileJson.moveId.length <= 0) {
 					this.uploadFhrData('/yFetalMovement/yfetalmovement/saveFetalHeart', fhrFileJson, fhrFiles[i]);
@@ -133,6 +127,13 @@ exports.install = function(Vue, options) {
 	 * 保存胎心数据
 	 */
 	Vue.prototype.uploadFhrData = function(url, fhrFileJson, fhrFile) {
+		alert("moveId:" + fhrFileJson.moveId);
+		alert("meanHeartRate:" + fhrFileJson.meanHeartRate);
+		alert("monitoringTime:" + fhrFileJson.monitoringTime);
+		alert("startTime:" + fhrFileJson.startTime);
+		alert("heartRecord:" + fhrFileJson.heartRecord);
+		alert("fetalMove:" + fhrFileJson.fetalMove);
+		alert("userId:" + fhrFileJson.userId);
 		this.axios.post(url, {
 			moveId: fhrFileJson.moveId, //胎心id
 			meanHeartRate: fhrFileJson.meanHeartRate, //平均心率
@@ -185,11 +186,11 @@ exports.install = function(Vue, options) {
 			}
 		}, 200);
 	};
-	document.addEventListener('plusready', function() {
-		alert("plusready触发");
-		initNativeObjects();
-		showSoftInput();
-	});
+	//	document.addEventListener('plusready', function() {
+	//		alert("plusready触发");
+	//		initNativeObjects();
+	//		showSoftInput();
+	//	});
 	Vue.prototype.checkanddirect = function(passFunc, passValue, failedFunc, failedValue, id) {
 		var userId = localStorage.getItem('userId');
 		if(userId != null && userId != '') {
