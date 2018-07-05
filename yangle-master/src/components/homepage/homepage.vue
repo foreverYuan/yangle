@@ -146,7 +146,7 @@
 		<!-- 孕期知识 end -->
 	</div>
 
-	<el-dialog :visible.sync="dialogVisible" id="sign-dialog">
+	<el-dialog :visible.sync="dialogVisible" id="sign-dialog" style="margin-top: 15%;">
 		<div class="div-sign-dialog">
 			<div class="div-days">
 				<h1>{{lianxuSignDays}}</h1>
@@ -425,19 +425,9 @@
 			 * 关于签到的显示
 			 */
 			showSign() {
-				var dialog = document.getElementById("sign-dialog");
-				console.log("dialog-width", dialog.style.width);
-				console.log("dialog-height", dialog.style.height);
-				var divDialog = document.getElementsByClassName("div-sign-dialog");
-				console.log("width", divDialog[0].style.width);
-				console.log("dpr", this.dpr);
 				var c = document.getElementById("myCanvas");
 				c.style.width = this.canvasWidth + "px";
 				c.style.height = this.canvasHeight + "px";
-				console.log("myCanvas-width", c.style.width);
-				console.log("myCanvas-height", c.style.height);
-				console.log("width", c.width);
-				console.log("height", c.height);
 				var ctx = c.getContext("2d");
 				var index;
 				var space = 5;
@@ -447,13 +437,15 @@
 				for(var i = 0; i < this.imgGrays.length; i++) {
 					this.imgGrays[i] = document.getElementById("integral" + i + "-gray");
 				}
-				var xPicCoor = [space, (c.width / 2 - this.imgReds[0].width / 2) / this.dpr, (c.width - this.imgReds[0].width - space) / this.dpr];
-				var yPicCoor = [0, c.height / 2 - this.imgReds[0].height / 2, c.height - this.imgReds[0].height];
-				var xLineCoor = [this.imgReds[0].width, (c.width / 2 - this.imgReds[0].width / 2) / this.dpr, (c.width / 2 + this.imgReds[0].width / 2 - space) / this.dpr,
-					(c.width - this.imgReds[0].width - space) / this.dpr, c.width - this.imgReds[0].width / 2 - space
+				var canvasWidth = c.width / this.dpr;
+				var canvasHeight = c.height / this.dpr;
+				var xPicCoor = [space, canvasWidth/2 - this.imgReds[0].width / 2, canvasWidth - this.imgReds[0].width - space];
+				var yPicCoor = [0, canvasHeight / 2 - this.imgReds[0].height / 2, canvasHeight - this.imgReds[0].height];
+				var xLineCoor = [this.imgReds[0].width, canvasWidth / 2 - this.imgReds[0].width / 2, canvasWidth / 2 + this.imgReds[0].width / 2 - space,
+					canvasWidth - this.imgReds[0].width - space , canvasWidth - this.imgReds[0].width / 2 - space
 				];
-				var yLineCoor = [this.imgReds[0].height / 2, this.imgReds[0].height - 3, c.height / 2 - this.imgReds[0].height / 2, c.height / 2 + this.imgReds[0].height / 2 - 3,
-					c.height - this.imgReds[0].height, c.height - this.imgReds[0].height / 2
+				var yLineCoor = [this.imgReds[0].height / 2, this.imgReds[0].height - 3, canvasHeight / 2 - this.imgReds[0].height / 2, canvasHeight / 2 + this.imgReds[0].height / 2 - 3,
+					canvasHeight - this.imgReds[0].height, canvasHeight - this.imgReds[0].height / 2
 				];
 				var dayText = ['第1天', '第2天', '第3天', '第4天', '第5天', '第6天', '第7天'];
 				var fontSpace = [15, 5];
@@ -680,7 +672,7 @@
 	
 	.homepage .el-dialog {
 		width: 80%;
-		height: 53%;
+		height: 60%;
 		border-radius: 10px;
 	}
 	

@@ -32,9 +32,9 @@
 	width: 10%;
 	padding-left: 1rem;
 	line-height: 3rem;
-	font-size: 1.2rem;
+	font-size: 2rem;
 	font-weight: bold;
-	color: #FDEDF4;
+	color: #333;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -46,13 +46,8 @@
 	margin-left: 1rem;
 }
 
-.div_account img {
-	width: 1.5rem;
-	height: auto;
-}
-
-.div_password img {
-	width: 1.5rem;
+.div_account img, .div_password img {
+	width: 1rem;
 	height: auto;
 }
 
@@ -72,7 +67,7 @@
 	width: 100%;
 	height: 3.7rem;
 	border-radius: 10rem;
-	margin-top: 1.5rem;
+	margin-top: 7rem;
 	text-align: center;
 	background: #eee;
 	font-size: 1.2rem;
@@ -289,23 +284,58 @@
 
 .login input::-webkit-input-placeholder {
 	color: #ccc;
-	font-size: 1.3rem;
+	font-size: 1.1rem;
 }
 
 .login input::-moz-placeholder {
 	/* Mozilla Firefox 19+ */
 	color: #ccc;
-	font-size: 1.3rem;
+	font-size: 1.1rem;
 }
 
 .login input:-moz-placeholder {
 	/* Mozilla Firefox 4 to 18 */
 	color: #ccc;
-	font-size: 1.3rem;
+	font-size: 1.1rem;
 }
 
 .login input:-ms-input-placeholder {
 	/* Internet Explorer 10-11 */
 	color: #ccc;
+	font-size: 1.1rem;
+}
+
+.div-login-register {
+	text-align: center;
+	margin-top: 0.5rem;
+}
+
+.btn-login, .btn-register {
+	padding: 0.3rem 1rem;
+	/*background: #FF6DB6;*/
+	outline: none;
+	border: 1px solid #FF7BBD;
 	font-size: 1.3rem;
 }
+
+.normal {
+	background: #fff;
+	color: #FE6DB6;
+}
+
+.selected {
+	background: #FF6DB6;
+	color: #fff;
+}
+
+.btn-login {
+	border-top-left-radius: 2rem;
+	border-bottom-left-radius: 2rem;
+}
+
+.btn-register {
+	border-top-right-radius: 2rem;
+	border-bottom-right-radius: 2rem;
+	margin-left: -5px;
+}
+

@@ -1,10 +1,16 @@
 <template>
 	<div class="login">
-		<img src="../../assets/1x/login-top-background.png" class="top-login-img"/>
-		<p class="login-top-text"><img src="../../assets/1x/login-top-text.png" /></p>
+		<!--<img src="../../assets/1x/login-top-background.png" class="top-login-img"/>-->
+		<!--<p class="login-top-text"><img src="../../assets/1x/login-top-text.png" /></p>-->
 		<router-link :to="path">
 			<span class="el-icon-arrow-left span-back"></span>
 		</router-link>
+		<div class="div-login-register">
+			<button class="btn-login normal" @click="switchLoginReg" v-if="loginRegSwitch == 2">登录</button>
+			<button class="btn-login selected" @click="switchLoginReg" v-if="loginRegSwitch == 1">登录</button>
+			<button class="btn-register normal" @click="switchLoginReg" v-if="loginRegSwitch == 1">注册</button>
+			<button class="btn-register selected" @click="switchLoginReg" v-if="loginRegSwitch == 2">注册</button>
+		</div>
 		<!--<div style="display: flex;height: 3rem;">
 			<router-link :to="path">
 				<span class="el-icon-arrow-left span-back"></span>
@@ -21,36 +27,36 @@
 		<div class="div_content">
 			<!-- 输入手机号和密码 -->
 			<div class="div_account">
-				<img src="../../assets/1x/login-person-normal.png" v-if="!phoneFocus" />
-				<img src="../../assets/1x/login-person-normal.png" v-if="phoneFocus" />
+				<img src="../../assets/1x/login-person-normal.png" class="person-icon-normal" v-if="!phoneFocus" />
+				<img src="../../assets/1x/login-person-normal.png" class="person-icon-focus" v-if="phoneFocus" />
 				<!--<span class="bottom-line">-->
-				<input placeholder="用户名/手机号" v-model="phone" type="number" @focus="focusPhone" @blur="blurPhone" />
+				<input placeholder="请输入手机号" v-model="phone" type="number" @focus="focusPhone" @blur="blurPhone" />
 				<!--<img v-if="isOnSwitch" style="padding-left: 3rem;"/>-->
 				<span v-if="!isOnSwitch" style="color: #FC9FD7;" id="re-get-it" class="span-it" @click="getItCode">获取验证码</span>
 				<!--</span>-->
 			</div>
 
 			<div class="div_password">
-				<img src="../../assets/1x/login-password-normal.png" v-if="!pwdFocus" />
-				<img src="../../assets/1x/login-password-normal.png" v-if="pwdFocus" />
+				<img src="../../assets/1x/login-password-normal.png" id="pwd-icon-normal" v-if="!pwdFocus" />
+				<img src="../../assets/1x/login-password-normal.png" id="pwd-icon-focus" v-if="pwdFocus" />
 				<!--<span class="bottom-line">-->
-				<input placeholder="密码" v-model="pwd" :type="pwdType" @focus="focusPwd" @blur="blurPwd" v-if="isOnSwitch"/>
-				<input placeholder="请输入验证码" v-model="itCode" :type="pwdType" @focus="focusPwd" @blur="blurPwd" v-if="!isOnSwitch"/>
-				<img src="../../assets/login_eye_close.png" v-if="isEncrypt && isOnSwitch" @click="encrypt" class="float-right pwd-eye"/>
-				<img src="../../assets/login_eye_open.png" v-if="!isEncrypt && isOnSwitch" @click="encrypt" class="float-right pwd-eye"/>
+				<input placeholder="请输入密码" v-model="pwd" :type="pwdType" @focus="focusPwd" @blur="blurPwd" v-if="isOnSwitch" />
+				<input placeholder="请输入验证码" v-model="itCode" :type="pwdType" @focus="focusPwd" @blur="blurPwd" v-if="!isOnSwitch" />
+				<img src="../../assets/login_eye_close.png" v-if="isEncrypt && isOnSwitch" @click="encrypt" class="float-right pwd-eye" />
+				<img src="../../assets/login_eye_open.png" v-if="!isEncrypt && isOnSwitch" @click="encrypt" class="float-right pwd-eye" />
 				<span v-if="!isOnSwitch" id="it-code" class="span-it" style="padding-left: 2.5rem;">600s</span>
 				<!--</span>-->
 			</div>
 			<!-- 注册新用户&忘记密码 -->
 			<p class="forget-pwd-idcode-login">
 				<span class="forget-pwd" @click="goForgetPwd()">忘记密码?</span>
-				<span class="float-right idCode-login" @click="">验证码登录</span>
+				<span class="float-right idCode-login" @click="switchPwdIdCode">验证码登录</span>
 			</p>
 
 			<!-- 登录按钮 -->
 			<button class="btn_login" @click="login" v-if="allowLogin == 0">登录</button>
 			<button class="light_btn_login" @click="login" v-if="allowLogin == 1">登录</button>
-            <!--<span class="register-pwd" @click="goRegister()">注册新用户</span>-->
+			<!--<span class="register-pwd" @click="goRegister()">注册新用户</span>-->
 			<!-- 第三方登录 -->
 			<!--<div class="third-login">
 				<p>第三方登录</p>
@@ -97,6 +103,7 @@
 
 				maxTime: 600, //倒计时的最大时间
 				path: "",
+				loginRegSwitch: 1, //登录和注册的选择开关，1：登录 2：注册   默认1
 			}
 		},
 		created() {
@@ -169,6 +176,10 @@
 				});
 			},
 
+			switchLoginReg() {
+				this.loginRegSwitch = this.loginRegSwitch == 1 ? 2 : 1;
+			},
+
 			/**
 			 * 获取验证码
 			 */
@@ -186,6 +197,18 @@
 					alert(error);
 				});
 
+			},
+
+			switchPwdIdCode() {
+				if(this.isOnSwitch) {
+					this.isOnSwitch = false; //关闭开关
+					this.loginType = '2';
+					console.log("打开了验证码登录");
+				} else {
+					this.isOnSwitch = true; //开启开关
+					this.loginType = '1';
+					console.log("打开了密码登录");
+				}
 			},
 
 			/**
