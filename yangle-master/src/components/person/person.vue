@@ -7,7 +7,9 @@
 			<span class="float-right span-modify" @click="goUserInfo">修改</span>
 			<div style="padding-top: 0.6rem;padding-bottom: 0.5rem;">
 				<h3 style="margin-left: 5.5rem;font-size: 1.2rem;color: #333;">{{pregnancyWeek}}</h3>
-				<img src="../../assets/icon_QQ.png" style="width: 3.5rem;height: 3.5rem;clear: both;margin-left: 5.5rem;margin-top: 0.5rem;" />
+				<img src="../../assets/icon_QQ.png" class="userIcon" />
+				<img :src="userIcon" class="userIcon" v-if="userIcon != null && userIcon != ''"/>
+				
 				<p class="p-userName">{{userName}}</p>
 				<p class="p-state">孕育中</p>
 			</div>
@@ -90,6 +92,7 @@
 			return {
 				userId: localStorage.getItem('userId'), //用户id
 				userName: localStorage.getItem('userName'), //用户昵称
+				userIcon: localStorage.getItem('userIcon'), //用户头像
 				personInfo: {
 					myInfo: [{
 							"image": "../../assets/my_order.png",

@@ -109,3 +109,11 @@
 .div-padding-top {
 	padding-top: 1rem;
 }
+
+.userIcon {
+	width: 3.5rem;
+	height: 3.5rem;
+	clear: both;
+	margin-left: 5.5rem;
+	margin-top: 0.5rem;
+}

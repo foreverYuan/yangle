@@ -6,7 +6,8 @@
 			<mt-tab-item id="1">
 				<img src="../../assets/1x/home-icon-selected.png" v-if="selected==1">
 				<img src="../../assets/1x/home-icon-normal.png" v-else>
-				<p style="-webkit-margin-before:0.3rem;">首页</p>
+				<p class="selected" style="-webkit-margin-before: 0.3rem;" v-if="selected==1">首页</p>
+				<p class="normal" style="-webkit-margin-before: 0.3rem;" v-else>首页</p>
 			</mt-tab-item>
 			<!-- <mt-tab-item id="2">
 				<img src="../../assets/consult_selected.png" v-if="selected==2">
@@ -16,7 +17,8 @@
 			<mt-tab-item id="3">
 				<img src="../../assets/1x/heart-icon.png" v-if="selected==3" style="margin-top: -0.7rem;">
 				<img src="../../assets/1x/heart-icon.png" v-else style="margin-top: -0.7rem;">
-				<p style="-webkit-margin-before:0.3rem;">胎心</p>
+				<p class="selected" style="-webkit-margin-before: 0.3rem;" v-if="selected==3">胎心</p>
+				<p class="normal" style="-webkit-margin-before: 0.3rem;" v-else>胎心</p>
 			</mt-tab-item>
 			<!-- <mt-tab-item id="4">
 				<img src="../../assets/assistant_selected.png" v-if="selected==4">
@@ -26,7 +28,8 @@
 			<mt-tab-item id="5">
 				<img src="../../assets/1x/person-icon-selected.png" v-if="selected==5">
 				<img src="../../assets/1x/person-icon-normal.png" v-else>
-				<p style="-webkit-margin-before:0.3rem;">个人</p>
+				<p class="selected" style="-webkit-margin-before: 0.3rem;" v-if="selected==5">个人</p>
+				<p class="normal" style="-webkit-margin-before: 0.3rem;" v-else>个人</p>
 			</mt-tab-item>
 		</mt-tabbar>
 	</div>

@@ -61,7 +61,7 @@
 			<!-- 孕期描述 end -->
 		</div>
 		<!-- 任务列表  start -->
-		<div style="padding: 0.6rem 0;" @click="goTask" v-if="taskList">
+		<div style="padding: 0.6rem 0;" @click="goTask" v-if="taskList != null && taskList.length > 0">
 			<!--taskList.length > 0-->
 			<!--todo-->
 			<p class="task-tip">
@@ -115,6 +115,9 @@
 		<!-- 孕期知识 start -->
 		<div class="know-carousel">
 			<mt-swipe :auto="3000">
+				<!--<mt-swipe-item v-for="item in carouselList">   //todo
+					<img :src="item.knowPicture" style="width: 100%;height: 100%;" />
+				</mt-swipe-item>-->
 				<mt-swipe-item>
 					<img src="../../assets/pregnancy_knowledge_big.png" style="width: 100%;height: 100%;" />
 				</mt-swipe-item>
@@ -277,6 +280,7 @@
 		created() {
 			//获取首页数据
 			this.getHomeData();
+			this.aaa();
 			//			alert(window.screen.width);
 			//			alert(window.screen.height);
 			//			alert(window.devicePixelRatio);
@@ -298,6 +302,13 @@
 
 		},
 		methods: {
+			aaa() {
+				var a = '["aaa","bbb","ccc","ddd","eee"]';
+				var b = JSON.parse(a);
+				console.log("b", b);
+				console.log("b.length", b.length);
+			},
+			
 			c1() {
 				this.isShow = false;
 				this.isShow2 = true;
@@ -628,11 +639,11 @@
 	
 	.homepage .grad2 {
 		height: 5rem;
-		background: -webkit-linear-gradient(left, #FFF9FD, #FDB7E1, #FFF9FD);
+		background: -webkit-linear-gradient(left, #FFF9FD, #FF6DB7, #FFF9FD);
 		/* Safari 5.1 - 6.0 */
 		/* background: -o-linear-gradient(right, red, blue); Opera 11.1 - 12.0 */
 		/* background: -moz-linear-gradient(right, red, blue); Firefox 3.6 - 15 */
-		background: linear-gradient(to right, #FFF9FD, #FDB7E1, #FFF9FD);
+		background: linear-gradient(to right, #FFF9FD, #FF6DB7, #FFF9FD);
 		/* 标准的语法 */
 	}
 	

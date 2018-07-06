@@ -9,6 +9,14 @@
 	background: #fff;
 }
 
+.selected {
+	color: #FE88C3;
+}
+
+.normal {
+	color: #333;
+}
+
 .mint-tabbar>.mint-tab-item.is-selected {
 	background: none;
 	color: #FE88C3;
