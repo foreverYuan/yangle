@@ -8,8 +8,8 @@
 				<span>头像</span>
 				<span class="el-icon-arrow-right float-right" style="margin-top: 1.5rem;margin-left: 0.5rem;"></span>
 				<el-upload action="https://yl.ibao365.net:8080/yangle/pregnancy/fastdfsUpload" show-file-list="false" style="float: right;" v-model="userIcon" :on-success="handleSuccess">
-					<img src="userInfo.userIcon" v-if="userInfo.userIcon != null && userInfo.userIcon != ''" class="float-right" size="small" type="primary" width="55" height="55" style="border-radius: 55px;" />
-					<img src="../../assets/icon_QQ.png" v-if="userInfo.userIcon == null || userInfo.userIcon == ''" class="float-right" width="55" height="55" />
+					<img :src="userInfo.userIcon" v-if="userInfo.userIcon != null && userInfo.userIcon != ''" class="float-right header-pic" size="small" type="primary" width="55" height="55" />
+					<img src="../../assets/default-header-pic.jpg" v-if="userInfo.userIcon == null || userInfo.userIcon == ''" class="float-right header-pic" width="55" height="55" />
 				</el-upload>
 			</p>
 			<p class="p-info" style="clear: both;" @click="dialogVisible = true"><span>昵称</span><span class="float-right">
@@ -73,7 +73,7 @@
 				lastMenstruation: '', //末次月经
 				userBirthday: '', //生日
 				dialogVisible: false,
-				nickName: '', //昵称
+				nickName: localStorage.getItem('userName'), //昵称
 				state: '',
 				stateDialog: false,
 				birthValues: '',
@@ -120,7 +120,7 @@
 			 * 退出登录
 			 */
 			signOut() {
-				localStorage.clear();
+				localStorage.removeItem('userId');
 				this.$router.push({
 					path: '/'
 				})

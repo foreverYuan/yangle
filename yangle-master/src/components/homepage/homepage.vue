@@ -136,7 +136,7 @@
 				</p>
 				<ul v-for="item in knowledgeList">
 					<li style="display: flex;">
-						<img :src="item.knowPicture" class="img_pg_konw" />
+						<img :src="item.knowPicture" width="120" height="120" />
 						<div class="div_pg_know">
 							<span class="knowledge-name">{{item.knowName}}</span>
 							<p class="desc">{{item.knowContent}}</p>

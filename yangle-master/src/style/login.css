@@ -44,11 +44,11 @@
 	width: 10%;
 	padding-left: 1rem;
 	line-height: 3rem;
-	font-size: 2rem;
+	font-size: 1.5rem;
 	font-weight: bold;
 	color: #333;
 	position: absolute;
-	top: 0;
+	top: 5px;
 	left: 0;
 }
 
@@ -134,6 +134,7 @@
 .div-third-login {
 	margin-top: 7rem;
 	display: flex;
+	visibility: hidden;
 }
 
 .div-third-login div {
@@ -311,7 +312,7 @@
 	width: 100%;
 }
 .login input {
-	padding: 1rem 0 0.5rem 2rem;
+	padding: 1rem 0 0.5rem 1rem;
 }
 .login input::-webkit-input-placeholder {
 	color: #ccc;
@@ -385,4 +386,9 @@
 	outline: none;
 	margin-top: 3rem;
 	margin-left: 1.2rem;
+}
+.bottom-pic {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
 }
