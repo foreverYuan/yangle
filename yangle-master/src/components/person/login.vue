@@ -91,7 +91,7 @@
 				</div>
 			</div>
 		</div>
-		<img src="../../assets/1x/login-register-bottom-pic.png" class="bottom-pic"/>
+		<!--<img src="../../assets/1x/login-register-bottom-pic.png" class="bottom-pic"/>-->
 	</div>
 </template>
 
