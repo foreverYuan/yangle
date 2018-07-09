@@ -35,8 +35,9 @@
 .div_pg_desc_task {
 	padding: 0 0.7rem;
 	padding-top: 1rem;
-	background: -webkit-linear-gradient(left, #FFF9FD, #FF6DB7, #FFF9FD);
-	background: linear-gradient(to right, #FFF9FD, #FF6DB7, #FFF9FD);
+	background: none;
+	/*background: -webkit-linear-gradient(left, #FFF9FD, #FF6DB7, #FFF9FD);
+	background: linear-gradient(to right, #FFF9FD, #FF6DB7, #FFF9FD);*/
 }
 
 .div_pg_know_list {

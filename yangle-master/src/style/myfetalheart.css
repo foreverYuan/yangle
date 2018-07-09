@@ -12,3 +12,132 @@
 	height: auto;
 	margin-top: 2rem;
 }
+
+.div-tab {
+	text-align: center;
+	border-top: 2px solid #FE99CC;
+	width: 50%;
+}
+
+.div-big-tab {
+	display: flex;
+	width: 100%;
+	height: 7rem;
+	background: #FF6DB6;
+	color: #FCFCFC;
+}
+
+.div-tab p {
+	font-size: 1.05rem;
+}
+
+.div-tab span {
+	font-size: 1.1rem;
+}
+
+#yiti {
+	border-color: #fff;
+	font-weight: bold;
+}
+
+#weiti {
+	border-color: #FE99CC;
+}
+
+.mint-header {
+	background: #FF6DB6;
+}
+
+
+/* #app{
+   text-align:left;
+ } */
+
+.li1 {
+	background: #fff;
+	padding: 0.3rem 0.8rem;
+	border-radius: 1rem;
+}
+
+.li2 {
+	padding: 0.3rem 0.8rem;
+	margin-top: 0.5rem;
+	color: #888888;
+	position: relative;
+}
+
+.span-right {
+	position: absolute;
+	right: 0;
+	width: 6rem;
+}
+
+.span-right img {
+	width: 1.2rem;
+	height: 1.2rem;
+	margin-right: 0.3rem;
+}
+
+.div-list {
+	position: fixed;
+	top: 7.5rem;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: left;
+	/*z-index: 10;*/
+	overflow-y: scroll;
+}
+
+.div-list::-webkit-scrollbar {
+	display: none;
+}
+
+.div-list li {
+	margin: 1rem;
+	border: 1px solid #eee;
+	border-radius: 1rem;
+	background: #fff;
+}
+
+.div-fhr-data {
+	width: 80%;
+	margin-left: 2rem;
+}
+
+.div-fhr-data p img {
+	width: 1.2rem;
+	margin-right: 1rem;
+}
+
+.div-fhr-data p span {
+	font-size: 1.1rem;
+	color: #999;
+}
+
+.div-state {
+	width: 20%;
+	text-align: center;
+	margin: 1rem 0;
+	padding-top: 1rem;
+	border-right: 1px solid #eee;
+}
+
+.div-title {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 10rem;
+}
+
+.my-fhr-background {
+	position: fixed;
+	top: 9.5rem;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	overflow-y: scroll;
+	background: #F5F5F5;
+	z-index: -1;
+}

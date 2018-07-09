@@ -142,11 +142,6 @@
 </style>
 
 <style scoped>
-	.mint-header {
-		background: #FC9FD7;
-		;
-	}
-	
 	.scorll-container::-webkit-scrollbar {
 		display: none;
 	}

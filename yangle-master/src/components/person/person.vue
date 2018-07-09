@@ -6,7 +6,7 @@
 		<div class="div-top">
 			<span class="float-right span-modify" @click="goUserInfo">修改</span>
 			<div style="padding-top: 0.6rem;padding-bottom: 0.5rem;">
-				<h3 style="margin-left: 5.5rem;font-size: 1.2rem;color: #333;">{{pregnancyWeek}}</h3>
+				<h3 style="margin-left: 5.5rem;font-size: 1.2rem;color: #FCFCFC;">{{pregnancyWeek}}</h3>
 				<img src="../../assets/default-header-pic.jpg" class="userIcon" v-if="userIcon == null && userIcon == ''"/>
 				<img :src="userIcon" class="userIcon" v-if="userIcon != null && userIcon != ''"/>
 				

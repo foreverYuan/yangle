@@ -10,7 +10,7 @@
 				</mt-button>-->
 			</mt-header>
 			<img src="../../assets/1x/search-icon.png" style="position: absolute;top: 1rem;left: 18%;z-index: 1;" />
-			<input placeholder="宝宝老是闹肚子怎么办?" class="home-search" />
+			<input placeholder="宝宝老是闹肚子怎么办?" class="home-search" @focus="focusInput" @blur="blurInput"/>
 
 			<img src="../../assets/3x/home-top-background@3x.png" style="width:100%;height:12rem;margin-top: -13%;" alt="">
 			<div style="width:100%;text-align:center;margin-top:-15%;">
@@ -56,7 +56,7 @@
 				<span>{{babyStatus.motherChange}}</span>
 			</div>
 			<div style="text-align: center;">
-				<button style="background: none;border:0;" @click="c2"><img  src="../../assets/image/xiangShangJianTou.png" style="width:1rem;" alt=""></button>
+				<button style="background: none;border:0;" @click="c2"><img  src="../../assets/double-top-arrow.png" style="width:1.2rem;" alt=""></button>
 			</div>
 			<!-- 孕期描述 end -->
 		</div>
@@ -598,7 +598,19 @@
 					//失败
 					console.log(error);
 				});
-			}
+			},
+			
+			/**
+			 * input获取焦点事件
+			 */
+			focusInput() {
+				
+			},
+			
+			/**
+			 * input失去焦点事件
+			 */
+			blurInput() {}
 		}
 	}
 </script>
@@ -639,11 +651,12 @@
 	
 	.homepage .grad2 {
 		height: 5rem;
-		background: -webkit-linear-gradient(left, #FFF9FD, #FF6DB7, #FFF9FD);
+		background: none;
+		/*background: -webkit-linear-gradient(left, #FFF9FD, #FF6DB7, #FFF9FD);*/
 		/* Safari 5.1 - 6.0 */
 		/* background: -o-linear-gradient(right, red, blue); Opera 11.1 - 12.0 */
 		/* background: -moz-linear-gradient(right, red, blue); Firefox 3.6 - 15 */
-		background: linear-gradient(to right, #FFF9FD, #FF6DB7, #FFF9FD);
+		/*background: linear-gradient(to right, #FFF9FD, #FF6DB7, #FFF9FD);*/
 		/* 标准的语法 */
 	}
 	

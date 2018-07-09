@@ -48,10 +48,14 @@
 		background: none;
 	}*/
 	
+	.mint-header {
+		background: #FF6DB6;
+	}
+	
 	.mint-header-title {
 		font-weight: bold;
 		font-size: 1.2rem;
-		color: #333;
+		color: #FCFCFC;
 		overflow: auto;
 		height: 1.6rem;
 		line-height: 1.6rem;
@@ -59,7 +63,7 @@
 	
 	.mint-header .mint-button {
 		font-size: 1.05rem;
-		color: #555;
+		color: #FCFCFC;
 	}
 	
 	.el-upload-list {

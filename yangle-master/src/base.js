@@ -47,7 +47,8 @@ exports.install = function(Vue, options) {
 			//创建对象实例
 			var mHelper = new Helper();
 			//调用java中的跳转方法，并且传入当前activity实例
-			mHelper.jump(main, localStorage.getItem('userId'), localStorage.getItem('userRole'));
+			mHelper.jump(main, 'f3e4b706-67ed-4fe0-b5d6-9aeb78cc35c5', '1');
+//			mHelper.jump(main, localStorage.getItem('userId'), localStorage.getItem('userRole'));
 		}
 	};
 
@@ -114,10 +115,11 @@ exports.install = function(Vue, options) {
 				var fhrFileContent = FileUtil.getFile(fileNames[i]);
 				alert("json:" + fhrFileContent);
 				var fhrFileJson = JSON.parse(fhrFileContent); //转换成json对象
-				if(fhrFileJson.moveId == null || fhrFileJson.moveId.length <= 0) {
-					this.uploadFhrData('/yFetalMovement/yfetalmovement/saveFetalHeart', fhrFileJson, fhrFiles[i]);
+				alert("moveId:" + fhrFileJson.moveId);
+				if(fhrFileJson.moveId == null || fhrFileJson.moveId == undefined || fhrFileJson.moveId.length <= 0) {
+					this.uploadFhrData('/yFetalMovement/yfetalmovement/saveFetalHeart', fhrFileJson, fileNames[i]);
 				} else {
-					this.uploadFhrData('/yFetalMovement/yfetalmovement/update', fhrFileJson, fhrFiles[i]);
+					this.uploadFhrData('/yFetalMovement/yfetalmovement/update', fhrFileJson, fileNames[i]);
 				}
 			}
 		}
@@ -145,7 +147,8 @@ exports.install = function(Vue, options) {
 		}).then((response) => {
 			console.log(response.data);
 			if(response.data.resultCode == 200) {
-				alert("上传成功")
+				alert("同步完毕...");
+				this.getMyFhrData();
 				var FileUtil = plus.android.importClass("com.ater.yangle.utils.FileUtil");
 				FileUtil.deleteFile(fhrFile);
 			}
