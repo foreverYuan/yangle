@@ -7,9 +7,9 @@
 			</mt-header>
 			<div class="div-big-tab">
 				<div class="div-tab" id="yiti" @click="switchYtWt(1)">
-					<p>已提交判读</p><span>{{todayTotal}}</span></div>
+					<p>已提交判读</p><span>{{yitiCount}}</span></div>
 				<div class="div-tab" id="weiti" @click="switchYtWt(2)">
-					<p>未提交判读</p><span>{{totalCount}}</span></div>
+					<p>未提交判读</p><span>{{weitiCount}}</span></div>
 			</div>
 		</div>
 		<div class="div-list" v-if="allFhrList.length > 0">
@@ -77,10 +77,10 @@
 				userId: localStorage.getItem('userId'), //用户id
 				userRole: localStorage.getItem('userRole'), //用户角色
 
-				totalCount: '', //总条数
+				weitiCount: '', //未提交数量
 				totalPage: '', //总页数
 				currPage: '', //当前页码
-				todayTotal: '', //今日条数
+				yitiCount: '', //已提交数量
 				fhrList: '', //胎心列表
 				allFhrList: [],
 				allLoaded: false, //若为true,则bottom-method不会再次被触发
@@ -97,7 +97,7 @@
 		},
 
 		mounted() {
-			this.getFileInfo();
+//			this.getFileInfo();
 		},
 
 		methods: {
@@ -160,11 +160,11 @@
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
 //						alert("获取成功");
-						this.totalCount = response.data.data.totalCount, //总条数
-							this.totalPage = response.data.data.totalPage, //总页数
-							this.page = response.data.data.currPage, //当前页码
-							this.todayTotal = response.data.data.todayTotal //今日条数
-						this.fhrList = response.data.data.list //胎心列表
+						this.weitiCount = response.data.notSubmitTotal, //未提交数量
+//							this.totalPage = response.data.data.totalPage, //总页数
+//							this.page = response.data.data.currPage, //当前页码
+							this.yitiCount = response.data.submitTotal //已提交数量
+						this.fhrList = response.data.yFetalMovementList //胎心列表
 						if(isPush) {
 							for(var i = 0; i < this.fhrList.length; i++) {
 								this.allFhrList.push(this.fhrList[i]);
