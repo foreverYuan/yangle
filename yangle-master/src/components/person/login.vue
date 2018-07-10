@@ -91,7 +91,7 @@
 				</div>
 			</div>
 		</div>
-		<!--<img src="../../assets/1x/login-register-bottom-pic.png" class="bottom-pic"/>-->
+		<img src="../../assets/1x/login-register-bottom-pic.png" class="bottom-pic" />
 	</div>
 </template>
 
@@ -147,6 +147,7 @@
 		},
 		mounted() {
 			this.switchLogin();
+			this.modifyLoginSoftPos();
 		},
 		watch: {
 			phone: function(val, oldval) {
@@ -170,7 +171,7 @@
 			}
 		},
 		methods: {
-			
+
 			/**
 			 * 点击获取验证码
 			 */
@@ -191,7 +192,7 @@
 					alert(error);
 				});
 			},
-			
+
 			/**
 			 * 倒计时
 			 */
@@ -210,7 +211,7 @@
 					this.forbidClickRegId = false;
 				}
 			},
-			
+
 			/**
 			 * 登录
 			 */
@@ -227,7 +228,7 @@
 				if(this.loginType == '1') {
 					pwd = this.pwd;
 					idCode = '';
-				} else if (this.loginType == '2') {
+				} else if(this.loginType == '2') {
 					pwd = '';
 					idCode = this.pwd;
 				}
@@ -310,15 +311,15 @@
 					this.pwdPlaceHolder = '请输入密码'
 					console.log("打开了密码登录");
 				}
-//				if(this.isOnSwitch) {
-//					this.isOnSwitch = false; //关闭开关
-//					this.loginType = '2';
-//					console.log("打开了验证码登录");
-//				} else {
-//					this.isOnSwitch = true; //开启开关
-//					this.loginType = '1';
-//					console.log("打开了密码登录");
-//				}
+				//				if(this.isOnSwitch) {
+				//					this.isOnSwitch = false; //关闭开关
+				//					this.loginType = '2';
+				//					console.log("打开了验证码登录");
+				//				} else {
+				//					this.isOnSwitch = true; //开启开关
+				//					this.loginType = '1';
+				//					console.log("打开了密码登录");
+				//				}
 			},
 
 			/**
@@ -351,7 +352,7 @@
 					return alert('请输入密码');
 				} else if(this.itCode == "") {
 					return alert('请输入验证码');
-				} 
+				}
 				var _this = this;
 				this.axios.post('/userControllerAPI/userRegister', {
 					userAccount: _this.phone,
@@ -469,6 +470,25 @@
 						that.isOnSwitch = true; //开启开关
 						that.loginType = '1';
 						console.log("打开了密码登录");
+					}
+				});
+			},
+
+			/**
+			 * 修改软键盘定位问题(解决fixed或者absulute定位被软键盘顶起的问题)
+			 */
+			modifyLoginSoftPos() {
+				var winHeight = $(window).height();
+				$(window).resize(function() {
+					var thisHeight = $(this).height();
+					if(winHeight - thisHeight > 50) {
+						$(".btn_login").css("display", "none");
+						$(".light_btn_login").css("display", "none");
+						$(".bottom-pic").css("display", "none");
+					} else {
+						$(".btn_login").css("display", "block");
+						$(".light_btn_login").css("display", "block");
+						$(".bottom-pic").css("display", "block");
 					}
 				});
 			}

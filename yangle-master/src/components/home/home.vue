@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 		<router-view></router-view>
-		<!--<img src="../../assets/bottom_navibar.png" width="100%" style="position: fixed;left: 0;bottom: 0;"/>-->
+		<!--<img src="../../assets/bottom_navibar.png" width="100%" style="position: fixed;left: 0;bottom: -1rem;"/>-->
 		<mt-tabbar v-model="selected" class="tabbar">
 			<mt-tab-item id="1">
 				<img src="../../assets/1x/home-icon-selected.png" v-if="selected==1">
@@ -46,9 +46,13 @@
 
 		created() {
 			//如果本地缓存的预产期不为空则直接跳转首页
-				this.$router.push({
-					path: '/home/homepage'
-				});
+			this.$router.push({
+				path: '/home/homepage'
+			});
+		},
+
+		mounted() {
+			this.modifyHomeSoftPos();
 		},
 
 		watch: {
@@ -74,6 +78,43 @@
 						path: '/home/person' //个人
 					});
 				}
+			}
+		},
+
+		methods: {
+			/**
+			 * 修改软键盘定位问题(解决fixed或者absulute定位被软键盘顶起的问题)
+			 */
+			modifyHomeSoftPos() {
+				/*var oHeight = $(document).height(); //浏览器当前的高度
+				var windowHeight = $(window).height();
+				$(window).resize(function() {
+					if(windowHeight < oHeight) {
+						alert("软键盘弹出");
+						$("#tabbar").css("position", "static");
+					} else {
+						alert("软键盘收起");
+						$("#tabbar").css("position", "fixed");
+					}
+				});*/
+				/*$(document).on('focusin', function() {　　 //软键盘弹出的事件处理
+					alert("触发了软键盘弹出事件")
+					$("#tabbar").css("position", "static");
+				});
+
+				$(document).on('focusout', function() {　　 //软键盘收起的事件处理
+					alert("触发了软键盘收起事件")
+					$("#tabbar").css("position", "fixed");
+				});*/
+				var winHeight = $(window).height();
+				$(window).resize(function() {
+					var thisHeight = $(this).height();
+					if(winHeight - thisHeight > 50) {
+						$(".tabbar").css("visibility", "hidden");
+					} else {
+						$(".tabbar").css("visibility", "visible");
+					}
+				});
 			}
 		}
 	}

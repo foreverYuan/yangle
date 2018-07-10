@@ -97,7 +97,7 @@
 		},
 
 		mounted() {
-//			this.getFileInfo();
+			//			this.getFileInfo();
 		},
 
 		methods: {
@@ -159,12 +159,12 @@
 				}).then((response) => {
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
-//						alert("获取成功");
-						this.weitiCount = response.data.notSubmitTotal, //未提交数量
-//							this.totalPage = response.data.data.totalPage, //总页数
-//							this.page = response.data.data.currPage, //当前页码
-							this.yitiCount = response.data.submitTotal //已提交数量
-						this.fhrList = response.data.yFetalMovementList //胎心列表
+						//						alert("获取成功");
+						this.weitiCount = response.data.pageUtil.notSubmitTotal, //未提交数量
+						this.totalPage = response.data.pageUtil.totalPage, //总页数
+						this.page = response.data.pageUtil.currPage, //当前页码
+						this.yitiCount = response.data.pageUtil.submitTotal //已提交数量
+						this.fhrList = response.data.pageUtil.list //胎心列表
 						if(isPush) {
 							for(var i = 0; i < this.fhrList.length; i++) {
 								this.allFhrList.push(this.fhrList[i]);

@@ -77,10 +77,12 @@
 
 .btn_login,
 .light_btn_login {
-	width: 100%;
+	width: 80%;
+	left: 10%;
 	height: 3.7rem;
+	position: fixed;
+	bottom: 15rem;
 	border-radius: 10rem;
-	margin-top: 7rem;
 	text-align: center;
 	background: #eee;
 	font-size: 1.2rem;
@@ -389,6 +391,6 @@
 }
 .bottom-pic {
 	width: 100%;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 }
