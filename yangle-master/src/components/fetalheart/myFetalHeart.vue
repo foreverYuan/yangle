@@ -33,9 +33,9 @@
 							<p style="-webkit-margin-before: 0;color: #EA9926;">异常</p>
 						</div>
 						<div class="div-fhr-data">
-							<p><img src="../../assets/1x/fhr-icon.png" /><span>胎心率 ： {{item.meanHeartRate}}bpm</span></p>
-							<p><img src="../../assets/1x/fm-icon.png" /><span v-if="item.fetalMove > 0">胎动 ： {{item.fetalMove}}次</span><span v-if="item.fetalMove == 0">胎动 ： 无</span></p>
-							<p><img src="../../assets/1x/duration-icon.png" /><span>检测时长 ： {{formatDuration(item.monitoringTime)}}</span></p>
+							<p><img src="../../assets/2x/fhr-icon@2x.png" /><span>胎心率 ： {{item.meanHeartRate}}bpm</span></p>
+							<p><img src="../../assets/2x/fm-icon@2x.png" /><span v-if="item.fetalMove > 0">胎动 ： {{item.fetalMove}}次</span><span v-if="item.fetalMove == 0">胎动 ： 无</span></p>
+							<p><img src="../../assets/2x/duration-icon@2x.png" /><span>检测时长 ： {{formatDuration(item.monitoringTime)}}</span></p>
 							<!--<p class="li1">{{item.startTime}}</p>
 							<p @click="goDetail(item.moveId)" class="li2"><span><label>胎心率：</label><span>{{item.meanHeartRate}}bmp</span></span><span class="span-right">胎动：{{item.fetalMove}}次</span></p>
 							<p @click="goDetail(item.moveId)" class="li2" style="border-top: 0.05rem solid rgb(239,239,239);">
@@ -111,6 +111,8 @@
 			switchYtWt(ytOrWt) {
 				var yiti = document.getElementById('yiti');
 				var weiti = document.getElementById('weiti');
+				this.page = 1;
+				this.allLoaded = false;
 				if(ytOrWt == 1) {
 					this.ytOrWt = '3,4';
 					yiti.style.borderColor = '#fff';
@@ -118,7 +120,7 @@
 					weiti.style.borderColor = '#FE99CC';
 					weiti.style.fontWeight = 'normal';
 				} else {
-					this.ytOrWt = '2';
+					this.ytOrWt = '1,2';
 					yiti.style.borderColor = '#FE99CC';
 					yiti.style.fontWeight = 'normal';
 					weiti.style.borderColor = '#fff';

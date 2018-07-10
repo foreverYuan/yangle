@@ -314,7 +314,8 @@
 	width: 100%;
 }
 .login input {
-	padding: 1rem 0 0.5rem 1rem;
+	padding-left: 1rem;
+	height: 2.3rem;
 }
 .login input::-webkit-input-placeholder {
 	color: #ccc;
@@ -344,7 +345,7 @@
 }
 .btn-login,
 .btn-register {
-	padding: 0.3rem 1.5rem;
+	padding: 0.3rem 1.7rem;
 	/*background: #FF6DB6;*/
 	
 	outline: none;
@@ -363,11 +364,12 @@
 .btn-login {
 	border-top-left-radius: 2rem;
 	border-bottom-left-radius: 2rem;
+	margin-right: -2rem;
 }
 .btn-register {
 	border-top-right-radius: 2rem;
 	border-bottom-right-radius: 2rem;
-	margin-left: -5px;
+	margin-left: 1.2rem;
 }
 .div-getIdCode {
 	display: flex;

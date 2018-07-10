@@ -61,6 +61,10 @@
 		line-height: 1.6rem;
 	}
 	
+	.mintui {
+		font-size: 22px;
+	}
+	
 	.mint-header .mint-button {
 		font-size: 1.05rem;
 		color: #FCFCFC;

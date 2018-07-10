@@ -38,6 +38,10 @@
 		background: #FF6DB6;
 	}
 	
+	.mintui {
+		font-size: 22px;
+	}
+	
 	.mint-header .mint-button {
 		font-size: 1.05rem;
 		color: #FCFCFC;

@@ -30,8 +30,8 @@
 				<span class="tip" @click="help">找不到胎心？看这里～</span>
 				<img class="img-doctor" src="../../assets/image/doctor.png" alt="">
 			</div>
-			<p style="box-shadow:0px 3px 10px 3px #eee;height: 0;" v-if="tip == 1"></p>
-			<p v-if="tip == 1" style="text-align: left;padding: 1rem 0.5rem 0 0.5rem;font-size: 1rem;margin-top: 1.5rem;"><span>找不到胎心?看这里～</span><span class="el-icon-arrow-down float-right" @click="goHide"></span></p>
+			<!--<p class="p-shadow" v-if="tip == 1">www</p>-->
+			<p v-if="tip == 1" class="p-shadow" style="text-align: left;padding: 1rem 0.5rem 0 0.5rem;font-size: 1rem;margin-top: 1.5rem;"><span>找不到胎心?看这里～</span><span class="el-icon-arrow-down float-right" @click="goHide"></span></p>
 			<div class="div-fhr-course scorll-container" v-if="tip == 1" style="position: absolute;height: 30%;overflow: auto;margin-bottom: 2.5rem;">
 				<img src="../../assets/fhr_course1.png" />
 				<img src="../../assets/fhr_course2.png" />

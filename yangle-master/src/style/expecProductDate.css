@@ -2,11 +2,11 @@
 	width: 100%;
 	height: 100%;
 	text-align: left;
-	background: url(../../static/pregnant_mother_background.png) no-repeat;
+	/*background: url(../../static/pregnant_mother_background.png) no-repeat;
 	background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
-	-o-background-size: 100% 100%;
+	-o-background-size: 100% 100%;*/
 	overflow: hidden;
 }
 
@@ -26,6 +26,7 @@
 }
 
 .div-content .mt-field-yourBirth {
+	width: 100%;
 	margin-top: 3rem;
 }
 

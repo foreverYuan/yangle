@@ -7,7 +7,7 @@
 			<p class="p-info" style="height: 5rem;line-height: 5rem;">
 				<span>头像</span>
 				<span class="el-icon-arrow-right float-right" style="margin-top: 1.5rem;margin-left: 0.5rem;"></span>
-				<el-upload action="https://yl.ibao365.net:8080/yangle/pregnancy/fastdfsUpload" show-file-list="false" style="float: right;" v-model="userIcon" :on-success="handleSuccess">
+				<el-upload action="http://118.31.66.193:8080/yangle/pregnancy/fastdfsUpload" show-file-list="false" style="float: right;" v-model="userIcon" :on-success="handleSuccess">
 					<img :src="userInfo.userIcon" v-if="userInfo.userIcon != null && userInfo.userIcon != ''" class="float-right header-pic" size="small" type="primary" width="55" height="55" />
 					<img src="../../assets/default-header-pic.jpg" v-if="userInfo.userIcon == null || userInfo.userIcon == ''" class="float-right header-pic" width="55" height="55" />
 				</el-upload>
@@ -200,7 +200,9 @@
 						if(isShow) {
 							alert('修改成功');
 						}
-						localStorage.setItem('userName', _this.nickName);
+						if(_this.nickName.trim() != '') {
+							localStorage.setItem('userName', _this.nickName);
+						}
 						_this.getUserInfo(); //刷新数据源
 						_this.dialogVisible = false; //隐藏修改昵称的弹框
 					} else {
@@ -277,8 +279,12 @@
 	@import url("../../style/userInfo.css");
 </style>
 
-<style scoped>
-	.el-upload-list {
+<style>
+	.userInfo .el-upload-list {
+		display: none;
+	}
+	
+	.userInfo .el-dialog__headerbtn .el-dialog__close {
 		display: none;
 	}
 </style>

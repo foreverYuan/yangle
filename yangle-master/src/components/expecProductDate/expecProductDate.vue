@@ -2,7 +2,7 @@
 <template>
 	<div class="expecProductDate">
 		<img src="../../assets/pregnant_mother_background.png" style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;"/>
-		<div class="div-content" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;">
+		<div class="div-content" style="position: fixed;width: 100%;height: 100%;left:-0.5rem;">
 			<h2 style="margin-top: 3rem;">请设置您的基本信息</h2>
 			<mt-field label="您的生日" placeholder="请输入您的生日" type="text" v-model="yourBirth" readonly="readonly" class="mt-field-yourBirth">
 				<span class="el-icon-arrow-right"></span>

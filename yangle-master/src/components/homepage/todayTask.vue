@@ -4,31 +4,75 @@
 			<mt-button icon="back" slot="left" @click="goBack()"></mt-button>
 		</mt-header>
 
-		<div class="div-content">
-			<div class="div-task-canvas" v-for="item in taskList">
-					<!-- 已完成 -->
-					<div class="div-task" v-if="item.taskStatus == 2" @click="goTaskDetail(item)">
-						<p>{{item.taskName}}</p>
-						<p class="p-heart">
-							<img src="../../assets/task_heart.png" />
-							<img src="../../assets/task_heart.png" />
-							<img src="../../assets/task_heart.png" />
-						</p>
-					</div>
-					<!-- 去完成 -->
-					<div class="div-task" v-if="item.taskStatus == 1" style="background: #FF89D1;" @click="goTaskDetail(item)">
-						<p>{{item.taskName}}</p>
-						<p class="p-heart">去完成</p>
-					</div>
-					<!-- 待解锁 -->
-					<div class="div-task" v-if="item.taskStatus == 0" style="background: #ccc;border: none;" @click="goTaskDetail(item)">
-						<p>{{item.taskName}}</p>
-						<img src="../../assets/task_locking.png" class="img-locking" />
-					</div>
+		<!--<div class="div-content">
+			<div class="div-task-canvas" v-for="item in taskList">-->
+		<!-- 已完成 -->
+		<!--<div class="div-task" v-if="item.taskStatus == 2" @click="goTaskDetail(item)">
+					<p>{{item.taskName}}</p>
+					<p class="p-heart">
+						<img src="../../assets/task_heart.png" />
+						<img src="../../assets/task_heart.png" />
+						<img src="../../assets/task_heart.png" />
+					</p>
+				</div>-->
+		<!-- 去完成 -->
+		<!--<div class="div-task" v-if="item.taskStatus == 1" style="background: #FF89D1;" @click="goTaskDetail(item)">
+					<p>{{item.taskName}}</p>
+					<p class="p-heart">去完成</p>
+				</div>-->
+		<!-- 待解锁 -->
+		<!--<div class="div-task" v-if="item.taskStatus == 0" style="background: #ccc;border: none;" @click="goTaskDetail(item)">
+					<p>{{item.taskName}}</p>
+					<img src="../../assets/task_locking.png" class="img-locking" />
+				</div>
 				<canvas id="myCanvas" class="canvas"></canvas>
 			</div>
+		</div>-->
+		<div class="div-content">
+			<div>
+				<div class="div-big-task">
+					<img src="../../assets/3x/task-board@3x.png" class="img-task-background" />
+					<div class="div-small-task">
+						<span class="task-title">吃了几个核桃</span>
+						<div>
+							<span v-for="item in taskImg">
+							<img src="../../assets/1x/task-hetao.png" />
+						</span>
+						</div>
+					</div>
+				</div>
+				<img src="../../assets/3x/task-line-a@3x.png" style="width: 10rem;margin-top: -4rem;margin-left: 2rem;" />
+			</div>
+			<div style="margin-top: -5rem;margin-left: 3rem;">
+				<div class="div-big-task">
+					<img src="../../assets/3x/task-board@3x.png" class="img-task-background" />
+					<div class="div-small-task">
+						<span class="task-title">检测胎心</span>
+						<div>
+							<span v-for="item in taskImg">
+							<img src="../../assets/1x/task-hetao.png" />
+						</span>
+						</div>
+					</div>
+				</div>
+				<img src="../../assets/3x/task-line-b@3x.png" style="width: 10rem;margin-top: -3rem;margin-left: 1rem;" />
+			</div>
+			<div style="margin-top: -5rem;margin-left: 7rem;">
+				<div class="div-big-task">
+					<img src="../../assets/3x/task-board@3x.png" class="img-task-background" />
+					<div class="div-small-task">
+						<span class="task-title">检测胎心</span>
+						<div>
+							<span v-for="item in taskImg">
+							<img src="../../assets/1x/task-hetao.png" />
+						</span>
+						</div>
+					</div>
+				</div>
+				<img src="../../assets/3x/task-line-b@3x.png" style="width: 10rem;margin-top: -3rem;margin-left: 1rem;" />
+			</div>
 		</div>
-		<img src="../../assets/task_background.png" class="todayTask-background" />
+		<img src="../../assets/3x/todayTask-background@3x.png" class="todayTask-background" />
 	</div>
 
 </template>
@@ -67,6 +111,7 @@
 
 				/* 返回参数 */
 				taskList: [], //任务列表
+				taskImg: ['a', 'b', 'c'],
 				/* 获取任务列表接口  end */
 			}
 		},
@@ -76,11 +121,11 @@
 		},
 
 		mounted() {
-			this.addTask();
+			//			this.addTask();
 		},
-		
+
 		updated() {
-			this.addTask();
+			//			this.addTask();
 		},
 
 		methods: {
@@ -169,4 +214,14 @@
 
 <style scoped>
 	@import url("../../style/todayTask.css");
+</style>
+
+<style>
+	.todayTask .mint-header .mint-button {
+		color: #333;
+	}
+	
+	.todayTask .mint-header-title {
+		color: #333;
+	}
 </style>

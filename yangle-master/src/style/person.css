@@ -75,14 +75,15 @@
 	height: 6rem;
 }
 
-.div-service p.p-title, .div-other p.p-title {
+.div-service p.p-title,
+.div-other p.p-title {
 	border-bottom: 1px solid #EFEFEF;
 	width: 100%;
 	color: #ccc;
 	margin-left: 1rem;
 }
 
-.div-big-block{
+.div-big-block {
 	display: flex;
 	height: 4.5rem;
 }
@@ -119,4 +120,10 @@
 	margin-left: 5.5rem;
 	margin-top: 0.5rem;
 	border-radius: 3.5rem;
+}
+
+.dialog-button {
+	background: none;
+	border: none;
+	color: #199077;
 }

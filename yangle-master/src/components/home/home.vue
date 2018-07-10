@@ -4,8 +4,8 @@
 		<!--<img src="../../assets/bottom_navibar.png" width="100%" style="position: fixed;left: 0;bottom: -1rem;"/>-->
 		<mt-tabbar v-model="selected" class="tabbar">
 			<mt-tab-item id="1">
-				<img src="../../assets/1x/home-icon-selected.png" v-if="selected==1">
-				<img src="../../assets/1x/home-icon-normal.png" v-else>
+				<img src="../../assets/3x/home-icon-selected@3x.png" style="width: 1.5rem;" v-if="selected==1">
+				<img src="../../assets/3x/home-icon-normal@3x.png" style="width: 1.5rem;" v-else>
 				<p class="selected" style="-webkit-margin-before: 0.3rem;" v-if="selected==1">首页</p>
 				<p class="normal" style="-webkit-margin-before: 0.3rem;" v-else>首页</p>
 			</mt-tab-item>
@@ -15,8 +15,8 @@
 				<p>咨询</p>
 			</mt-tab-item> -->
 			<mt-tab-item id="3">
-				<img src="../../assets/1x/heart-icon.png" v-if="selected==3" style="margin-top: -0.7rem;">
-				<img src="../../assets/1x/heart-icon.png" v-else style="margin-top: -0.7rem;">
+				<img src="../../assets/3x/heart-icon@3x.png" v-if="selected==3" style="margin-top: -0.7rem;width: 2rem;">
+				<img src="../../assets/3x/heart-icon@3x.png" v-else style="margin-top: -0.7rem;width: 2rem;">
 				<p class="selected" style="-webkit-margin-before: 0.3rem;" v-if="selected==3">胎心</p>
 				<p class="normal" style="-webkit-margin-before: 0.3rem;" v-else>胎心</p>
 			</mt-tab-item>
@@ -26,8 +26,8 @@
 				<p>助手</p>
 			</mt-tab-item> -->
 			<mt-tab-item id="5">
-				<img src="../../assets/1x/person-icon-selected.png" v-if="selected==5">
-				<img src="../../assets/1x/person-icon-normal.png" v-else>
+				<img src="../../assets/3x/person-icon-selected@3x.png" style="width: 1.5rem;" v-if="selected==5">
+				<img src="../../assets/3x/person-icon-normal@3x.png" style="width: 1.5rem;" v-else>
 				<p class="selected" style="-webkit-margin-before: 0.3rem;" v-if="selected==5">个人</p>
 				<p class="normal" style="-webkit-margin-before: 0.3rem;" v-else>个人</p>
 			</mt-tab-item>

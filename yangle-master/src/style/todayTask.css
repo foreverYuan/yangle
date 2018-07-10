@@ -2,15 +2,12 @@
 	text-align: left;
 	width: 100%;
 	height: 100%;
-	/*background: url(../assets/task_background.png) no-repeat;
-	-webkit-background: url(../assets/task_background.png) no-repeat;*/
+	/*background: url(../assets/task_background.png);
+	-webkit-background: url(../assets/task_background.png);*/
 	/*width: 100%;
 	height: 100%;
 	background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;*/
-	overflow: hidden;
-	overflow-x: hidden;
-	overflow-y: hidden;
 }
 
 .mint-header {
@@ -18,22 +15,22 @@
 }
 
 .div-content {
-	overflow: hidden;
+	width: 70%;
+	margin-left: 15%;
+	padding-top: 3rem;
 }
 
-.div-task-canvas {
-}
+.div-task-canvas {}
 
 .div-task {
-	width: 10rem;
-	height: 6rem;
-	background: #FFB9DB;
+	width: auto;
+	height: 10rem;
 	border-radius: 0.5rem;
-	border: 1px solid #FC9CD1;
 	text-align: center;
 	color: white;
 	font-size: 1.1rem;
-	position: absolute;
+	background: url(../assets/3x/task-board@3x.png) no-repeat;
+	background-size: 10rem auto;
 }
 
 .canvas {
@@ -62,4 +59,37 @@
 	left: 0;
 	top: 0;
 	z-index: -1;
+}
+
+.div-big-task {
+	width: 10rem;
+	position: relative;
+}
+
+.img-task-background {
+	width: 10rem;
+}
+
+.div-small-task {
+	position: absolute;
+	top: 43%;
+	width: 70%;
+	left: 15%;
+	text-align: center;
+}
+
+.div-small-task div {
+	display: flex;
+	margin-top: 1rem;
+}
+
+.div-small-task div span {
+	width: 33.3%;
+	text-align: center;
+}
+
+.task-title {
+	color: #fff;
+	font-size: 1.1rem;
+	font-weight: bold;
 }
