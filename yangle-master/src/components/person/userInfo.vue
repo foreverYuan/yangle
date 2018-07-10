@@ -120,8 +120,8 @@
 			 * 退出登录
 			 */
 			signOut() {
-				localStorage.clear();
-//				localStorage.removeItem('userId');
+//				localStorage.clear();
+				localStorage.removeItem('userId');
 				this.$router.push({
 					path: '/'
 				})
