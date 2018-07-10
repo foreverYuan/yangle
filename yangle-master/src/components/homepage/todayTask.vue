@@ -41,7 +41,7 @@
 						</div>
 					</div>
 				</div>
-				<img src="../../assets/3x/task-line-a@3x.png" style="width: 10rem;margin-top: -4rem;margin-left: 2rem;" />
+				<img src="../../assets/3x/task-line-a@3x.png" style="width: 10rem;margin-top: -3rem;margin-left: 2rem;" />
 			</div>
 			<div style="margin-top: -5rem;margin-left: 3rem;">
 				<div class="div-big-task">
@@ -55,9 +55,9 @@
 						</div>
 					</div>
 				</div>
-				<img src="../../assets/3x/task-line-b@3x.png" style="width: 10rem;margin-top: -3rem;margin-left: 1rem;" />
+				<img src="../../assets/3x/task-line-b@3x.png" style="width: 10rem;margin-top: -4.5rem;margin-left: 1rem;" />
 			</div>
-			<div style="margin-top: -5rem;margin-left: 7rem;">
+			<div style="margin-top: -4.3rem;margin-left: 7rem;">
 				<div class="div-big-task">
 					<img src="../../assets/3x/task-board@3x.png" class="img-task-background" />
 					<div class="div-small-task">
@@ -69,8 +69,24 @@
 						</div>
 					</div>
 				</div>
-				<img src="../../assets/3x/task-line-b@3x.png" style="width: 10rem;margin-top: -3rem;margin-left: 1rem;" />
+				<img src="../../assets/3x/task-line-a@3x.png" style="width: 10rem;margin-left: -5.5rem;" />
 			</div>
+			<div style="margin-top: -4.3rem;margin-left: 7rem;">
+				<div class="div-big-task">
+					<img src="../../assets/3x/task-board@3x.png" class="img-task-background" />
+					<div class="div-small-task">
+						<span class="task-title">检测胎心</span>
+						<div>
+							<span v-for="item in taskImg">
+							<img src="../../assets/1x/task-hetao.png" />
+						</span>
+						</div>
+					</div>
+				</div>
+				<img src="../../assets/3x/task-line-c@3x.png" style="width: 10rem;margin-top: -2rem;margin-left: -5.5rem;" />
+			</div>
+			
+			
 		</div>
 		<img src="../../assets/3x/todayTask-background@3x.png" class="todayTask-background" />
 	</div>
