@@ -6,6 +6,13 @@
 .tabbar {
 	position: fixed;
 	height: 3.5rem;
+	text-align: center;
+	width: 100%;
+	padding-top: 0.5rem;
+	-webkit-box-shadow: #aaa 0px 0px 10px;
+	-moz-box-shadow: #aaa 0px 0px 10px;
+	box-shadow: #aaa 0px 0px 10px;
+	background: #fff;
 }
 
 .selected {
