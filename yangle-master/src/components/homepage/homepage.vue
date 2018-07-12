@@ -1,10 +1,8 @@
 <template>
 	<div>
-		<div style="padding-top: 30%;">
-			<img src="../../../static/loading-icon-closeEye.png" style="width: 12rem;" id="loading-img" />
-		</div>
+			<img src="../../../static/loading-icon-closeEye.png" style="width: 50%;position: absolute;top: 30%;left: 25%;" id="loading-img" />
 
-		<div class="homepage" style="margin: 0;" v-if="!netStatus">
+		<div class="homepage" style="margin: 0;" v-if="netStatus">
 			<div class="top">
 				<mt-header style="background: none;">
 					<!--:title="babyStatus.pregnancyWeek"-->
@@ -289,6 +287,7 @@
 				dpr: window.devicePixelRatio, //屏幕像素分辨率
 				showTaskNum: 3, //显示任务数量
 				netStatus: window.navigator.onLine, //是否有网络
+				loadingTimerId: "",
 			}
 		},
 
@@ -304,6 +303,9 @@
 		mounted() {
 			this.isShow = true;
 			this.getSignInfo(); //获取签到信息
+			$(".homepage").css("visibility", "hidden");
+			$("#loading-img").css("visibility", "visible");
+			
 			window.setInterval(function() {
 				var loadingImg = document.getElementById('loading-img');
 				if(loadingImg.src.indexOf('open') != -1) {
@@ -311,8 +313,7 @@
 				} else {
 					loadingImg.src = "../../../static/loading-icon-openEye.png";
 				}
-			}, 1000);
-
+			}, 500);
 			//						this.drawSignIntegral();
 		},
 		updated() {
@@ -334,7 +335,7 @@
 			aaa() {
 				//			alert(window.navigator.onLine);
 			},
-
+			
 			c1() {
 				this.isShow = false;
 				this.isShow2 = true;
@@ -383,6 +384,9 @@
 				}).then((response) => {
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
+						$(".homepage").css("visibility", "visible");
+			            $("#loading-img").css("visibility", "hidden");
+//			            window.clearInterval(this.loadingTimerId);
 						//成功
 						_this.carouselList = response.data.sowMapList, //轮播列表数据
 							_this.tip = response.data.tip, //任务提示语
