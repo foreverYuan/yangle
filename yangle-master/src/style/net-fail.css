@@ -1,0 +1,15 @@
+.netFail img {
+	margin-top: 20%;
+}
+
+.netFail p {
+	margin-top: 10%;
+	font-size: 1.1rem;
+	color: #ccc;
+}
+
+.mt-button {
+	width: 70%;
+	margin-top: 10%;
+	box-shadow: #aaa 0px 0px 5px;
+}

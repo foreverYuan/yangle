@@ -38,14 +38,14 @@
 							<span class="task-title" v-if="item.taskStatus == 1 || item.taskStatus == 2">{{item.taskName}}</span>
 							<span class="task-title" style="color: #ccc;" v-if="item.taskStatus == 0">{{item.taskName}}</span>
 							<div>
-	<span v-for="(taskImg, index1) in taskImg" v-if="item.taskStatus == 1 || item.taskStatus == 2">
+								<span v-for="(taskImg, index1) in taskImg" v-if="item.taskStatus == 1 || item.taskStatus == 2">
 							<img src="../../assets/1x/task-hetao.png" v-if="!(index1 == 2 && item.taskStatus == 1)"/>   <!--todo 需要换成后台数据-->
 							<img src="../../assets/1x/task-hetao.png" v-if="index1 == 2 && item.taskStatus == 1" class="gray"/>
 						</span>
-	<span style="width: 1.5rem;margin-left: 35%;" v-if="item.taskStatus == 0">    <!--带解锁-->
+								<span style="width: 1.5rem;margin-left: 35%;" v-if="item.taskStatus == 0">    <!--带解锁-->
 						      <img src="../../assets/3x/task-lock@3x.png" width="100%"/>
 						</span>
-						</div>
+							</div>
 						</div>
 					</div>
 					<img src="../../assets/3x/task-line-a@3x.png" style="width: 10rem;margin-top: -3rem;margin-left: 2rem;" v-if="index != taskList.length - 1" />
@@ -58,14 +58,14 @@
 							<span class="task-title" v-if="item.taskStatus == 1 || item.taskStatus == 2">{{item.taskName}}</span>
 							<span class="task-title" style="color: #ccc;" v-if="item.taskStatus == 0">{{item.taskName}}</span>
 							<div>
-	<span v-for="(taskImg, index1) in taskImg" v-if="item.taskStatus == 1 || item.taskStatus == 2">
+								<span v-for="(taskImg, index1) in taskImg" v-if="item.taskStatus == 1 || item.taskStatus == 2">
 							<img src="../../assets/1x/task-hetao.png" v-if="!(index1 == 2 && item.taskStatus == 1)"/>   <!--todo 需要换成后台数据-->
 							<img src="../../assets/1x/task-hetao.png" v-if="index1 == 2 && item.taskStatus == 1" class="gray"/>
 						</span>
-	<span style="width: 1.5rem;margin-left: 35%;" v-if="item.taskStatus == 0">    <!--带解锁-->
+								<span style="width: 1.5rem;margin-left: 35%;" v-if="item.taskStatus == 0">    <!--带解锁-->
 						      <img src="../../assets/3x/task-lock@3x.png" width="100%"/>
 						</span>
-						</div>
+							</div>
 						</div>
 					</div>
 					<img src="../../assets/3x/task-line-b@3x.png" style="width: 10rem;margin-top: -4.5rem;margin-left: 1rem;" v-if="index != taskList.length - 1" />
@@ -78,14 +78,14 @@
 							<span class="task-title" v-if="item.taskStatus == 1 || item.taskStatus == 2">{{item.taskName}}</span>
 							<span class="task-title" style="color: #ccc;" v-if="item.taskStatus == 0">{{item.taskName}}</span>
 							<div>
-	<span v-for="(taskImg, index1) in taskImg" v-if="item.taskStatus == 1 || item.taskStatus == 2">
+								<span v-for="(taskImg, index1) in taskImg" v-if="item.taskStatus == 1 || item.taskStatus == 2">
 							<img src="../../assets/1x/task-hetao.png" v-if="!(index1 == 2 && item.taskStatus == 1)"/>   <!--todo 需要换成后台数据-->
 							<img src="../../assets/1x/task-hetao.png" v-if="index1 == 2 && item.taskStatus == 1" class="gray"/>
 						</span>
-	<span style="width: 1.5rem;margin-left: 35%;" v-if="item.taskStatus == 0">    <!--带解锁-->
+								<span style="width: 1.5rem;margin-left: 35%;" v-if="item.taskStatus == 0">    <!--带解锁-->
 						      <img src="../../assets/3x/task-lock@3x.png" width="100%"/>
 						</span>
-						</div>
+							</div>
 						</div>
 					</div>
 					<img src="../../assets/3x/task-line-c@3x.png" style="width: 10rem;margin-top: -4rem;margin-left: -1rem;" v-if="index != taskList.length - 1" />
@@ -98,14 +98,14 @@
 							<span class="task-title" v-if="item.taskStatus == 1 || item.taskStatus == 2">{{item.taskName}}</span>
 							<span class="task-title" style="color: #ccc;" v-if="item.taskStatus == 0">{{item.taskName}}</span>
 							<div>
-	<span v-for="(taskImg, index1) in taskImg" v-if="item.taskStatus == 1 || item.taskStatus == 2">
+								<span v-for="(taskImg, index1) in taskImg" v-if="item.taskStatus == 1 || item.taskStatus == 2">
 							<img src="../../assets/1x/task-hetao.png" v-if="!(index1 == 2 && item.taskStatus == 1)"/>   <!--todo 需要换成后台数据-->
 							<img src="../../assets/1x/task-hetao.png" v-if="index1 == 2 && item.taskStatus == 1" class="gray"/>
 						</span>
-	<span style="width: 1.5rem;margin-left: 35%;" v-if="item.taskStatus == 0">    <!--带解锁-->
+								<span style="width: 1.5rem;margin-left: 35%;" v-if="item.taskStatus == 0">    <!--带解锁-->
 						      <img src="../../assets/3x/task-lock@3x.png" width="100%" />
 						</span>
-						</div>
+							</div>
 						</div>
 					</div>
 					<img src="../../assets/3x/task-line-b@3x.png" style="width: 10rem;margin-top: -4rem;margin-left: 1rem;" v-if="index != taskList.length - 1" />
@@ -113,6 +113,7 @@
 			</div>
 		</div>
 		<img src="../../assets/3x/todayTask-background@3x.png" class="todayTask-background" />
+		<img src="../../assets/todayTask-background.png" style="position: absolute;top: 100%;z-index: -1;" id="img-add-background" />
 	</div>
 
 </template>
@@ -168,6 +169,7 @@
 		updated() {
 			//			this.addTask1();
 			this.addTask();
+            this.setAddBackHeight();
 		},
 
 		methods: {
@@ -208,6 +210,17 @@
 					tasks[i].marginTop = taskMarginTop;
 					tasks[i].marginLeft = taskMarginLeft;
 				}
+			},
+
+            /**
+             * 设置新增背景的高度
+             */
+			setAddBackHeight() {
+				var addBackground = document.getElementById("img-add-background");
+				var height = document.body.scrollHeight;
+				var screenHeight = window.screen.height;
+				var showHeight = height - screenHeight + 10;
+				addBackground.style.height = showHeight + 'px';
 			},
 
 			/**
@@ -254,7 +267,7 @@
 					path: '/todayTaskDetail',
 					query: {
 						task: JSON.stringify(task),
-						taskId: task.taskId, //任务id
+						taskId: task.taskUserId, //任务id
 					}
 				})
 				console.log("task", task);

@@ -6,6 +6,7 @@
 
 .div-content {
 	padding: 1rem 0.5rem;
+	font-size: 1.1rem;
 }
 
 .p-info {
@@ -16,6 +17,9 @@
 .btn-signOut {
 	width: 100%;
 	height: 3rem;
+	color: #333;
+	font-weight: bold;
+	font-size: 1.05rem;
 	background: #eee;
 	border: none;
 	outline: none;
@@ -24,4 +28,5 @@
 .header-pic {
 	border-radius: 55px;
 }
+
 

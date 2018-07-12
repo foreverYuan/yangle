@@ -97,7 +97,8 @@
 	margin: 0;
 }
 
-.div-list li {
+.div-li {
+	display: flex;
 	margin: 0.5rem 1rem 1rem 1rem;
 	border: 1px solid #eee;
 	border-radius: 1rem;
@@ -145,4 +146,29 @@
 	overflow-y: scroll;
 	background: #F5F5F5;
 	z-index: -1;
+}
+
+.order {
+   /*height: 60px;
+   line-height: 60px;*/
+   text-align: center;
+}
+ .order .line {
+   display: inline-block;
+   width: 20%;
+   border-top: 1px solid #ddd;
+   padding-top: 3px;
+}
+.order .txt {
+   color: #ccc;
+   font-size: 0.8rem;
+   vertical-align: middle;
+   margin: 0 0.5rem;
+}
+
+.red-point {
+	position: absolute;
+	right: -3px;
+	width: 10px;
+	height: 10px;
 }

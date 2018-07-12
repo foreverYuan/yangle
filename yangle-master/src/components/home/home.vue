@@ -40,15 +40,13 @@
 		name: 'home',
 		data() {
 			return {
-				selected: 1,
+				selected: sessionStorage.getItem('homeSelect') == null ? 1 : sessionStorage.getItem('homeSelect'),
 			}
 		},
 
 		created() {
 			//如果本地缓存的预产期不为空则直接跳转首页
-			this.$router.push({
-				path: '/home/homepage'
-			});
+			this.getIndex();
 		},
 
 		mounted() {
@@ -58,30 +56,50 @@
 		watch: {
 			selected() {
 				if(this.selected == 1) {
+					sessionStorage.setItem('homeSelect', 1)
 					this.$router.push({
 						path: '/home/homepage' //首页
 					});
 				} else if(this.selected == 2) {
+					sessionStorage.setItem('homeSelect', 2)
 					this.$router.push({
 						path: '/home/consult' //咨询
 					});
 				} else if(this.selected == 3) {
+					sessionStorage.setItem('homeSelect', 3)
 					this.$router.push({
 						path: '/home/fetalheart' //胎心
 					});
 				} else if(this.selected == 4) {
+					sessionStorage.setItem('homeSelect', 4)
 					this.$router.push({
 						path: '/home/assistant' //助手
 					});
 				} else if(this.selected == 5) {
+					sessionStorage.setItem('homeSelect', 5)
 					this.$router.push({
 						path: '/home/person' //个人
 					});
 				}
-			}
+			},
 		},
 
 		methods: {
+			getIndex() {
+				var b = sessionStorage.getItem('homeSelect')
+				if(b == 1) {
+					this.selected == 1
+				} else if(b == 2) {
+					this.selected == 2
+				} else if(b == 3) {
+					this.selected == 3
+				} else if(b == 4) {
+					this.selected == 4
+				} else if(b == 5) {
+					this.selected == 5
+				}
+			},
+
 			/**
 			 * 修改软键盘定位问题(解决fixed或者absulute定位被软键盘顶起的问题)
 			 */

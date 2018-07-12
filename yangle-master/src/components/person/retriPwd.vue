@@ -8,11 +8,11 @@
 		<div class="div-content">
 			<div>
 				<input placeholder="请输入手机号" v-model="phone" type="number" />
-				<span class="float-right span-phone" @click="getItCode()">获取验证码</span>
+				<span class="float-right span-phone" id="re-get-it" @click="getItCode()">获取验证码</span>
 			</div>
 			<div>
 				<input placeholder="请输入验证码" v-model="itCode" type="number" />
-				<span class="float-right span-it">600s</span>
+				<span class="float-right span-it" id="it-code">600s</span>
 			</div>
 			<div>
 				<input placeholder="请输入新密码" v-model="pwd" :type="pwdType" />
@@ -55,6 +55,8 @@
 				smsType: '3', //找回密码发送验证码的类型    1：注册发验证码 填1 2：登录发送验证码 填2 3：找回密码发送验证码 填3
 				isEncrypt: true,
 				path: '',
+				forbidClickLoginId: false, //是否禁止点击登录的获取验证码
+				maxTime: 600, //倒计时的最大时间
 			}
 		},
 
@@ -106,20 +108,21 @@
 			 * 忘记密码
 			 */
 			resetPwd() {
+				var _this = this;
 				if(this.pwd != this.rePwd) {
 					alert("两次输入的密码不一致，请重新输入");
 				}
 				this.axios.post('/userControllerAPI/resetPassword', {
-					userAccount: this.phone, //用户账号
-					smsCode: this.itCode, //验证码
-					userRole: this.serRole, //用户角色
-					userPassword: this.pwd, //新密码
+					userAccount: _this.phone, //用户账号
+					smsCode: _this.itCode, //验证码
+					userRole: _this.serRole, //用户角色
+					userPassword: _this.pwd, //新密码
 				}).then(function(response) {
 					console.log(response);
 					if(response.data.resultCode == 200) {
 						alert("密码重置成功，请重新登录");
 						//跳转登录页
-						this.$router.push({
+						_this.$router.push({
 							path: '/login'
 						});
 					} else {
@@ -135,6 +138,13 @@
 			 * 获取验证码
 			 */
 			getItCode() {
+				if(this.forbidClickLoginId) {
+					return;
+				}
+				if(this.phone == '' || this.phone.length != 11) {
+					return alert('请输入正确的手机号码');
+				}
+				this.countDownTime(); //开始倒计时
 				this.axios.post('/userControllerAPI/getSmsCode', {
 					userAccount: this.phone, //用户账号
 					smsType: this.smsType //短信类型   1：注册发验证码 填1 2：登录发送验证码 填2 3：找回密码发送验证码 填3
@@ -144,6 +154,26 @@
 					alert(error);
 				});
 
+			},
+			
+			/**
+			 * 倒计时
+			 */
+			countDownTime() {
+				this.forbidClickLoginId = true;
+				this.maxTime--;
+				var itCode = document.getElementById('it-code');
+				var reGetIt = document.getElementById('re-get-it');
+				itCode.innerHTML = this.maxTime + 's';
+				var time = setTimeout(() => {
+					this.countDownTime();
+				}, 1000);
+				if(this.maxTime == 0) {
+					clearTimeout(time);
+					this.maxTime = 600;
+					reGetIt.innerHTML = '重新获取';
+					this.forbidClickLoginId = false;
+				}
 			},
 
 			/**

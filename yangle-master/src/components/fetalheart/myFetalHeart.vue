@@ -9,34 +9,37 @@
 				<div class="div-tab" id="yiti" @click="switchYtWt(1)">
 					<p>已提交判读</p><span>{{yitiCount}}</span></div>
 				<div class="div-tab" id="weiti" @click="switchYtWt(2)">
-					<p>未提交判读</p><span>{{weitiCount}}</span></div>
+					<p style="display: inline-block;position: relative;">未提交判读<img src="../../assets/red-point.png" v-if="weitiCount > 0" class="red-point" /></p>
+					<span style="display: block;">{{weitiCount}}</span>
+				</div>
 			</div>
 		</div>
 		<div class="div-list" v-if="allFhrList.length > 0">
 			<mt-loadmore :autoFill="false" :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @top-status-change="handleTopChange" :auto-fill="false" bottomPullText="上拉加载更多" :bottomLoadingText="bottomLoadingText" ref="loadmore">
 				<ul>
-					<li v-for="item in allFhrList" style="display: flex;" @click="goDetail(item.moveId)">
-						<div class="div-state" v-if="item.state == 1 || item.state == 2">
-							<img src="../../assets/1x/weitijiao.png" style="width: 1.7rem;" />
-							<p style="-webkit-margin-before: 0;color: #999;">未提交</p>
-						</div>
-						<div class="div-state" v-if="item.state == 3">
-							<img src="../../assets/1x/panduzhong.png" style="width: 2rem;" />
-							<p style="-webkit-margin-before: 0;color: #FF6DB7;">判读中</p>
-						</div>
-						<div class="div-state" v-if="item.state == 4 && item.resultState == 1">
-							<img src="../../assets/3x/normal-icon3x.png" />
-							<p style="-webkit-margin-before: 0;color: #FF6CB4;">正常</p>
-						</div>
-						<div class="div-state" v-if="item.state == 4 && item.resultState == 2">
-							<img src="../../assets/3x/abnormal-icon@3x.png" />
-							<p style="-webkit-margin-before: 0;color: #EA9926;">异常</p>
-						</div>
-						<div class="div-fhr-data">
-							<p><img src="../../assets/2x/fhr-icon@2x.png" /><span>胎心率 ： {{item.meanHeartRate}}bpm</span></p>
-							<p><img src="../../assets/2x/fm-icon@2x.png" /><span v-if="item.fetalMove > 0">胎动 ： {{item.fetalMove}}次</span><span v-if="item.fetalMove == 0">胎动 ： 无</span></p>
-							<p><img src="../../assets/2x/duration-icon@2x.png" /><span>检测时长 ： {{formatDuration(item.monitoringTime)}}</span></p>
-							<!--<p class="li1">{{item.startTime}}</p>
+					<li v-for="item in allFhrList" @click="goDetail(item.moveId)">
+						<div class="div-li">
+							<div class="div-state" v-if="item.state == 1 || item.state == 2">
+								<img src="../../assets/1x/weitijiao.png" style="width: 1.7rem;" />
+								<p style="-webkit-margin-before: 0;color: #999;">未提交</p>
+							</div>
+							<div class="div-state" v-if="item.state == 3">
+								<img src="../../assets/1x/panduzhong.png" style="width: 2rem;" />
+								<p style="-webkit-margin-before: 0;color: #FF6DB7;">判读中</p>
+							</div>
+							<div class="div-state" v-if="item.state == 4 && item.resultState == 1">
+								<img src="../../assets/3x/normal-icon3x.png" />
+								<p style="-webkit-margin-before: 0;color: #FF6CB4;">正常</p>
+							</div>
+							<div class="div-state" v-if="item.state == 4 && item.resultState == 2">
+								<img src="../../assets/3x/abnormal-icon@3x.png" />
+								<p style="-webkit-margin-before: 0;color: #EA9926;">异常</p>
+							</div>
+							<div class="div-fhr-data">
+								<p><img src="../../assets/2x/fhr-icon@2x.png" /><span>胎心率 ： {{item.meanHeartRate}}bpm</span></p>
+								<p><img src="../../assets/2x/fm-icon@2x.png" /><span v-if="item.fetalMove > 0">胎动 ： {{item.fetalMove}}次</span><span v-if="item.fetalMove == 0">胎动 ： 无</span></p>
+								<p><img src="../../assets/2x/duration-icon@2x.png" /><span>检测时长 ： {{formatDuration(item.monitoringTime)}}</span></p>
+								<!--<p class="li1">{{item.startTime}}</p>
 							<p @click="goDetail(item.moveId)" class="li2"><span><label>胎心率：</label><span>{{item.meanHeartRate}}bmp</span></span><span class="span-right">胎动：{{item.fetalMove}}次</span></p>
 							<p @click="goDetail(item.moveId)" class="li2" style="border-top: 0.05rem solid rgb(239,239,239);">
 								<span><label>监测时间：</label><span>{{item.monitoringTime}}</span></span>
@@ -45,7 +48,15 @@
 								<span class="span-right" v-if="item.state == 4"><img src="../../assets/normal.png" /><span>正常</span></span>
 								<span class="span-right" v-if="item.state == 5"><img src="../../assets/abnormal.png" /><span>异常</span></span>
 							</p>-->
+							</div>
 						</div>
+
+						<div class="order" v-if="item.gmtCreate != null">
+							<span class="line"></span>
+							<span class="txt">{{item.gmtCreate.split(" ")[0]}}</span>
+							<span class="line"></span>
+						</div>
+						<p></p>
 					</li>
 				</ul>
 			</mt-loadmore>
@@ -163,9 +174,9 @@
 					if(response.data.resultCode == 200) {
 						//						alert("获取成功");
 						this.weitiCount = response.data.pageUtil.notSubmitTotal, //未提交数量
-						this.totalPage = response.data.pageUtil.totalPage, //总页数
-						this.page = response.data.pageUtil.currPage, //当前页码
-						this.yitiCount = response.data.pageUtil.submitTotal //已提交数量
+							this.totalPage = response.data.pageUtil.totalPage, //总页数
+							this.page = response.data.pageUtil.currPage, //当前页码
+							this.yitiCount = response.data.pageUtil.submitTotal //已提交数量
 						this.fhrList = response.data.pageUtil.list //胎心列表
 						if(isPush) {
 							for(var i = 0; i < this.fhrList.length; i++) {

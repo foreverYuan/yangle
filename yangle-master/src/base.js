@@ -47,8 +47,8 @@ exports.install = function(Vue, options) {
 			//创建对象实例
 			var mHelper = new Helper();
 			//调用java中的跳转方法，并且传入当前activity实例
-			mHelper.jump(main, 'f3e4b706-67ed-4fe0-b5d6-9aeb78cc35c5', '1');
-//			mHelper.jump(main, localStorage.getItem('userId'), localStorage.getItem('userRole'));
+//			mHelper.jump(main, 'f3e4b706-67ed-4fe0-b5d6-9aeb78cc35c5', '1');
+			mHelper.jump(main, localStorage.getItem('userId'), localStorage.getItem('userRole'));
 		}
 	};
 
@@ -108,14 +108,14 @@ exports.install = function(Vue, options) {
 			var FileUtil = plus.android.importClass("com.ater.yangle.utils.FileUtil");
 			var fhrTxt = FileUtil.getFile(FileUtil.FHR_FILE_NAME);
 		    var fileNames = JSON.parse(fhrTxt);
-		    alert("fileNames" + fileNames);
-		    alert("fileNames.length" + fileNames.length);
+//		    alert("fileNames" + fileNames);
+//		    alert("fileNames.length" + fileNames.length);
 			for(var i = 0; i < fileNames.length; i++) {
 				alert(fileNames[i]);
 				var fhrFileContent = FileUtil.getFile(fileNames[i]);
-				alert("json:" + fhrFileContent);
+//				alert("json:" + fhrFileContent);
 				var fhrFileJson = JSON.parse(fhrFileContent); //转换成json对象
-				alert("moveId:" + fhrFileJson.moveId);
+//				alert("moveId:" + fhrFileJson.moveId);
 				if(fhrFileJson.moveId == null || fhrFileJson.moveId == undefined || fhrFileJson.moveId.length <= 0) {
 					this.uploadFhrData('/yFetalMovement/yfetalmovement/saveFetalHeart', fhrFileJson, fileNames[i]);
 				} else {
@@ -129,13 +129,13 @@ exports.install = function(Vue, options) {
 	 * 保存胎心数据
 	 */
 	Vue.prototype.uploadFhrData = function(url, fhrFileJson, fhrFile) {
-		alert("moveId:" + fhrFileJson.moveId);
-		alert("meanHeartRate:" + fhrFileJson.meanHeartRate);
-		alert("monitoringTime:" + fhrFileJson.monitoringTime);
-		alert("startTime:" + fhrFileJson.startTime);
-		alert("heartRecord:" + fhrFileJson.heartRecord);
-		alert("fetalMove:" + fhrFileJson.fetalMove);
-		alert("userId:" + fhrFileJson.userId);
+//		alert("moveId:" + fhrFileJson.moveId);
+//		alert("meanHeartRate:" + fhrFileJson.meanHeartRate);
+//		alert("monitoringTime:" + fhrFileJson.monitoringTime);
+//		alert("startTime:" + fhrFileJson.startTime);
+//		alert("heartRecord:" + fhrFileJson.heartRecord);
+//		alert("fetalMove:" + fhrFileJson.fetalMove);
+//		alert("userId:" + fhrFileJson.userId);
 		this.axios.post(url, {
 			moveId: fhrFileJson.moveId, //胎心id
 			meanHeartRate: fhrFileJson.meanHeartRate, //平均心率

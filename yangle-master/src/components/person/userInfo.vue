@@ -13,24 +13,24 @@
 				</el-upload>
 			</p>
 			<p class="p-info" style="clear: both;" @click="dialogVisible = true"><span>昵称</span><span class="float-right">
-				<span>{{userInfo.userName}}</span>
+				<span style="color: #999;">{{userInfo.userName}}</span>
 				<span class="el-icon-arrow-right"></span></span>
 			</p>
 			<p class="p-info" style="clear: both;" @click="stateDialog = true"><span>状态</span><span class="float-right">
-				<span>孕育中</span>
+				<span style="color: #999;">孕育中</span>
 				<!--<select style="background: none;border: none;" v-model="state" id="stateSelect">
 					<option v-for="item in states" :key="item.value" :label="item.label" :value="item.value"></option>
 				</select>-->
 				<span class="el-icon-arrow-right"></span></span>
 			</p>
 			<p class="p-info" style="clear: both;" v-on:click="openEndMensesPicker"><span>末次月经</span><span class="float-right">
-				<span v-if="!isSelectEndMenses">{{this.getFormatDate(userInfo.lastMenstruation)}}</span>
-				<span v-if="isSelectEndMenses">{{endMenses}}</span>
+				<span v-if="!isSelectEndMenses" style="color: #999;">{{this.getFormatDate(userInfo.lastMenstruation)}}</span>
+				<span v-if="isSelectEndMenses" style="color: #999;">{{endMenses}}</span>
 				<span class="el-icon-arrow-right"></span></span>
 			</p>
 			<p class="p-info" style="clear: both;" v-on:click="openBirthPicker"><span>出生日期</span><span class="float-right">
-				<span v-if="!yourBirth">{{this.getFormatDate(userInfo.birthday)}}</span>
-				<span v-if="yourBirth">{{yourBirth}}</span>
+				<span v-if="!yourBirth" style="color: #999;">{{this.getFormatDate(userInfo.birthday)}}</span>
+				<span v-if="yourBirth" style="color: #999;">{{yourBirth}}</span>
 				<span class="el-icon-arrow-right"></span></span>
 			</p>
 			<lian-dong ref="liandong" v-on:pickCallBack='pickCall' :userAddress='userInfo.userAddress'></lian-dong>

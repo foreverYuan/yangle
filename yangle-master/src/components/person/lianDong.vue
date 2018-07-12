@@ -6,8 +6,8 @@
 		</div>
 		<p class="p-info" style="clear: both;" v-on:click="toShow"><span>所在地</span>
 			<span class="float-right">
-				<span v-if="selected != ''">{{selected}}</span>
-				<span v-if="selected == undefined || selected == null || selected == ''">{{userAddress}}</span>
+				<span v-if="selected != ''" style="color: #999;">{{selected}}</span>
+				<span v-if="selected == undefined || selected == null || selected == ''" style="color: #999;">{{userAddress}}</span>
 			<!-- <span >123</span> -->
 			<span class="el-icon-arrow-right"></span>
 			</span>

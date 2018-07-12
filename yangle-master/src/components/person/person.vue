@@ -8,9 +8,9 @@
 			<div style="padding-top: 0.6rem;padding-bottom: 0.5rem;">
 				<h3 style="margin-left: 5.5rem;font-size: 1.2rem;color: #FCFCFC;">{{pregnancyWeek}}</h3>
 				<img src="../../assets/default-header-pic.jpg" class="userIcon" v-if="userIcon == null && userIcon == ''" />
-				<img :src="userIcon" class="userIcon" v-if="userIcon != null && userIcon != ''" />
+				<img :src="userInfo.userIcon" class="userIcon" v-if="userIcon != null && userIcon != ''" />
 
-				<p class="p-userName">{{userName}}</p>
+				<p class="p-userName">{{userInfo.userName}}</p>
 				<p class="p-state">孕育中</p>
 			</div>
 		</div>
@@ -95,8 +95,10 @@
 		data() {
 			return {
 				userId: localStorage.getItem('userId'), //用户id
+				userRole: localStorage.getItem('userRole'), //用户角色
 				userName: localStorage.getItem('userName'), //用户昵称
 				userIcon: localStorage.getItem('userIcon'), //用户头像
+				userInfo: '', //用户信息
 				personInfo: {
 					myInfo: [{
 							"image": "../../assets/my_order.png",
@@ -150,7 +152,7 @@
 			}
 		},
 		mounted() {
-
+             this.getUserInfo();
 		},
 		watch: {
 
@@ -228,7 +230,27 @@
 			 */
 			hiddenDialog() {
 				this.dialogVisible = false;
-			}
+			},
+			
+			/**
+			 * 获取用户基本信息接口
+			 */
+			getUserInfo() {
+				this.axios.post('/userControllerAPI/fourthMenu', {
+					userId: this.userId, //用户id
+					userRole: this.userRole, //用户角色
+				}).then((response) => {
+					console.log(response.data);
+					if(response.data.resultCode == 200) {
+						//获取信息成功
+						this.userInfo = response.data.user
+					}
+
+				}).catch((error) => {
+					console.log(error);
+				});
+			},
+
 		}
 	}
 </script>

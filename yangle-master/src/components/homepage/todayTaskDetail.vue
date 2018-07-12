@@ -11,7 +11,8 @@
 			<img src="../../assets/task_board.png" class="task-board-style" />
 		</div>
 		<button class="btn-completed" v-if="task.taskStatus == 2">已完成</button>
-		<button class="btn-complete" v-if="task.taskStatus == 1" @click="goComplete()">完 成</button>
+		<button class="btn-complete" v-if="task.taskStatus == 1 && task.taskPriority == 1" @click="goComplete()">完 成</button>
+		<button class="btn-complete" v-if="task.taskStatus == 1 && task.taskPriority != 1" @click="goComplete()">去完成</button>
 		<button class="btn-locking" v-if="task.taskStatus == 0">
 			<img src="../../assets/task_locking.png" />
 		</button>
@@ -40,7 +41,7 @@
 
 				/* 获取任务详情 start */
 				/* 请求参数 */
-				userTaskId: this.$route.query.taskId, //用户任务id
+				//				userTaskId: this.$route.query.taskId, //用户任务id
 
 				/* 返回参数 */
 				taskDetailInfo: '', //任务详情信息
@@ -77,26 +78,43 @@
 			 * 点击完成按钮
 			 */
 			goComplete() {
-				console.log("this.userTaskId", this.userTaskId);
-				this.axios.post('/yTaskUser/ytaskuser/toFinish', {
-					taskUserId: this.userTaskId, //任务id
-					userId: this.userId, //用户id
-					taskStatus: "2", //完成状态
-				}).then((response) => {
-					if(response.data.resultCode == 200) {
-						this.isFinish = true;
-						this.addIntegralStyle();
-						this.addedIntegral = response.data.point; //完成任务增加的积分
-						//成功
-						this.getTaskDetail(); //刷新详情页信息
-					} else {
-						alert(response.data.resultMsg);
-					}
-				}).catch((error) => {
-					//失败
-					console.log(error);
-				});
-				this.isFinish = false;
+				console.log("userTaskId", this.task.taskUserId);
+				switch(this.task.taskPriority) {
+					case 1: //普通线下任务
+						this.axios.post('/yTaskUser/ytaskuser/toFinish', {
+							taskUserId: this.task.taskUserId, //任务id
+							userId: this.userId, //用户id
+							taskStatus: "2", //完成状态
+						}).then((response) => {
+							if(response.data.resultCode == 200) {
+								this.isFinish = true;
+								this.addIntegralStyle();
+								this.addedIntegral = response.data.point; //完成任务增加的积分
+								//成功
+								this.getTaskDetail(); //刷新详情页信息
+							} else {
+								alert(response.data.resultMsg);
+							}
+						}).catch((error) => {
+							//失败
+							console.log(error);
+						});
+						this.isFinish = false;
+						break;
+
+					case 2: //监测胎心的任务
+						this.$router.push({
+							path: '/home/fetalheart',
+						});
+						break;
+
+					case 3: //判读胎心监测图的任务
+                        this.$router.push({
+							path: '/myfetalheart',
+						});
+						break;
+				}
+
 			},
 
 			/**
@@ -121,7 +139,7 @@
 			 */
 			getTaskDetail() {
 				this.axios.post('/yTaskUser/ytaskuser/myTaskOne', {
-					userTaskId: this.userTaskId, //用户任务id
+					userTaskId: this.task.taskUserId, //用户任务id
 				}).then((response) => {
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
