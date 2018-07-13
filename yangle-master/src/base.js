@@ -226,17 +226,17 @@ exports.install = function(Vue, options) {
 		}
 	}
 
-	Vue.prototype.jumpRouterIds = [1, 2, 3, 4, 5]
+	Vue.prototype.jumpRouterIds = [1, 2, 3, 4, 5, 6]
 
 	Vue.prototype.jumpRouterById = function(routerName, id) {
 		if(routerName != null && routerName != '') {
 			this.$router.push({
 				path: routerName,
 				query: {
-					id: id
+					id: this.jumpRouterIds[id]
 				}
 			});
-			localStorage.setItem(routerName + '-id', id);
+//			localStorage.setItem(routerName + '-id', id);
 		}
 	}
 
