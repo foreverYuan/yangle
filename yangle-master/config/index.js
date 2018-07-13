@@ -12,7 +12,7 @@ module.exports = {
 		assetsPublicPath: '/',
 		proxyTable: {
 			'/yangle': {
-				target: 'https://yl.ibao365.net',
+				target: 'http://118.31.66.193',
 				changeOrigin: true,
 				pathRewrite: {
 					'^/yangle': '/'

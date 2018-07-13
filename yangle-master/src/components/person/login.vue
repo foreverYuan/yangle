@@ -2,9 +2,7 @@
 	<div class="login">
 		<!--<img src="../../assets/1x/login-top-background.png" class="top-login-img"/>-->
 		<!--<p class="login-top-text"><img src="../../assets/1x/login-top-text.png" /></p>-->
-		<router-link :to="path">
-			<span class="el-icon-arrow-left span-back"></span>
-		</router-link>
+		<span class="el-icon-arrow-left span-back" @click="goBack"></span>
 		<div class="div-login-register">
 			<button class="btn-login normal" @click="switchLogin1" v-if="loginRegSwitch == 2">登录</button>
 			<button class="btn-login selected" @click="switchLogin1" v-if="loginRegSwitch == 1">登录</button>
@@ -96,6 +94,7 @@
 </template>
 
 <script>
+	import { Toast } from 'mint-ui';
 	export default {
 		name: 'login',
 		data() {
@@ -128,7 +127,6 @@
 				value2: true,
 
 				maxTime: 600, //倒计时的最大时间
-				path: "",
 				loginRegSwitch: 1, //登录和注册的选择开关，1：登录 2：注册   默认1
 				btnText: '登录', //登录或注册按钮文本
 				forbidClickRegId: false, //是否禁止点击注册的获取验证码
@@ -136,10 +134,14 @@
 				loginOrIdCode: 1, //密码登录或者验证码登录   1:密码登录 2:验证码登录
 				loginText: '验证码登录', //登录显示的文字   密码登录或者是验证码登录
 				pwdPlaceHolder: '请输入密码', //输入密码的提示文案
+//				jumpId: localStorage.getItem('/login-id'),
+				jumpId: this.$route.query.id,
 			}
 		},
 		created() {
-			this.goBack();
+			if(this.jumpId == 5) { //预产期跳转过来的
+				this.loginRegSwitch = 2;
+			}
 			//			this.back();
 			//	         else if (id == this.jumpRouterIds[2]) {
 			//	         	this.path = '/register';
@@ -234,24 +236,41 @@
 				}
 				var that = this;
 				this.axios.post('/userControllerAPI/userLogin', {
-					userAccount: this.phone,
+					userAccount: that.phone,
 					userPassword: pwd,
 					userRole: that.userRole,
-					equipmentId: this.base_uuid(),
+					equipmentId: that.base_uuid(),
 					smsCode: idCode,
-					loginType: this.loginType //登录方式   1:密码登录 2：验证码登录
+					loginType: that.loginType //登录方式   1:密码登录 2：验证码登录
 				}).then((response) => {
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
-						this.userId = response.data.data.userId, //用户id
-							this.userRole = response.data.data.userRole, //用户角色
+						that.userId = response.data.data.userId, //用户id
+							that.userRole = response.data.data.userRole, //用户角色
 							localStorage.setItem('userId', response.data.data.userId);
 						localStorage.setItem('userRole', response.data.data.userRole);
 						localStorage.setItem('userName', response.data.data.userName);
 						localStorage.setItem('userIcon', response.data.data.userIcon);
-						this.$router.push({
-							path: '/home/homepage'
-						});
+						var jumpPath;
+						if(that.jumpId == 0) { //首页签到
+							sessionStorage.setItem('homeSelect', 1);
+							that.jumpRouterById('/home/homepage', 0);
+						} else if(that.jumpId == 1) { //首页任务
+							sessionStorage.setItem('homeSelect', 1);
+							that.jumpRouterById('/home/homepage', 1);
+						} else if(that.jumpId == 2) { //我的胎心
+							sessionStorage.setItem('homeSelect', 3);
+							that.jumpRouterById('/home/fetalheart', 0);
+						} else if(that.jumpId == 3) { //蓝牙
+							sessionStorage.setItem('homeSelect', 3);
+							that.jumpRouterById('/home/fetalheart', 1);
+						} else if(that.jumpId == 4) { //个人
+							sessionStorage.setItem('homeSelect', 5);
+							that.jumpNormalRouter('/home/person');
+						} else if(that.jumpId == 5) { //预产期
+							sessionStorage.setItem('homeSelect', 1);
+							that.jumpNormalRouter('/home/homepage');
+						}
 					} else {
 						alert(response.data.resultMsg);
 					}
@@ -290,6 +309,17 @@
 					userAccount: this.phone,
 					smsType: '2'
 				}).then(function(response) {
+					if(response.data.resultCode == 200) {
+						let instance = Toast('验证码已发送~');
+						setTimeout(() => {
+							instance.close();
+						}, 2000);
+					} else {
+						let instance = Toast('验证码发送失败~');
+						setTimeout(() => {
+							instance.close();
+						}, 2000);
+					}
 					//					alert(response);
 				}).catch(function(error) {
 					alert(error);
@@ -394,14 +424,19 @@
 			},
 
 			goBack() {
-				var id = localStorage.getItem('/login-id');
-				if(id == this.jumpRouterIds[0]) {
-					this.path = '/home/fetalheart';
-				} else if(id == this.jumpRouterIds[1]) {
-					this.path = '/home/person';
-				} else {
-					this.path = '/home/homepage';
+				var path;
+				if(this.jumpId == 0 || this.jumpId == 1 || this.jumpId == 4) {
+					sessionStorage.setItem('homeSelect', 1);
+					path = '/home/homepage';
+				} else if(this.jumpId == 2 || this.jumpId == 3) {
+					sessionStorage.setItem('homeSelect', 3);
+					path = '/home/fetalheart';
+				} else if(this.jumpId == 5) { //预产期
+					sessionStorage.setItem('homeSelect', 1);
+					path = '/';
+					localStorage.setItem('pregnancyDate', '');
 				}
+				this.jumpNormalRouter(path);
 			},
 
 			/**
@@ -500,6 +535,4 @@
 	@import url("../../style/login.css");
 </style>
 
-<style scoped>
-
-</style>
+<style scoped></style>

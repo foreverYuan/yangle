@@ -8,11 +8,11 @@
 		<div class="div-content">
 			<div>
 				<input placeholder="请输入手机号" v-model="phone" type="number" />
-				<span class="float-right span-phone" id="re-get-it" @click="getItCode()">获取验证码</span>
+				<span class="float-right span-phone" id="re-get-id" @click="getItCode()">获取验证码</span>
 			</div>
 			<div>
 				<input placeholder="请输入验证码" v-model="itCode" type="number" />
-				<span class="float-right span-it" id="it-code">600s</span>
+				<span class="float-right span-it" id="id-code">600s</span>
 			</div>
 			<div>
 				<input placeholder="请输入新密码" v-model="pwd" :type="pwdType" />
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+	import { Toast } from 'mint-ui';
 	export default {
 		data() {
 			return {
@@ -98,13 +99,6 @@
 			},
 
 			/**
-			 * 获取验证码
-			 */
-			getItCode() {
-
-			},
-
-			/**
 			 * 忘记密码
 			 */
 			resetPwd() {
@@ -149,7 +143,17 @@
 					userAccount: this.phone, //用户账号
 					smsType: this.smsType //短信类型   1：注册发验证码 填1 2：登录发送验证码 填2 3：找回密码发送验证码 填3
 				}).then(function(response) {
-					alert(response.data.resultMsg);
+					if(response.data.resultCode == 200) {
+					let instance = Toast('验证码已发送~');
+					setTimeout(() => {
+						instance.close();
+					}, 2000);
+				} else {
+					let instance = Toast('验证码发送失败~');
+						setTimeout(() => {
+							instance.close();
+						}, 2000);
+				}
 				}).catch(function(error) {
 					alert(error);
 				});
@@ -162,8 +166,8 @@
 			countDownTime() {
 				this.forbidClickLoginId = true;
 				this.maxTime--;
-				var itCode = document.getElementById('it-code');
-				var reGetIt = document.getElementById('re-get-it');
+				var itCode = document.getElementById('id-code');
+				var reGetIt = document.getElementById('re-get-id');
 				itCode.innerHTML = this.maxTime + 's';
 				var time = setTimeout(() => {
 					this.countDownTime();

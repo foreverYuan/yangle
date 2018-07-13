@@ -1,6 +1,7 @@
 <template>
 	<div>
-			<img src="../../../static/loading-icon-closeEye.png" style="width: 50%;position: absolute;top: 30%;left: 25%;" id="loading-img" />
+		<img src="../../../static/loading-icon-closeEye.png" class="loadingImg" id="loading-img1" v-if="netStatus" />
+		<img src="../../../static/loading-icon-openEye.png" class="loadingImg" id="loading-img2" v-if="netStatus" />
 
 		<div class="homepage" style="margin: 0;" v-if="netStatus">
 			<div class="top">
@@ -118,11 +119,11 @@
 
 			<!-- 孕期知识 start -->
 			<div class="know-carousel">
-				<!--<mt-swipe :auto="3000">-->
-				<!--<mt-swipe-item v-for="item in carouselList">   
-					<img :src="item.sowPicture" style="width: 100%;height: 100%;" />
-				</mt-swipe-item>-->
-				<!--<mt-swipe-item>
+				<mt-swipe :auto="3000">
+					<mt-swipe-item v-for="item in carouselList">
+						<img :src="item.sowPicture" style="width: 100%;height: 100%;" />
+					</mt-swipe-item>
+					<!--<mt-swipe-item>
 					<img src="../../assets/pregnancy_knowledge_big.png" style="width: 100%;height: 100%;" />
 				</mt-swipe-item>
 				<mt-swipe-item>
@@ -131,7 +132,7 @@
 				<mt-swipe-item>
 					<img src="../../assets/pregnancy_knowledge_big.png" style="width: 100%;height: 100%;" />
 				</mt-swipe-item>-->
-				<!--</mt-swipe>-->
+				</mt-swipe>
 				<!--<img src="../../assets/pregnancy_knowledge_big.png" style="width: 100%;" />-->
 				<div class="div_pg_know_list">
 					<p>
@@ -139,7 +140,7 @@
 						<!--<span style="float: right;"><span style="color: #aaa;" @click="goMoreKnow">更多知识</span><span class="el-icon-arrow-right"></span></span>-->
 					</p>
 					<ul v-for="item in knowledgeList">
-						<li style="display: flex;">
+						<li style="display: flex;" @click="goKnowDetail(item)">
 							<img :src="item.knowPicture" width="120" height="120" />
 							<div class="div_pg_know">
 								<span class="knowledge-name">{{item.knowName}}</span>
@@ -288,14 +289,23 @@
 				showTaskNum: 3, //显示任务数量
 				netStatus: window.navigator.onLine, //是否有网络
 				loadingTimerId: "",
+				isShowOpen: 1,
+//				jumpId: localStorage.getItem('/home/homepage-id'),
+				jumpId: this.$route.query.id,
 			}
 		},
 
 		created() {
-			this.$forceUpdate();
 			//获取首页数据
 			this.getHomeData();
 			this.aaa();
+			if(this.jumpId == 0) {
+				this.showSignDialog();
+//				localStorage.setItem("/home/homepage-id", null);
+			} else if(this.jumpId == 1) {
+				this.goTask();
+//				localStorage.setItem("/home/homepage-id", null);
+			}
 			//			alert(window.screen.width);
 			//			alert(window.screen.height);
 			//			alert(window.devicePixelRatio);
@@ -304,16 +314,25 @@
 			this.isShow = true;
 			this.getSignInfo(); //获取签到信息
 			$(".homepage").css("visibility", "hidden");
-			$("#loading-img").css("visibility", "visible");
-			
+			$(".loadingImg").css("display", "block");
+			var _this = this;
 			window.setInterval(function() {
-				var loadingImg = document.getElementById('loading-img');
-				if(loadingImg.src.indexOf('open') != -1) {
-					loadingImg.src = "../../../static/loading-icon-closeEye.png";
+				if(this.isShowOpen == 1) {
+					this.isShowOpen = 0;
+					$("#loading-img1").css("visibility", "hidden");
+					$("#loading-img2").css("visibility", "visible");
 				} else {
-					loadingImg.src = "../../../static/loading-icon-openEye.png";
+					this.isShowOpen = 1;
+					$("#loading-img1").css("visibility", "visible");
+					$("#loading-img2").css("visibility", "hidden");
 				}
-			}, 500);
+				//				var loadingImg = document.getElementById('loading-img');
+				//				if(_this.loadingImg.indexOf('open') != -1) {
+				//					_this.loadingImg = "../../../static/loading-icon-closeEye.png";
+				//				} else {
+				//					_this.loadingImg = "../../../static/loading-icon-openEye.png";
+				//				}
+			}, 1000);
 			//						this.drawSignIntegral();
 		},
 		updated() {
@@ -329,13 +348,13 @@
 		},
 		methods: {
 			ShowPicturesInOrder() {
-				
+
 			},
 
 			aaa() {
 				//			alert(window.navigator.onLine);
 			},
-			
+
 			c1() {
 				this.isShow = false;
 				this.isShow2 = true;
@@ -353,8 +372,8 @@
 			 * 跳转任务页
 			 */
 			goTask() {
-				if(this.userId == null || this.userId == '') {
-					return this.jumpNormalRouter('/login');
+				if(this.userId == null || this.userId == '' || this.userId == undefined) {
+					return this.jumpRouterById('/login', 1);
 				}
 				this.$router.push({
 					path: '/todayTask'
@@ -385,8 +404,8 @@
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
 						$(".homepage").css("visibility", "visible");
-			            $("#loading-img").css("visibility", "hidden");
-//			            window.clearInterval(this.loadingTimerId);
+						$(".loadingImg").css("display", "none");
+						//			            window.clearInterval(this.loadingTimerId);
 						//成功
 						_this.carouselList = response.data.sowMapList, //轮播列表数据
 							_this.tip = response.data.tip, //任务提示语
@@ -432,8 +451,8 @@
 			 * 显示签到弹框
 			 */
 			showSignDialog() {
-				if(this.userId == null || this.userId == '') {
-					return this.jumpNormalRouter('/login');
+				if(this.userId == null || this.userId == '' || this.userId == undefined) {
+					return this.jumpRouterById('/login', 0);
 				}
 				this.dialogVisible = true;
 				this.getSignInfo();
@@ -654,8 +673,21 @@
 			/**
 			 * input失去焦点事件
 			 */
-			blurInput() {},
+			blurInput() {
 
+			},
+
+			/**
+			 * 跳转知识详情页
+			 */
+			goKnowDetail(knowObj) {
+				this.$router.push({
+					path: "/knowledgeDetail",
+					query: {
+						knowObj: JSON.stringify(knowObj)
+					}
+				});
+			}
 		}
 	}
 </script>

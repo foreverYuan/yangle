@@ -1,0 +1,88 @@
+.knowledgeDetail {
+	text-align: left;
+	width: 100%;
+	overflow-x: hidden;
+}
+
+.knowledgeDetail p {
+	-webkit-margin-after: 0;
+}
+
+.detail-top {
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	padding: 0.7rem;
+	display: flex;
+}
+
+.detail-top img {
+	width: 2.5rem;
+	height: 2.5rem;
+}
+
+.detail-top div {
+	width: 70%;
+	padding-left: 0.5rem;
+	text-align: left;
+}
+
+.detail-top div span {
+	display: block;
+}
+
+.detail-top div span:first-child {
+	color: #333;
+}
+
+.detail-top div span:last-child {
+	color: #999;
+	font-size: 0.8rem;
+	margin-top: 0.3rem;
+}
+
+.detail-top button {
+	width: 20%;
+	border: none;
+	outline: none;
+	color: #fff;
+	border-radius: 0.5rem;
+	height: 2rem;
+	background: #ccc;
+	font-size: 0.7rem;
+}
+
+.know-title {
+	font-size: 1.5rem;
+}
+
+.detail-bottom {
+	padding: 0.5rem;
+}
+
+.detail-bottom img {
+	width: 100%;
+	margin-top: 1rem;
+}
+
+.detail-bottom .text {
+	color: #666;
+	line-height: 2;
+}
+
+.know-suoshu-time {
+	display: flex;
+}
+
+.know-suoshu-time span:first-child {
+	color: #999;
+}
+
+.know-suoshu-time span:last-child {
+	color: #999;
+	margin-left: 1rem;
+	padding-top: 2px;
+}
+
+.userIcon {
+	border-radius: 3.5rem;
+}

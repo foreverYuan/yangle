@@ -7,8 +7,8 @@
 			<span class="float-right span-modify" @click="goUserInfo">修改</span>
 			<div style="padding-top: 0.6rem;padding-bottom: 0.5rem;">
 				<h3 style="margin-left: 5.5rem;font-size: 1.2rem;color: #FCFCFC;">{{pregnancyWeek}}</h3>
-				<img src="../../assets/default-header-pic.jpg" class="userIcon" v-if="userIcon == null && userIcon == ''" />
-				<img :src="userInfo.userIcon" class="userIcon" v-if="userIcon != null && userIcon != ''" />
+				<img src="../../assets/default-header-pic.jpg" class="userIcon" v-if="userIcon == null || userIcon == ''"/>
+				<img :src="userIcon" class="userIcon" v-if="userIcon != null && userIcon != ''" />
 
 				<p class="p-userName">{{userInfo.userName}}</p>
 				<p class="p-state">孕育中</p>
@@ -147,12 +147,14 @@
 		},
 		created() {
 			//如果userId为空就跳转登录页
-			if(this.userId == null || this.userId == "") {
-				this.jumpRouterById('/login', this.jumpRouterIds[1]);
+			if(this.userId == null || this.userId == '' || this.userId == undefined) {
+				this.jumpRouterById('/login', 4);
+			} else {
+				this.getUserInfo();
 			}
 		},
 		mounted() {
-             this.getUserInfo();
+             
 		},
 		watch: {
 

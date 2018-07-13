@@ -6,11 +6,11 @@
 		<div class="div-content">
 			<div class="div-connect-bt">
 				<ul v-if="tip == 0" class="ul-big">
-					<li><img src="../../assets/image/jiaoCheng.png" class="img-connect-bt" @click="goNativeBt()"/></li>
-					<li><img src="../../assets/image/dian1.png" class="yuanDian" id="yuanDian1"/></li>
-					<li><img src="../../assets/image/dian1.png" class="yuanDian" id="yuanDian2"/></li>
-					<li><img src="../../assets/image/dian1.png" class="yuanDian" id="yuanDian3"/></li>
-					<li><img src="../../assets/image/lanYa.png" class="img-connect-bt" @click="goNativeBt()"/>
+					<li><img src="../../assets/image/jiaoCheng.png" class="img-connect-bt" @click="goNativeBt()" /></li>
+					<li><img src="../../assets/image/dian1.png" class="yuanDian" id="yuanDian1" /></li>
+					<li><img src="../../assets/image/dian1.png" class="yuanDian" id="yuanDian2" /></li>
+					<li><img src="../../assets/image/dian1.png" class="yuanDian" id="yuanDian3" /></li>
+					<li><img src="../../assets/image/lanYa.png" class="img-connect-bt" @click="goNativeBt()" />
 						<p class="p-bt-tip">点击连接胎心设备</p>
 					</li>
 				</ul>
@@ -46,9 +46,22 @@
 		data() {
 			return {
 				tip: 0,
+//				jumpId: localStorage.getItem('/home/fetalheart-id'),
+				jumpId: this.$route.query.id,
+				userId: localStorage.getItem('userId'),
 			}
 		},
 		created() {
+			if(this.jumpId == 0) { //我的胎心
+				//				alert("我的胎心");
+				//				console.log("heart", "我的胎心");
+				this.goMyFh();
+			} else if(this.jumpId == 1) { //蓝牙
+				//				alert("我的蓝牙");
+				//				console.log("heart", "我的蓝牙");
+				this.goNativeBt();
+			}
+			localStorage.setItem("/home/fetalheart-id", null);
 			var userId = localStorage.getItem('userId');
 			var userInfor = {
 				userId: userId,
@@ -67,8 +80,9 @@
 			//			   })
 			//			}
 		},
+
 		mounted() {
-            
+
 		},
 		watch: {
 
@@ -92,9 +106,8 @@
 			 * 跳转原生蓝牙页面
 			 */
 			goNativeBt() {
-				var userId = localStorage.getItem('userId');
-				if(userId == null || userId == '') {
-					this.jumpRouterById('/login', this.jumpRouterIds[0]);
+				if(this.userId == null || this.userId == '' || this.userId == undefined) {
+					this.jumpRouterById('/login', 3);
 					return;
 				}
 
@@ -130,7 +143,13 @@
 			},
 
 			goMyFh() {
-				this.checkanddirect(function() {}, '/myFetalHeart', function() {}, '/login', this.jumpRouterIds[0]);
+				if(this.userId == null || this.userId == '' || this.userId == undefined) {
+					this.jumpRouterById('/login', 2);
+					return;
+				}
+				this.$router.push({
+					path: '/myFetalHeart'
+				});
 			}
 
 		}

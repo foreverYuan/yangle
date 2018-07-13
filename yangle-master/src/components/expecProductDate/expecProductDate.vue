@@ -68,6 +68,7 @@
 
 		created() {
 			if(localStorage.getItem("pregnancyDate") != null && localStorage.getItem("pregnancyDate") != "") {
+				sessionStorage.setItem('homeSelect', 1);
 				this.$router.push({
 					path: '/home/homepage'
 				})
@@ -130,6 +131,7 @@
 			 * 开始使用
 			 */
 			goStartUse() {
+				sessionStorage.setItem('homeSelect', 1);
 				this.$router.push({
 					path: '/home/homepage'
 				})
@@ -139,7 +141,7 @@
 			 * 注册账号
 			 */
 			goRegister() {
-				this.jumpRouterById('/register', this.jumpRouterIds[0]);
+				this.jumpRouterById('/login', 5);
 				this.cacheData();
 			},
 
@@ -166,6 +168,7 @@
 			},
 
 			jumpHome() {
+				sessionStorage.setItem('homeSelect', 1);
 				this.$router.push({
 					path: '/home/homepage'
 				});

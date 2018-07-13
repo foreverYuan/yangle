@@ -103,13 +103,14 @@
 						break;
 
 					case 2: //监测胎心的任务
+						sessionStorage.setItem('homeSelect', 3);
 						this.$router.push({
 							path: '/home/fetalheart',
 						});
 						break;
 
 					case 3: //判读胎心监测图的任务
-                        this.$router.push({
+						this.$router.push({
 							path: '/myfetalheart',
 						});
 						break;

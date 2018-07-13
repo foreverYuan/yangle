@@ -345,7 +345,7 @@
 }
 .btn-login,
 .btn-register {
-	padding: 0.3rem 1.7rem;
+	padding: 0.3rem 1.5rem;
 	/*background: #FF6DB6;*/
 	
 	outline: none;
@@ -369,7 +369,7 @@
 .btn-register {
 	border-top-right-radius: 2rem;
 	border-bottom-right-radius: 2rem;
-	margin-left: 1.2rem;
+	margin-left: 1.5rem;
 }
 .div-getIdCode {
 	display: flex;
