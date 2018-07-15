@@ -140,6 +140,7 @@
 					if(response.data.resultCode == 200) {
 						//获取信息成功
 						this.userInfo = response.data.user
+						localStorage.setItem("userIcon", response.data.user.userIcon);
 					}
 
 				}).catch((error) => {

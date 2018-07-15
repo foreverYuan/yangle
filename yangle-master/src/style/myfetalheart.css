@@ -1,5 +1,6 @@
 .myfetalheart .div-no-data {
-	padding-top: 3rem;
+	padding-top: 12rem;
+	visibility: hidden;
 }
 
 .myfetalheart .div-no-data p {
@@ -171,4 +172,11 @@
 	right: -3px;
 	width: 10px;
 	height: 10px;
+}
+
+.loadingImg {
+	width: 50%;
+	position: absolute;
+	top: 40%;
+	left: 25%;
 }

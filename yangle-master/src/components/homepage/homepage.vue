@@ -86,9 +86,8 @@
 					</p>
 					<ul v-for="item in taskList" class="ul-task">
 						<li style="display: flex;">
-							<div style="width: 20%;">
+							<div style="width: 15%;text-align: right;margin-right: 0.7rem;">
 								<img :src="item.taskPicture" id="task-left-pic" />
-								<!--item.taskPicture-->
 							</div>
 							<div style="width: 62%;">
 								<span style="display: block;color: #ED6EB6;font-weight: bold;font-size: 1.15rem;">{{item.taskName}}</span>
@@ -123,29 +122,22 @@
 					<mt-swipe-item v-for="item in carouselList">
 						<img :src="item.sowPicture" style="width: 100%;height: 100%;" />
 					</mt-swipe-item>
-					<!--<mt-swipe-item>
-					<img src="../../assets/pregnancy_knowledge_big.png" style="width: 100%;height: 100%;" />
-				</mt-swipe-item>
-				<mt-swipe-item>
-					<img src="../../assets/pregnancy_knowledge_big.png" style="width: 100%;height: 100%;" />
-				</mt-swipe-item>
-				<mt-swipe-item>
-					<img src="../../assets/pregnancy_knowledge_big.png" style="width: 100%;height: 100%;" />
-				</mt-swipe-item>-->
 				</mt-swipe>
-				<!--<img src="../../assets/pregnancy_knowledge_big.png" style="width: 100%;" />-->
 				<div class="div_pg_know_list">
 					<p>
-						<span class="home-title" style="font-weight: bold;">今日知识</span>
+						<span class="home-title" style="font-weight: bold;">最新知识</span>
 						<!--<span style="float: right;"><span style="color: #aaa;" @click="goMoreKnow">更多知识</span><span class="el-icon-arrow-right"></span></span>-->
 					</p>
 					<ul v-for="item in knowledgeList">
 						<li style="display: flex;" @click="goKnowDetail(item)">
-							<img :src="item.knowPicture" width="120" height="120" />
+							<div style="width: 8rem;">
+								<img :src="item.knowPicture" style="width: 7rem;height: 7rem;" />
+							</div>
+							
 							<div class="div_pg_know">
 								<span class="knowledge-name">{{item.knowName}}</span>
-								<p class="desc">{{item.knowContent}}</p>
-								<span style="color: #ffd8d5;">{{item.tip}}</span>
+								<p class="desc" style="position: relative;padding-right: 10px;">{{item.knowContent}}</p>
+								<span style="color: #FC9FD7;font-size: 0.8rem;" v-if="item.knowTip != undefined && item.knowTip != null && item.knowTip != ''">{{item.knowTip}} #</span>
 							</div>
 						</li>
 					</ul>
@@ -290,8 +282,7 @@
 				netStatus: window.navigator.onLine, //是否有网络
 				loadingTimerId: "",
 				isShowOpen: 1,
-//				jumpId: localStorage.getItem('/home/homepage-id'),
-				jumpId: this.$route.query.id,
+				jumpId: localStorage.getItem('/home/homepage-id'),
 			}
 		},
 
@@ -301,14 +292,10 @@
 			this.aaa();
 			if(this.jumpId == 0) {
 				this.showSignDialog();
-//				localStorage.setItem("/home/homepage-id", null);
 			} else if(this.jumpId == 1) {
 				this.goTask();
-//				localStorage.setItem("/home/homepage-id", null);
 			}
-			//			alert(window.screen.width);
-			//			alert(window.screen.height);
-			//			alert(window.devicePixelRatio);
+			localStorage.setItem("/home/homepage-id", null);
 		},
 		mounted() {
 			this.isShow = true;
@@ -316,7 +303,7 @@
 			$(".homepage").css("visibility", "hidden");
 			$(".loadingImg").css("display", "block");
 			var _this = this;
-			window.setInterval(function() {
+			this.loadingTimerId = window.setInterval(function() {
 				if(this.isShowOpen == 1) {
 					this.isShowOpen = 0;
 					$("#loading-img1").css("visibility", "hidden");
@@ -332,7 +319,7 @@
 				//				} else {
 				//					_this.loadingImg = "../../../static/loading-icon-openEye.png";
 				//				}
-			}, 1000);
+			}, 100);
 			//						this.drawSignIntegral();
 		},
 		updated() {
@@ -405,7 +392,7 @@
 					if(response.data.resultCode == 200) {
 						$(".homepage").css("visibility", "visible");
 						$(".loadingImg").css("display", "none");
-						//			            window.clearInterval(this.loadingTimerId);
+						window.clearInterval(this.loadingTimerId);
 						//成功
 						_this.carouselList = response.data.sowMapList, //轮播列表数据
 							_this.tip = response.data.tip, //任务提示语

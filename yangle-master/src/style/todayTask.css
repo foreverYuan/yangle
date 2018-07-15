@@ -84,8 +84,9 @@
 	margin-left: 15%;
 }
 
-.div-small-task div span {
+.task-pic {
 	width: 33.3%;
+	display: flex;
 	text-align: center;
 }
 
@@ -96,11 +97,11 @@
 }
 
 .gray {  /*给图片增加黑白滤镜*/
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    filter: grayscale(100%);
+    -webkit-filter: grayscale(30%);
+    -moz-filter: grayscale(30%);
+    -ms-filter: grayscale(30%);
+    -o-filter: grayscale(30%);
+    filter: grayscale(30%);
     filter: gray;
 }
 

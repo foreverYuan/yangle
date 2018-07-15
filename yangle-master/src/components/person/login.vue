@@ -134,8 +134,8 @@
 				loginOrIdCode: 1, //密码登录或者验证码登录   1:密码登录 2:验证码登录
 				loginText: '验证码登录', //登录显示的文字   密码登录或者是验证码登录
 				pwdPlaceHolder: '请输入密码', //输入密码的提示文案
-//				jumpId: localStorage.getItem('/login-id'),
-				jumpId: this.$route.query.id,
+				jumpId: localStorage.getItem('/login-id'),
+//				jumpId: this.$route.query.id,
 			}
 		},
 		created() {
@@ -189,7 +189,17 @@
 					userAccount: this.phone,
 					smsType: '1'
 				}).then(function(response) {
-					//					alert(response);
+					if(response.data.resultCode == 200) {
+						let instance = Toast('验证码已发送~');
+						setTimeout(() => {
+							instance.close();
+						}, 2000);
+					} else {
+						let instance = Toast('验证码发送失败~');
+						setTimeout(() => {
+							instance.close();
+						}, 2000);
+					}
 				}).catch(function(error) {
 					alert(error);
 				});
@@ -271,6 +281,7 @@
 							sessionStorage.setItem('homeSelect', 1);
 							that.jumpNormalRouter('/home/homepage');
 						}
+						localStorage.setItem('/login-id', null);
 					} else {
 						alert(response.data.resultMsg);
 					}
@@ -285,6 +296,7 @@
 			 */
 			switchLogin1() {
 				this.loginRegSwitch = 1;
+				this.forbidClickRegId = false;
 			},
 
 			/**
@@ -292,6 +304,7 @@
 			 */
 			switchRegister() {
 				this.loginRegSwitch = 2;
+				this.forbidClickLoginId = false;
 			},
 
 			/**
@@ -437,6 +450,7 @@
 					localStorage.setItem('pregnancyDate', '');
 				}
 				this.jumpNormalRouter(path);
+				localStorage.setItem('login-id', null);
 			},
 
 			/**

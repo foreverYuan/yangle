@@ -22,14 +22,22 @@
 }
 
 .div_pg_know .desc {
+	-webkit-margin-before: 0.3rem;
+    -webkit-margin-after: 0.3rem;
 	font-size: 1rem;
 	color: #aaa;
-	line-height: 1.8;
-	word-break: break-all;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
+	line-height:1.7rem; /*行高为高度的一半，这样就是两行*/
+    height:3.4rem;
+    overflow:hidden;
+}
+
+p.desc:after { /*使用伪元素*/
+    content:"...";
+    position:absolute;
+    font-weight: bold;
+    bottom:0;
+    right:0;
+    background:#FFF;  /*这个背景色要和p的背景色一致，也就是做个假^_^*/
 }
 
 .div_pg_desc_task {
@@ -41,6 +49,7 @@
 }
 
 .div_pg_know_list {
+	padding-top: 0.3rem;
 	padding-left: 0.7rem;
 	padding-right: 0.7rem;
 	padding-bottom: 6rem;
@@ -221,6 +230,11 @@ p.p_pg_desc {
 .knowledge-name {
 	color: #333;
 	font-size: 1.1rem;
+	overflow:hidden; 
+    text-overflow:ellipsis;
+    display:-webkit-box; 
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2; 
 }
 
 .task-tip {
@@ -283,8 +297,8 @@ p.p_pg_desc {
 }
 
 #task-left-pic {
-	width: 50%;
-	height: auto;
+	width: auto;
+	height: 2.3rem;
 }
 
 .loadingImg {

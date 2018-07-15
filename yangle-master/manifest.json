@@ -43,7 +43,7 @@
 			"description": "管理语音识别插件"
 		}
 	},
-	"plus": {
+	"plus": {"splashscreen":{"delay":"3000","autoclose":true},
 		"popGesture": "close",
 		"runmode": "normal",
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",
@@ -108,9 +108,7 @@
 					"<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
 				]
 			},
-			"orientation": [
-				"portrait-primary"
-			],
+			"orientation": ["portrait-primary"],
 			"icons": {
 				"ios": {
 					"prerendered": true,
@@ -168,29 +166,29 @@
 			"splashscreen": {
 				"ios": {
 					"iphone": {
-						"iphonex": "src/assets/loading.png",
-						"retina47": "src/assets/loading.png",
-						"iphonexl": "src/assets/loading.png",
-						"retina35": "src/assets/loading.png",
-						"retina40": "src/assets/loading.png",
-						"retina55": "src/assets/loading.png",
-						"retina55l": "src/assets/loading.png"
+						"iphonex": "static/loading.png",
+						"retina47": "static/loading.png",
+						"iphonexl": "static/loading.png",
+						"retina35": "static/loading.png",
+						"retina40": "static/loading.png",
+						"retina55": "static/loading.png",
+						"retina55l": "static/loading.png"
 					},
 					"ipad": {
-						"portrait": "src/assets/loading.png",
-						"landscape": "src/assets/loading.png",
-						"portrait7": "src/assets/loading.png",
-						"landscape7": "src/assets/loading.png",
-						"portrait-retina": "src/assets/loading.png",
-						"portrait-retina7": "src/assets/loading.png",
-						"landscape-retina": "src/assets/loading.png",
-						"landscape-retina7": "src/assets/loading.png"
+						"portrait": "static/loading.png",
+						"landscape": "static/loading.png",
+						"portrait7": "static/loading.png",
+						"landscape7": "static/loading.png",
+						"portrait-retina": "static/loading.png",
+						"portrait-retina7": "static/loading.png",
+						"landscape-retina": "static/loading.png",
+						"landscape-retina7": "static/loading.png"
 					}
 				},
 				"android": {
-					"hdpi": "src/assets/loading.png",
-					"xhdpi": "src/assets/loading.png",
-					"xxhdpi": "src/assets/loading.png"
+					"hdpi": "static/loading.png",
+					"xhdpi": "static/loading.png",
+					"xxhdpi": "static/loading.png"
 				}
 			}
 		},

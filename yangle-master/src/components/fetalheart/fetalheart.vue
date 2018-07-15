@@ -46,19 +46,14 @@
 		data() {
 			return {
 				tip: 0,
-//				jumpId: localStorage.getItem('/home/fetalheart-id'),
-				jumpId: this.$route.query.id,
+				jumpId: localStorage.getItem('/home/fetalheart-id'),
 				userId: localStorage.getItem('userId'),
 			}
 		},
 		created() {
 			if(this.jumpId == 0) { //我的胎心
-				//				alert("我的胎心");
-				//				console.log("heart", "我的胎心");
 				this.goMyFh();
 			} else if(this.jumpId == 1) { //蓝牙
-				//				alert("我的蓝牙");
-				//				console.log("heart", "我的蓝牙");
 				this.goNativeBt();
 			}
 			localStorage.setItem("/home/fetalheart-id", null);

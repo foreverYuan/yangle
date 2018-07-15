@@ -14,7 +14,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="div-list" v-if="allFhrList.length > 0">
+		<img src="../../../static/loading-icon-closeEye.png" class="loadingImg" id="loading-img1" v-if="netStatus" />
+		<img src="../../../static/loading-icon-openEye.png" class="loadingImg" id="loading-img2" v-if="netStatus" />
+         <div class="div-list" v-if="allFhrList.length > 0 && netStatus">
 			<mt-loadmore :autoFill="false" :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @top-status-change="handleTopChange" :auto-fill="false" bottomPullText="上拉加载更多" :bottomLoadingText="bottomLoadingText" ref="loadmore">
 				<ul>
 					<li v-for="item in allFhrList" @click="goDetail(item.moveId)">
@@ -64,11 +66,17 @@
 		<!--背景-->
 		<div class="my-fhr-background"></div>
 
-		<div class="div-no-data" v-if="allFhrList.length <= 0">
+		<div class="div-no-data" v-if="allFhrList.length <= 0 && netStatus">
 			<p>您还未监测胎心，快去听听</p>
 			<p>宝宝的心声吧～</p>
 			<img src="../../assets/fhr_no_data.png" class="img-no-data" />
 		</div>
+		
+		<div v-if="!netStatus">
+		<img src="../../assets/net-error-icon.png" style="margin-top: 50%;width: 40%;" />
+		<p style="margin-top: 10%;font-size: 1.1rem;color: #ccc;">呀～网络崩溃了</p>
+		<mt-button style="width: 70%;margin-top: 10%;box-shadow: #aaa 0px 0px 5px;" @click="reLoadd">重新加载</mt-button>
+	</div>
 	</div>
 </template>
 
@@ -88,16 +96,18 @@
 				userId: localStorage.getItem('userId'), //用户id
 				userRole: localStorage.getItem('userRole'), //用户角色
 
-				weitiCount: '', //未提交数量
+				weitiCount: 0, //未提交数量
 				totalPage: '', //总页数
 				currPage: '', //当前页码
-				yitiCount: '', //已提交数量
+				yitiCount: 0, //已提交数量
 				fhrList: '', //胎心列表
 				allFhrList: [],
 				allLoaded: false, //若为true,则bottom-method不会再次被触发
 				topStatus: '',
 				bottomLoadingText: '加载中......',
 				ytOrWt: '3,4', //已提交或者未提交   1:已提交   2:未提交
+				netStatus: window.navigator.onLine, //是否有网络
+				isShowOpen: 1,
 			}
 		},
 
@@ -108,6 +118,19 @@
 		},
 
 		mounted() {
+			$(".loadingImg").css("display", "block");
+			var _this = this;
+			this.loadingTimerId = window.setInterval(function() {
+				if(this.isShowOpen == 1) {
+					this.isShowOpen = 0;
+					$("#loading-img1").css("visibility", "hidden");
+					$("#loading-img2").css("visibility", "visible");
+				} else {
+					this.isShowOpen = 1;
+					$("#loading-img1").css("visibility", "visible");
+					$("#loading-img2").css("visibility", "hidden");
+				}
+			}, 100);
 			//			this.getFileInfo();
 		},
 
@@ -163,6 +186,7 @@
 			 * 获取我的胎心数据
 			 */
 			getMyFhrData(isPush) {
+				var _this = this;
 				this.axios.post('/yFetalMovement/yfetalmovement/myfetalHeart', {
 					page: this.page, //页码
 					limit: this.limit, //一页多少条
@@ -172,27 +196,34 @@
 				}).then((response) => {
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
+						$(".myfetalheart").css("display", "block");
+						$(".loadingImg").css("display", "none");
+						window.clearInterval(this.loadingTimerId);
 						//						alert("获取成功");
-						this.weitiCount = response.data.pageUtil.notSubmitTotal, //未提交数量
-							this.totalPage = response.data.pageUtil.totalPage, //总页数
-							this.page = response.data.pageUtil.currPage, //当前页码
-							this.yitiCount = response.data.pageUtil.submitTotal //已提交数量
-						this.fhrList = response.data.pageUtil.list //胎心列表
+						_this.weitiCount = response.data.pageUtil.notSubmitTotal, //未提交数量
+							_this.totalPage = response.data.pageUtil.totalPage, //总页数
+							_this.page = response.data.pageUtil.currPage, //当前页码
+							_this.yitiCount = response.data.pageUtil.submitTotal //已提交数量
+						_this.fhrList = response.data.pageUtil.list //胎心列表
 						if(isPush) {
-							for(var i = 0; i < this.fhrList.length; i++) {
-								this.allFhrList.push(this.fhrList[i]);
+							for(var i = 0; i < _this.fhrList.length; i++) {
+								_this.allFhrList.push(_this.fhrList[i]);
 							}
 						} else {
-							this.allFhrList = this.fhrList;
+							_this.allFhrList = _this.fhrList;
 						}
-
-						console.log('fhrList', this.fhrList)
-						console.log('allFhrList', this.allFhrList)
+						console.log('fhrList', _this.fhrList)
+						console.log('allFhrList', _this.allFhrList)
+						$(".div-no-data").css("visibility", "visible");
 					}
 
 				}).catch((error) => {
 					console.log(error);
 				});
+			},
+			
+			reLoadd() {
+				window.location.reload()
 			},
 
 			/**

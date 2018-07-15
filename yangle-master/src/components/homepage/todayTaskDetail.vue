@@ -87,6 +87,7 @@
 							taskStatus: "2", //完成状态
 						}).then((response) => {
 							if(response.data.resultCode == 200) {
+								this.task.taskStatus = 2;
 								this.isFinish = true;
 								this.addIntegralStyle();
 								this.addedIntegral = response.data.point; //完成任务增加的积分

@@ -6,8 +6,8 @@
 
 		<div class="content">
 			<div class="detail-top">
-				<img src="../../assets/icon_QQ.png" v-if="userIcon == null || userIcon == ''"/>
-				<img :src="userIcon" v-if="userIcon != null && userIcon != ''" class="userIcon"/>
+				<img src="../../assets/default-header-pic.jpg" class="userIcon" v-if="userIcon == undefined || userIcon == null || userIcon == ''"/>
+				<img :src="userIcon" class="userIcon" v-if="userIcon != undefined && userIcon != null && userIcon != ''" />
 				<div>
 					<span v-if="userName == null || userName == ''">宝贝</span>
 					<span v-if="userName != null && userName != ''">{{userName}}</span>
