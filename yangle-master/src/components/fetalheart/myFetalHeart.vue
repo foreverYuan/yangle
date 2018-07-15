@@ -131,7 +131,7 @@
 					$("#loading-img2").css("visibility", "hidden");
 				}
 			}, 100);
-			//			this.getFileInfo();
+			this.getFileInfo();
 		},
 
 		methods: {
