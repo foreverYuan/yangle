@@ -385,7 +385,7 @@
 					birthday: localStorage.getItem('yourBirth'),
 					lastMenstruation: localStorage.getItem('endMenses'),
 					pregnancyDate: localStorage.getItem("pregnancyDate"), //预产日期,必填
-					equipmentId: _this.base_uuid,
+					equipmentId: _this.base_uuid(),
 					userId: _this.userId, //用户id,非必填
 				}).then((response) => {
 					console.log(response.data);
