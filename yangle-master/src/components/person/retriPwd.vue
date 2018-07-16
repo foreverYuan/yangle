@@ -104,7 +104,7 @@
 			resetPwd() {
 				var _this = this;
 				if(this.pwd != this.rePwd) {
-					alert("两次输入的密码不一致，请重新输入");
+					plus.nativeUI.alert("两次输入的密码不一致，请重新输入");
 				}
 				this.axios.post('/userControllerAPI/resetPassword', {
 					userAccount: _this.phone, //用户账号
@@ -114,7 +114,7 @@
 				}).then(function(response) {
 					console.log(response);
 					if(response.data.resultCode == 200) {
-						alert("密码重置成功，请重新登录");
+						plus.nativeUI.alert("密码重置成功，请重新登录");
 						//跳转登录页
 						_this.$router.push({
 							path: '/login'
@@ -136,7 +136,7 @@
 					return;
 				}
 				if(this.phone == '' || this.phone.length != 11) {
-					return alert('请输入正确的手机号码');
+					return plus.nativeUI.alert('请输入正确的手机号码');
 				}
 				this.countDownTime(); //开始倒计时
 				this.axios.post('/userControllerAPI/getSmsCode', {
@@ -155,7 +155,7 @@
 						}, 2000);
 				}
 				}).catch(function(error) {
-					alert(error);
+					plus.nativeUI.alert(error);
 				});
 
 			},

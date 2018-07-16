@@ -82,7 +82,7 @@
 			
 			getDeviceInfo() { //获取移动设备信息
 				this.phoneId = plus.device.uuid;
-				//				alert(plus.device.uuid);
+				//				plus.nativeUI.alert(plus.device.uuid);
 			},
 
 			/**
@@ -91,16 +91,16 @@
 			register() { //点击注册
 				//				this.getDeviceInfo();
 				if(this.phone == "") {
-					return alert('请输如手机号');
+					return plus.nativeUI.alert('请输如手机号');
 				} else if(this.itCode == "") {
-					return alert('请输入验证码');
+					return plus.nativeUI.alert('请输入验证码');
 				} else if(this.pwd == "") {
-					return alert('请输入密码');
+					return plus.nativeUI.alert('请输入密码');
 				} else if(this.rePwd == "") {
-					return alert('请再次输入密码');
+					return plus.nativeUI.alert('请再次输入密码');
 				}
 				if(this.pwd != this.rePwd) {
-					return alert('两次密码输入不一致');
+					return plus.nativeUI.alert('两次密码输入不一致');
 				}
 				var that = this;
 				this.axios.post('/userControllerAPI/userRegister', {
@@ -117,9 +117,9 @@
 						that.$router.push({
 							path: '/login'
 						})
-						alert('注册成功，即将跳转登录页');
+						plus.nativeUI.alert('注册成功，即将跳转登录页');
 					} else {
-						alert(response.data.resultMsg);
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch(function(error) {
 					console.log(error);
@@ -139,16 +139,16 @@
 				// params.append('userAccount', this.phone);
 				// params.append('param2', 'value2');
 				if(this.phone == '' || this.phone.length != 11) {
-					return alert('请输入正确的手机号码');
+					return plus.nativeUI.alert('请输入正确的手机号码');
 				}
 				this.countDownTime(); //开始倒计时
 				this.axios.post('/userControllerAPI/getSmsCode', {
 					userAccount: this.phone,
 					smsType: '1'
 				}).then(function(response) {
-					//					alert(response);
+					//					plus.nativeUI.alert(response);
 				}).catch(function(error) {
-					alert(error);
+					plus.nativeUI.alert(error);
 				});
 
 			},

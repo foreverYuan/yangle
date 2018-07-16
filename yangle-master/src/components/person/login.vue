@@ -182,7 +182,7 @@
 					return;
 				}
 				if(this.phone == '' || this.phone.length != 11) {
-					return alert('请输入正确的手机号码');
+					return plus.nativeUI.alert('请输入正确的手机号码');
 				}
 				this.countDownTime1(); //开始倒计时
 				this.axios.post('/userControllerAPI/getSmsCode', {
@@ -201,7 +201,7 @@
 						}, 2000);
 					}
 				}).catch(function(error) {
-					alert(error);
+					plus.nativeUI.alert(error);
 				});
 			},
 
@@ -230,11 +230,11 @@
 			login() {
 				console.log("loginType", this.loginType);
 				if(this.phone == '' || this.phone.length != 11) {
-					return alert('请输入正确的手机号');
+					return plus.nativeUI.alert('请输入正确的手机号');
 				} else if(this.loginType == '1' && this.pwd == '') {
-					return alert('请输入密码');
+					return plus.nativeUI.alert('请输入密码');
 				} else if(this.loginType == '2' && this.pwd == '') {
-					return alert('请输入验证码');
+					return plus.nativeUI.alert('请输入验证码');
 				}
 				var pwd, idCode;
 				if(this.loginType == '1') {
@@ -280,10 +280,16 @@
 						} else if(that.jumpId == 5) { //预产期
 							sessionStorage.setItem('homeSelect', 1);
 							that.jumpNormalRouter('/home/homepage');
-						} 
+						} else if(that.jumpId == 6) {
+							sessionStorage.setItem('homeSelect', 1);
+							that.jumpNormalRouter('/home/homepage');
+						} else {
+							sessionStorage.setItem('homeSelect', 1);
+							that.jumpNormalRouter('/home/homepage');
+						}
 						localStorage.setItem('/login-id', null);
 					} else {
-						alert(response.data.resultMsg);
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
 
 				}).catch((error) => {
@@ -315,7 +321,7 @@
 					return;
 				}
 				if(this.phone == '' || this.phone.length != 11) {
-					return alert('请输入正确的手机号码');
+					return plus.nativeUI.alert('请输入正确的手机号码');
 				}
 				this.countDownTime(); //开始倒计时
 				this.axios.post('/userControllerAPI/getSmsCode', {
@@ -333,9 +339,9 @@
 							instance.close();
 						}, 2000);
 					}
-					//					alert(response);
+					//					plus.nativeUI.alert(response);
 				}).catch(function(error) {
-					alert(error);
+					plus.nativeUI.alert(error);
 				});
 
 			},
@@ -390,11 +396,11 @@
 			register() { //点击注册
 				//				this.getDeviceInfo();
 				if(this.phone == "") {
-					return alert('请输如手机号');
+					return plus.nativeUI.alert('请输如手机号');
 				} else if(this.regPwd == "") {
-					return alert('请输入密码');
+					return plus.nativeUI.alert('请输入密码');
 				} else if(this.itCode == "") {
-					return alert('请输入验证码');
+					return plus.nativeUI.alert('请输入验证码');
 				}
 				var _this = this;
 				this.axios.post('/userControllerAPI/userRegister', {
@@ -411,9 +417,9 @@
 						that.$router.push({
 							path: '/login'
 						})
-						alert('注册成功，即将跳转登录页');
+						plus.nativeUI.alert('注册成功，即将跳转登录页');
 					} else {
-						alert(response.data.resultMsg);
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch(function(error) {
 					console.log(error);

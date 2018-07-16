@@ -74,10 +74,10 @@
 					state: this.state, //胎心状态  1：不合规  <20 分钟 、2：未提交>20分钟、3：待判读；4  判读后分为：：正常，5：异常
 				}).then(function(response) {
 					if(response.data.resultCode == 200) {
-						alert(response.data.resultMsg); //提示申请成功
+						plus.nativeUI.alert(response.data.resultMsg); //提示申请成功
 						that.getFhrDetail(); //申请成功重新刷新接口
 					} else {
-						alert(response.data.resultMsg);
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch(function(error) {
 					console.log(error);
@@ -139,7 +139,7 @@
 						} else if(j == 1) {
 							this.ydata.push(arr[i][1]); //弹出数组中的每一项
 						} else {
-							// alert("222222"+new Date(arr[i][2]).getHours()+'时'+new Date(arr[i][2]).getHours()+'分'+new Date(arr[i][2]).getSeconds()+'秒') 
+							// plus.nativeUI.alert("222222"+new Date(arr[i][2]).getHours()+'时'+new Date(arr[i][2]).getHours()+'分'+new Date(arr[i][2]).getSeconds()+'秒') 
 							//						this.xdata.push(new Date(arr[i][2]).getHours() + '时' + new Date(arr[i][2]).getHours() + '分' + new Date(arr[i][2]).getSeconds() + '秒'); //弹出数组中的每一项
 							this.xdata.push(this.getFormatDate(arr[i][2]));
 						}
@@ -185,7 +185,7 @@
 						this.getData(this.fhrObj.heartRecord);
 						this.drawLine();
 					} else {
-						alert(response.data.resultMsg);
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch((error) => {
 					console.log(error);

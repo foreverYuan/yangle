@@ -65,7 +65,7 @@
 			};
 			this.base_saveUserInfo(userInfor);
 			//			this.receiveParam();
-			//			alert(this.fhrId);
+			//			plus.nativeUI.alert(this.fhrId);
 			//			if(this.fhrId != null) {
 			//			   this.$router.push({
 			//			   	path: '/fetalheartDetail',

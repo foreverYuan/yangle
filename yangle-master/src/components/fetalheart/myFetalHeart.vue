@@ -199,7 +199,7 @@
 						$(".myfetalheart").css("display", "block");
 						$(".loadingImg").css("display", "none");
 						window.clearInterval(this.loadingTimerId);
-						//						alert("获取成功");
+						//						plus.nativeUI.alert("获取成功");
 						_this.weitiCount = response.data.pageUtil.notSubmitTotal, //未提交数量
 							_this.totalPage = response.data.pageUtil.totalPage, //总页数
 							_this.page = response.data.pageUtil.currPage, //当前页码

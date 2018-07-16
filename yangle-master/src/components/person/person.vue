@@ -27,19 +27,19 @@
 
 		<div class="div-detail" style="margin-top: -3rem;">
 			<div class="div-my-info">
-				<div class="div-small-block div-padding-top" @click="dialogVisible = true">
+				<div class="div-small-block div-padding-top" @click="noOpen">
 					<img src="../../assets/my_order.png" style="height: 1.5rem;" />
 					<p>我的订单</p>
 				</div>
-				<div class="div-small-block div-padding-top" @click="dialogVisible = true">
+				<div class="div-small-block div-padding-top" @click="noOpen">
 					<img src="../../assets/my_integral.png" style="height: 1.5rem;" />
 					<p>我的积分</p>
 				</div>
-				<div class="div-small-block div-padding-top" @click="dialogVisible = true">
+				<div class="div-small-block div-padding-top" @click="noOpen">
 					<img src="../../assets/my_message.png" style="height: 1.5rem;" />
 					<p>我的消息</p>
 				</div>
-				<div class="div-small-block div-padding-top" @click="dialogVisible = true">
+				<div class="div-small-block div-padding-top" @click="noOpen">
 					<img src="../../assets/my_collect.png" style="height: 1.5rem;" />
 					<p>我的收藏</p>
 				</div>
@@ -49,11 +49,11 @@
 				<div class="div-service">
 					<p class="p-title">服务</p>
 					<div class="div-big-block">
-						<div class="div-small-block" @click="dialogVisible = true">
+						<div class="div-small-block" @click="noOpen">
 							<img src="../../assets/community.png" />
 							<p>社区</p>
 						</div>
-						<div class="div-small-block" @click="dialogVisible = true">
+						<div class="div-small-block" @click="noOpen">
 							<img src="../../assets/shopping_mall.png" />
 							<p>商城</p>
 						</div>
@@ -62,15 +62,15 @@
 				<div class="div-other">
 					<p class="p-title">其他</p>
 					<div class="div-big-block">
-						<div class="div-small-block" @click="dialogVisible = true">
+						<div class="div-small-block" @click="noOpen">
 							<img src="../../assets/person_recommend.png" />
 							<p>推荐</p>
 						</div>
-						<div class="div-small-block" @click="dialogVisible = true">
+						<div class="div-small-block" @click="noOpen">
 							<img src="../../assets/person_feedback.png" />
 							<p>意见反馈</p>
 						</div>
-						<div class="div-small-block" @click="dialogVisible = true">
+						<div class="div-small-block" @click="noOpen">
 							<img src="../../assets/person_system_setting.png" />
 							<p>系统设置</p>
 						</div>
@@ -78,10 +78,10 @@
 				</div>
 			</div>
 		</div>
-		<el-dialog title="提示" :visible.sync="dialogVisible" width="85%" style="margin-top: 15vh;">
+		<!--<el-dialog title="提示" :visible.sync="dialogVisible" width="85%" style="margin-top: 15vh;">
 		    <p style="font-size: 1.1rem;">此功能尚未开通，请耐心等待～</p>
 			<el-button slot="footer" class="dialog-footer dialog-button" @click="hiddenDialog">确定</el-button>
-		</el-dialog>
+		</el-dialog>-->
 	</div>
 </template>
 
@@ -142,7 +142,7 @@
 
 				},
 				pregnancyWeek: localStorage.getItem('pregnancyWeek'), //孕育时长
-				dialogVisible: false, //是否显示提示框
+//				dialogVisible: false, //是否显示提示框
 			}
 		},
 		created() {
@@ -230,9 +230,9 @@
 			/**
 			 * 隐藏弹框
 			 */
-			hiddenDialog() {
-				this.dialogVisible = false;
-			},
+//			hiddenDialog() {
+//				this.dialogVisible = false;
+//			},
 			
 			/**
 			 * 获取用户基本信息接口

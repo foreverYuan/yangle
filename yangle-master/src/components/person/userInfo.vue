@@ -161,9 +161,9 @@
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
 						//获取信息成功
-						alert('修改信息成功');
+						plus.nativeUI.alert('修改信息成功');
 					} else {
-						alert('修改信息失败');
+						plus.nativeUI.alert('修改信息失败');
 					}
 
 				}).catch((error) => {
@@ -185,7 +185,7 @@
 			modifyInfo(isShow) {
 				var _this = this;
 				if(_this.dialogVisible && _this.nickName == '') {
-					return alert('请输入昵称');
+					return plus.nativeUI.alert('请输入昵称');
 				}
 				this.axios.post('/userControllerAPI/userInfoEdit', {
 					userId: _this.userId, //用户id
@@ -198,7 +198,7 @@
 				}).then(function(response) {
 					if(response.data.resultCode == 200) {
 						if(isShow) {
-							alert('修改成功');
+							plus.nativeUI.alert('修改成功');
 						}
 						if(_this.nickName.trim() != '') {
 							localStorage.setItem('userName', _this.nickName);
@@ -206,10 +206,10 @@
 						_this.getUserInfo(); //刷新数据源
 						_this.dialogVisible = false; //隐藏修改昵称的弹框
 					} else {
-						alert(response.data.resultMsg)
+						plus.nativeUI.alert(response.data.resultMsg)
 					}
 				}).catch(function(error) {
-					alert(error);
+					plus.nativeUI.alert(error);
 				});
 			},
 

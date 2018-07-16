@@ -268,7 +268,7 @@ exports.install = function(Vue, options) {
 	}
 
 	Vue.prototype.noOpen = function() {
-		return alert('此功能尚未开通，请耐心等待～');
+		return plus.nativeUI.alert('此功能尚未开通，请耐心等待～');
 	}
 
 };

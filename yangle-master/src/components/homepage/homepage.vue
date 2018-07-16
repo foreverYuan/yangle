@@ -7,13 +7,13 @@
 			<div class="top">
 				<mt-header style="background: none;">
 					<!--:title="babyStatus.pregnancyWeek"-->
-					<mt-button @click="showSignDialog" slot="right" style="color: #fff;padding-right: 3px;">签到
+					<mt-button @click="showSignDialog" slot="right" style="color: #fff;padding-right: 3px;margin-top: 0.5rem;">签到
 						<img src="../../assets/red-point.png" v-if="isTodaySign == 0 && userId != null && userId != null" class="sign-red-point" /></mt-button>
 					<!--<mt-button @click="" slot="right">
 					<img src="../../assets/camera_icon.png" style="width: 1.5rem;" />
 				</mt-button>-->
 				</mt-header>
-				<img src="../../assets/1x/search-icon.png" style="position: absolute;top: 1rem;left: 18%;z-index: 1;" />
+				<img src="../../assets/1x/search-icon.png" style="position: absolute;top: 1.1rem;left: 18%;z-index: 1;" />
 				<input placeholder="宝宝老是闹肚子怎么办?" class="home-search" @focus="focusInput" @blur="blurInput" />
 
 				<img src="../../assets/3x/home-top-background@3x.png" style="width:100%;height:12rem;margin-top: -13%;" alt="">
@@ -339,7 +339,7 @@
 			},
 
 			aaa() {
-				//			alert(window.navigator.onLine);
+				//			plus.nativeUI.alert(window.navigator.onLine);
 			},
 
 			c1() {
@@ -616,9 +616,9 @@
 						this.lianxuSignDays = parseInt(response.data.signSerialTimes); //连续签到的天数
 						this.isTodaySign = parseInt(response.data.isSign); //今日是否签到
 						this.getSignIntegral();
-						//						alert(response.data.resultMsg);
+						//						plus.nativeUI.alert(response.data.resultMsg);
 					} else {
-						//						alert(response.data.resultMsg);
+						//						plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch((error) => {
 					//失败
@@ -631,7 +631,7 @@
 			 */
 			signIn() {
 				if(this.isTodaySign) {
-					return alert('今日已签到');
+					return plus.nativeUI.alert('今日已签到');
 				}
 				this.axios.post('/pregnancy/sign', {
 					userId: this.userId, //用户id
@@ -639,10 +639,10 @@
 				}).then((response) => {
 					if(response.data.resultCode == 200) {
 						//成功
-						//						alert(response.data.resultMsg);
+						//						plus.nativeUI.alert(response.data.resultMsg);
 						this.getSignInfo();
 					} else {
-						alert(response.data.resultMsg);
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch((error) => {
 					//失败

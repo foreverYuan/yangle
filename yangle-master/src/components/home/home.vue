@@ -108,20 +108,20 @@
 				var windowHeight = $(window).height();
 				$(window).resize(function() {
 					if(windowHeight < oHeight) {
-						alert("软键盘弹出");
+						plus.nativeUI.alert("软键盘弹出");
 						$("#tabbar").css("position", "static");
 					} else {
-						alert("软键盘收起");
+						plus.nativeUI.alert("软键盘收起");
 						$("#tabbar").css("position", "fixed");
 					}
 				});*/
 				/*$(document).on('focusin', function() {　　 //软键盘弹出的事件处理
-					alert("触发了软键盘弹出事件")
+					plus.nativeUI.alert("触发了软键盘弹出事件")
 					$("#tabbar").css("position", "static");
 				});
 
 				$(document).on('focusout', function() {　　 //软键盘收起的事件处理
-					alert("触发了软键盘收起事件")
+					plus.nativeUI.alert("触发了软键盘收起事件")
 					$("#tabbar").css("position", "fixed");
 				});*/
 				var winHeight = $(window).height();

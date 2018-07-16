@@ -94,7 +94,7 @@
 								//成功
 								this.getTaskDetail(); //刷新详情页信息
 							} else {
-								alert(response.data.resultMsg);
+								plus.nativeUI.alert(response.data.resultMsg);
 							}
 						}).catch((error) => {
 							//失败
