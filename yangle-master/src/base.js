@@ -104,14 +104,14 @@ exports.install = function(Vue, options) {
 			//todo
 
 		} else if(plus.os.name == "Android") {
-			alert("开始同步数据");
+//			alert("开始同步数据");
 			var FileUtil = plus.android.importClass("com.ater.yangle.utils.FileUtil");
 			var fhrTxt = FileUtil.getFile(FileUtil.FHR_FILE_NAME);
 		    var fileNames = JSON.parse(fhrTxt);
 //		    alert("fileNames" + fileNames);
 //		    alert("fileNames.length" + fileNames.length);
 			for(var i = 0; i < fileNames.length; i++) {
-				alert(fileNames[i]);
+//				alert(fileNames[i]);
 				var fhrFileContent = FileUtil.getFile(fileNames[i]);
 //				alert("json:" + fhrFileContent);
 				var fhrFileJson = JSON.parse(fhrFileContent); //转换成json对象
@@ -147,7 +147,7 @@ exports.install = function(Vue, options) {
 		}).then((response) => {
 			console.log(response.data);
 			if(response.data.resultCode == 200) {
-				alert("同步完毕...");
+//				alert("同步完毕...");
 				this.getMyFhrData();
 				var FileUtil = plus.android.importClass("com.ater.yangle.utils.FileUtil");
 				FileUtil.deleteFile(fhrFile);

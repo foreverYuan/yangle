@@ -280,7 +280,7 @@
 						} else if(that.jumpId == 5) { //预产期
 							sessionStorage.setItem('homeSelect', 1);
 							that.jumpNormalRouter('/home/homepage');
-						}
+						} 
 						localStorage.setItem('/login-id', null);
 					} else {
 						alert(response.data.resultMsg);
@@ -438,7 +438,7 @@
 
 			goBack() {
 				var path;
-				if(this.jumpId == 0 || this.jumpId == 1 || this.jumpId == 4) {
+				if(this.jumpId == 0 || this.jumpId == 1 || this.jumpId == 4 || this.jumpId == 6) {
 					sessionStorage.setItem('homeSelect', 1);
 					path = '/home/homepage';
 				} else if(this.jumpId == 2 || this.jumpId == 3) {

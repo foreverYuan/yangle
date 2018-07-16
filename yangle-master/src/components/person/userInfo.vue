@@ -123,9 +123,7 @@
 //				localStorage.clear();
 				localStorage.removeItem('userId');
 				sessionStorage.setItem('homeSelect', 5);
-				this.$router.push({
-					path: '/login'
-				})
+				this.jumpRouterById('/login', 6);
 			},
 
 			/**

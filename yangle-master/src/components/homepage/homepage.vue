@@ -136,7 +136,7 @@
 							
 							<div class="div_pg_know">
 								<span class="knowledge-name">{{item.knowName}}</span>
-								<p class="desc" style="position: relative;padding-right: 10px;">{{item.knowContent}}</p>
+								<p class="desc" style="overflow: hidden;">{{item.knowContent}}</p>
 								<span style="color: #FC9FD7;font-size: 0.8rem;" v-if="item.knowTip != undefined && item.knowTip != null && item.knowTip != ''">{{item.knowTip}} #</span>
 							</div>
 						</li>

@@ -223,7 +223,8 @@
 					"dist/static/js/app.7c8ce2115a7a94d0e9e7.js",
 					"dist/static/css/app.d16cd2564ec981d1425970d2048d555b.css",
 					"dist/static/js/app.7d2aa72b6dd43b41f324.js",
-					"dist/static/js/app.3b5c0ddf6146a6566dd7.js"
+					"dist/static/js/app.3b5c0ddf6146a6566dd7.js",
+					"dist/static/js/vendor.d8169fde37a689443b82.js"
 				],
 				"refer": [],
 				"priority": 0
