@@ -27,9 +27,13 @@ exports.install = function(Vue, options) {
 
 			var appWindowObj = plus.ios.invoke(del, "window");
 			var appRootController = plus.ios.invoke(appWindowObj, "rootViewController");
-			plus.ios.invoke(appRootController, "presentViewController:animated:completion:", newVCobj, "YES", null);
-			//plus.ios.invoke(appRootController,"makeKeyAndVisible");
-			//plus.ios.invoke(appRootController,"presentViewController:animated:completion:",nav,"YES",null);
+			var presentingViewController = plus.ios.invoke(appRootController, "presentingViewController");
+			
+			if(presentingViewController){
+				plus.ios.invoke(appRootController, "dismissViewControllerAnimated:completion:","NO",null);
+			}
+			plus.ios.invoke(appRootController, "presentViewController:animated:completion:", newVCobj, "YES",null);
+			plus.ios.invoke(appWindowObj, "setRootViewController:",newVCobj);
 		} else if(plus.os.name == "Android") {
 			//检测蓝牙是否打开,如果没有打开就打开蓝牙
 			var BluetoothAdapter = plus.android.importClass("android.bluetooth.BluetoothAdapter");
@@ -66,8 +70,13 @@ exports.install = function(Vue, options) {
 
 			var appWindowObj = plus.ios.invoke(del, "window");
 			var appRootController = plus.ios.invoke(appWindowObj, "rootViewController");
-			plus.ios.invoke(appRootController, "presentViewController:animated:completion:", newVCobj, "YES", null);
-
+			var presentingViewController = plus.ios.invoke(appRootController, "presentingViewController");
+			
+			if(presentingViewController){
+				plus.ios.invoke(appRootController, "dismissViewControllerAnimated:completion:","NO",null);
+			}
+			plus.ios.invoke(appRootController, "presentViewController:animated:completion:", newVCobj, "YES",null);
+			plus.ios.invoke(appWindowObj, "setRootViewController:",newVCobj);
 		} else if(plus.os.name == "Android") { //跳转原生Android胎心详情页
 
 			//获取当前Activity
