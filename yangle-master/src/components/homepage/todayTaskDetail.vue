@@ -148,6 +148,8 @@
 						//成功
 						this.taskDetailInfo = response.data.yTaskUserOne, //任务详情信息
 							console.log(this.taskList);
+					} else {
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch((error) => {
 					//失败

@@ -120,7 +120,7 @@
 							path: '/login'
 						});
 					} else {
-
+                        plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch(function(error) {
 					console.log(error);

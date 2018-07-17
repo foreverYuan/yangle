@@ -16,7 +16,7 @@
 		</div>
 		<img src="../../../static/loading-icon-closeEye.png" class="loadingImg" id="loading-img1" v-if="netStatus" />
 		<img src="../../../static/loading-icon-openEye.png" class="loadingImg" id="loading-img2" v-if="netStatus" />
-         <div class="div-list" v-if="allFhrList.length > 0 && netStatus">
+		<div class="div-list" v-if="allFhrList.length > 0 && netStatus">
 			<mt-loadmore :autoFill="false" :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" @top-status-change="handleTopChange" :auto-fill="false" bottomPullText="上拉加载更多" :bottomLoadingText="bottomLoadingText" ref="loadmore">
 				<ul>
 					<li v-for="item in allFhrList" @click="goDetail(item.moveId)">
@@ -53,9 +53,9 @@
 							</div>
 						</div>
 
-						<div class="order" v-if="item.gmtCreate != null">
+						<div class="order" v-if="item.startTime != null">
 							<span class="line"></span>
-							<span class="txt">{{item.gmtCreate.split(" ")[0]}}</span>
+							<span class="txt">{{item.startTime.split(" ")[0]}}</span>
 							<span class="line"></span>
 						</div>
 						<p></p>
@@ -71,12 +71,12 @@
 			<p>宝宝的心声吧～</p>
 			<img src="../../assets/fhr_no_data.png" class="img-no-data" />
 		</div>
-		
+
 		<div v-if="!netStatus">
-		<img src="../../assets/net-error-icon.png" style="margin-top: 50%;width: 40%;" />
-		<p style="margin-top: 10%;font-size: 1.1rem;color: #ccc;">呀～网络崩溃了</p>
-		<mt-button style="width: 70%;margin-top: 10%;box-shadow: #aaa 0px 0px 5px;" @click="reLoadd">重新加载</mt-button>
-	</div>
+			<img src="../../assets/net-error-icon.png" style="margin-top: 50%;width: 40%;" />
+			<p style="margin-top: 10%;font-size: 1.1rem;color: #ccc;">呀～网络崩溃了</p>
+			<mt-button style="width: 70%;margin-top: 10%;box-shadow: #aaa 0px 0px 5px;" @click="reLoadd">重新加载</mt-button>
+		</div>
 	</div>
 </template>
 
@@ -118,7 +118,7 @@
 		},
 
 		mounted() {
-			$(".loadingImg").css("display", "block");
+			this.showLoading();
 			var _this = this;
 			this.loadingTimerId = window.setInterval(function() {
 				if(this.isShowOpen == 1) {
@@ -130,7 +130,7 @@
 					$("#loading-img1").css("visibility", "visible");
 					$("#loading-img2").css("visibility", "hidden");
 				}
-			}, 100);
+			}, 500);
 			this.getFileInfo();
 		},
 
@@ -196,10 +196,7 @@
 				}).then((response) => {
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
-						$(".myfetalheart").css("display", "block");
-						$(".loadingImg").css("display", "none");
-						window.clearInterval(this.loadingTimerId);
-						//						plus.nativeUI.alert("获取成功");
+						_this.hiddenLoading();
 						_this.weitiCount = response.data.pageUtil.notSubmitTotal, //未提交数量
 							_this.totalPage = response.data.pageUtil.totalPage, //总页数
 							_this.page = response.data.pageUtil.currPage, //当前页码
@@ -215,13 +212,27 @@
 						console.log('fhrList', _this.fhrList)
 						console.log('allFhrList', _this.allFhrList)
 						$(".div-no-data").css("visibility", "visible");
+					} else {
+						_this.hiddenLoading();
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
 
 				}).catch((error) => {
+					_this.hiddenLoading();
 					console.log(error);
 				});
 			},
-			
+
+			showLoading() {
+				$(".loadingImg").css("display", "block");
+			},
+
+			hiddenLoading() {
+				$(".myfetalheart").css("display", "block");
+				$(".loadingImg").css("display", "none");
+				window.clearInterval(this.loadingTimerId);
+			},
+
 			reLoadd() {
 				window.location.reload()
 			},

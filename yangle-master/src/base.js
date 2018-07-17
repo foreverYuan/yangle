@@ -160,6 +160,8 @@ exports.install = function(Vue, options) {
 				this.getMyFhrData();
 				var FileUtil = plus.android.importClass("com.ater.yangle.utils.FileUtil");
 				FileUtil.deleteFile(fhrFile);
+			} else {
+				plus.nativeUI.alert(response.data.resultMsg);
 			}
 
 		}).catch((error) => {

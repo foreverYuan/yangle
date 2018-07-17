@@ -292,6 +292,8 @@
 						for(var i = 0; i < this.taskList.length; i++) {
 							console.log("aaa", this.taskList[i].taskStatus == 0);
 						}
+					} else {
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch((error) => {
 					//失败

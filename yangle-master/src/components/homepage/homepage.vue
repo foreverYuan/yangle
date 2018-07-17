@@ -86,12 +86,12 @@
 					</p>
 					<ul v-for="item in taskList" class="ul-task">
 						<li style="display: flex;">
-							<div style="width: 15%;text-align: right;margin-right: 0.7rem;">
+							<div class="div-task-pic">
 								<img :src="item.taskPicture" id="task-left-pic" />
 							</div>
 							<div style="width: 62%;">
-								<span style="display: block;color: #ED6EB6;font-weight: bold;font-size: 1.15rem;">{{item.taskName}}</span>
-								<span style="display: block;margin-top: 0.3rem;color: #999;font-size: 1rem;">{{item.taskContent}}</span>
+								<span class="task-name">{{item.taskName}}</span>
+								<span class="task-content">{{item.taskContent}}</span>
 							</div>
 							<div style="align-items: center;width: 18%;">
 								<span v-if="item.taskStatus == 2">
@@ -133,7 +133,7 @@
 							<div style="width: 8rem;">
 								<img :src="item.knowPicture" style="width: 7rem;height: 7rem;" />
 							</div>
-							
+
 							<div class="div_pg_know">
 								<span class="knowledge-name">{{item.knowName}}</span>
 								<p class="desc" style="overflow: hidden;">{{item.knowContent}}</p>
@@ -300,8 +300,7 @@
 		mounted() {
 			this.isShow = true;
 			this.getSignInfo(); //获取签到信息
-			$(".homepage").css("visibility", "hidden");
-			$(".loadingImg").css("display", "block");
+			this.showLoading();
 			var _this = this;
 			this.loadingTimerId = window.setInterval(function() {
 				if(this.isShowOpen == 1) {
@@ -319,7 +318,7 @@
 				//				} else {
 				//					_this.loadingImg = "../../../static/loading-icon-openEye.png";
 				//				}
-			}, 100);
+			}, 500);
 			//						this.drawSignIntegral();
 		},
 		updated() {
@@ -390,9 +389,7 @@
 				}).then((response) => {
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
-						$(".homepage").css("visibility", "visible");
-						$(".loadingImg").css("display", "none");
-						window.clearInterval(this.loadingTimerId);
+						_this.hiddenLoading();
 						//成功
 						_this.carouselList = response.data.sowMapList, //轮播列表数据
 							_this.tip = response.data.tip, //任务提示语
@@ -402,12 +399,27 @@
 							_this.knowledgeList = response.data.knowledgeList //知识列表
 						_this.showTaskNum = _this.taskList.length >= 3 ? 3 : _this.taskList.length
 						localStorage.setItem('pregnancyWeek', _this.babyStatus.pregnancyWeek);
+					} else {
+						_this.hiddenLoading();
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch((error) => {
 					//失败
+					_this.hiddenLoading();
 					console.log(error);
 				});
 
+			},
+
+			showLoading() {
+				$(".homepage").css("visibility", "hidden");
+				$(".loadingImg").css("display", "block");
+			},
+
+			hiddenLoading() {
+				$(".homepage").css("visibility", "visible");
+				$(".loadingImg").css("display", "none");
+				window.clearInterval(this.loadingTimerId);
 			},
 
 			/**
@@ -459,27 +471,26 @@
 						break;
 
 					case 2:
-						this.isTodaySign == 1 ? this.todayIntegral = 3 : 5;
+					    this.todayIntegral = this.isTodaySign == 1 ? 3 : 5;
 						break;
 
 					case 3:
-						this.isTodaySign == 1 ? this.todayIntegral = 5 : 5;
+					    this.todayIntegral = this.isTodaySign == 1 ? 5 : 5;
 						break;
 
 					case 4:
-						this.isTodaySign == 1 ? this.todayIntegral = 5 : 10;
+					    this.todayIntegral = this.isTodaySign == 1 ? 5 : 10;
 						break;
 
 					case 5:
-						this.isTodaySign == 1 ? this.todayIntegral = 10 : 15;
+					    this.todayIntegral = this.isTodaySign == 1 ? 10 : 15;
 						break;
 
 					case 6:
-						this.isTodaySign == 1 ? this.todayIntegral = 15 : 20;
+					    this.todayIntegral = this.isTodaySign == 1 ? 15 : 20;
 						break;
-
 				}
-				this.isTodaySign == 1 ? this.getIntegralState = '已' : '可';
+				this.getIntegralState = this.isTodaySign == 1 ? '已' : '可';
 			},
 
 			/**
@@ -616,9 +627,8 @@
 						this.lianxuSignDays = parseInt(response.data.signSerialTimes); //连续签到的天数
 						this.isTodaySign = parseInt(response.data.isSign); //今日是否签到
 						this.getSignIntegral();
-						//						plus.nativeUI.alert(response.data.resultMsg);
 					} else {
-						//						plus.nativeUI.alert(response.data.resultMsg);
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch((error) => {
 					//失败
@@ -638,8 +648,6 @@
 					userRole: this.userRole, //用户角色
 				}).then((response) => {
 					if(response.data.resultCode == 200) {
-						//成功
-						//						plus.nativeUI.alert(response.data.resultMsg);
 						this.getSignInfo();
 					} else {
 						plus.nativeUI.alert(response.data.resultMsg);

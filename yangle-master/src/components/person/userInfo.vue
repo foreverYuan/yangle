@@ -139,33 +139,9 @@
 						//获取信息成功
 						this.userInfo = response.data.user
 						localStorage.setItem("userIcon", response.data.user.userIcon);
-					}
-
-				}).catch((error) => {
-					console.log(error);
-				});
-			},
-
-			/**
-			 * 信息编辑接口
-			 */
-			infoEdit() {
-				this.axios.post('/userControllerAPI/userInfoEdit', {
-					userId: this.userId, //用户id
-					userRole: this.userRole, //用户角色
-					userName: this.userName, //昵称
-					userAddress: this.userAddress, //地址
-					lastMenstruation: this.lastMenstruation, //末次月经
-					userBirthday: this.userBirthday, //生日
-				}).then((response) => {
-					console.log(response.data);
-					if(response.data.resultCode == 200) {
-						//获取信息成功
-						plus.nativeUI.alert('修改信息成功');
 					} else {
-						plus.nativeUI.alert('修改信息失败');
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
-
 				}).catch((error) => {
 					console.log(error);
 				});
@@ -209,7 +185,8 @@
 						plus.nativeUI.alert(response.data.resultMsg)
 					}
 				}).catch(function(error) {
-					plus.nativeUI.alert(error);
+					console.log(error);
+//					plus.nativeUI.alert(error);
 				});
 			},
 

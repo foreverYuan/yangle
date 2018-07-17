@@ -246,8 +246,9 @@
 					if(response.data.resultCode == 200) {
 						//获取信息成功
 						this.userInfo = response.data.user
+					} else {
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
-
 				}).catch((error) => {
 					console.log(error);
 				});

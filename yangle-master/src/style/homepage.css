@@ -24,12 +24,13 @@
 
 .div_pg_know .desc {
 	-webkit-margin-before: 0.3rem;
-    -webkit-margin-after: 0.3rem;
+	-webkit-margin-after: 0.3rem;
 	font-size: 1rem;
 	color: #aaa;
-	line-height:1.7rem; /*行高为高度的一半，这样就是两行*/
-    height:3.4rem;
-    overflow:hidden;
+	line-height: 1.7rem;
+	/*行高为高度的一半，这样就是两行*/
+	height: 3.4rem;
+	overflow: hidden;
 }
 
 .div_pg_desc_task {
@@ -222,11 +223,11 @@ p.p_pg_desc {
 .knowledge-name {
 	color: #333;
 	font-size: 1.1rem;
-	overflow:hidden; 
-    text-overflow:ellipsis;
-    display:-webkit-box; 
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2; 
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 }
 
 .task-tip {
@@ -288,9 +289,32 @@ p.p_pg_desc {
 	padding-right: 7px;
 }
 
+.div-task-pic {
+	width: 17%;
+	text-align: right;
+	margin-right: 0.7rem;
+	padding-top: 0.5rem;
+}
+
 #task-left-pic {
 	width: auto;
 	height: 2.3rem;
+}
+
+.task-name {
+	display: block;
+	color: #ED6EB6;
+	font-weight: bold;
+	font-size: 1.15rem;
+}
+
+.task-content {
+	display: block;
+	margin-top: 0.3rem;
+	color: #999;
+	font-size: 1rem;
+	line-height: 1.5rem;
+    height: 3rem; 
 }
 
 .loadingImg {

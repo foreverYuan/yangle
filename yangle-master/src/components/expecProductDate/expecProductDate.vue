@@ -160,6 +160,8 @@
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
 						this.expecDate = response.data.pregnancyDate;
+					} else {
+						plus.nativeUI.alert(response.data.resultMsg);
 					}
 
 				}).catch((error) => {
