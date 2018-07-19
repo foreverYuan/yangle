@@ -7,7 +7,7 @@
 			<p class="p-info" style="height: 5rem;line-height: 5rem;">
 				<span>头像</span>
 				<span class="el-icon-arrow-right float-right" style="margin-top: 1.5rem;margin-left: 0.5rem;"></span>
-				<el-upload action="http://118.31.66.193:8080/yangle/pregnancy/fastdfsUpload" show-file-list="false" style="float: right;" v-model="userIcon" :on-success="handleSuccess">
+				<el-upload action="http://118.31.66.193/yangle/pregnancy/fastdfsUpload" show-file-list="false" style="float: right;" v-model="userIcon" :on-success="handleSuccess">
 					<img :src="userInfo.userIcon" v-if="userInfo.userIcon != null && userInfo.userIcon != ''" class="float-right header-pic" size="small" type="primary" width="55" height="55" />
 					<img src="../../assets/default-header-pic.jpg" v-if="userInfo.userIcon == null || userInfo.userIcon == ''" class="float-right header-pic" width="55" height="55" />
 				</el-upload>
@@ -24,13 +24,13 @@
 				<span class="el-icon-arrow-right"></span></span>
 			</p>
 			<p class="p-info" style="clear: both;" v-on:click="openEndMensesPicker"><span>末次月经</span><span class="float-right">
-				<span v-if="!isSelectEndMenses" style="color: #999;">{{this.getFormatDate(userInfo.lastMenstruation)}}</span>
-				<span v-if="isSelectEndMenses" style="color: #999;">{{endMenses}}</span>
+				<span v-if="!isSelectEndMenses && userInfo.lastMenstruation != ''" style="color: #999;">{{this.getFormatDate(userInfo.lastMenstruation)}}</span>
+				<span v-if="isSelectEndMenses || userInfo.lastMenstruation == ''" style="color: #999;">{{endMenses}}</span>
 				<span class="el-icon-arrow-right"></span></span>
 			</p>
 			<p class="p-info" style="clear: both;" v-on:click="openBirthPicker"><span>出生日期</span><span class="float-right">
-				<span v-if="!yourBirth" style="color: #999;">{{this.getFormatDate(userInfo.birthday)}}</span>
-				<span v-if="yourBirth" style="color: #999;">{{yourBirth}}</span>
+				<span v-if="!isSelectBirth && userInfo.birthday != ''" style="color: #999;">{{this.getFormatDate(userInfo.birthday)}}</span>
+				<span v-if="isSelectBirth || userInfo.birthday == ''" style="color: #999;">{{yourBirth}}</span>
 				<span class="el-icon-arrow-right"></span></span>
 			</p>
 			<lian-dong ref="liandong" v-on:pickCallBack='pickCall' :userAddress='userInfo.userAddress'></lian-dong>
@@ -45,7 +45,7 @@
                </span>
 			</el-dialog>
 
-			<mt-datetime-picker ref="endMensesPicker" type="date" v-model="endMensesValues" @confirm="handleEndMensesConfirm">
+			<mt-datetime-picker ref="endMensesPicker" type="date" v-model="endMensesValues" :startDate="startEMDate" :endDate="endEMDate" @confirm="handleEndMensesConfirm">
 			</mt-datetime-picker>
 
 			<mt-datetime-picker ref="birthPicker" type="date" :startDate="startBirthDate" :endDate="endBirthDate" v-model="birthValues" @confirm="handleBirthConfirm">
@@ -83,7 +83,9 @@
 				isSelectEndMenses: false,
 				isSelectBirth: false,
 				startBirthDate: new Date('1970-01-01'),
-				endBirthDate: new Date(),
+				endBirthDate: new Date('2002-12-12'),
+				startEMDate: new Date('2017-06-06'),
+				endEMDate: new Date(),
 				states: [{
 					value: '选项1',
 					label: '孕育中'
@@ -97,6 +99,13 @@
 
 		created() {
 			this.state = this.states[0];
+//			if(this.endMenses == '') {
+//				this.endMenses = '请设置';
+//			}
+//			if(this.yourBirth == '') {
+//				this.yourBirth = '请设置';
+//			}
+			console.log('yourBirth', this.userInfo.birthday);
 		},
 
 		mounted() {
@@ -173,6 +182,9 @@
 					userBirthday: _this.yourBirth, //用户生日
 				}).then(function(response) {
 					if(response.data.resultCode == 200) {
+						if(!isShow) {
+							_this.countPreProdPeriod();
+						}
 						if(isShow) {
 							plus.nativeUI.alert('修改成功');
 						}
@@ -187,6 +199,27 @@
 				}).catch(function(error) {
 					console.log(error);
 //					plus.nativeUI.alert(error);
+				});
+			},
+			
+			/**
+			 * 计算预产期
+			 */
+			countPreProdPeriod() {
+				this.axios.post('/userControllerAPI/preProdPeriod', {
+					equipmentId: this.base_uuid(), //设备id
+					lastMenstruation: this.endMenses, //末次月经
+				}).then((response) => {
+					console.log(response.data);
+					if(response.data.resultCode == 200) {
+						localStorage.setItem('pregnancyDate', response.data.pregnancyDate);
+						localStorage.setItem('pregnancyWeek', response.data.dataBirth);
+					} else {
+						plus.nativeUI.alert(response.data.resultMsg);
+					}
+
+				}).catch((error) => {
+					console.log(error);
 				});
 			},
 

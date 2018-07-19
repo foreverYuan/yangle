@@ -153,12 +153,13 @@
 				this.getUserInfo();
 			}
 		},
-		mounted() {
-             
-		},
+		
 		watch: {
-
+			pregnancyWeek: function(val, oldval) {
+				this.pregnancyWeek = localStorage.getItem('pregnancyWeek');
+			}
 		},
+		
 		methods: {
 			/**
 			 * 跳转登录页

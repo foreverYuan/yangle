@@ -1,34 +1,45 @@
 <!--设置基本信息页面-->
 <template>
 	<div class="expecProductDate">
-		<img src="../../assets/pregnant_mother_background.png" style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;" />
-		<div class="div-content" style="position: fixed;width: 100%;height: 100%;left:-0.5rem;">
-			<h2 style="margin-top: 3rem;">请设置您的基本信息</h2>
-			<mt-field label="您的生日" placeholder="请输入您的生日" type="text" v-model="yourBirth" readonly="readonly" class="mt-field-yourBirth">
-				<span class="el-icon-arrow-right float-right"></span>
-				<p v-on:click="openBirthPicker" class="dianji"></p>
-			</mt-field>
-
-			<mt-field label="设置预产期" placeholder="请设置预产期" type="text" v-model="expecDate" readonly="readonly" class="mt-field-setEPD">
-				<span class="el-icon-arrow-right"></span>
-				<p v-on:click="openEPDPicker" class="dianji"></p>
-			</mt-field>
-
+		<!--<img src="../../assets/pregnant_mother_background.png" style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;" />-->
+		<div class="div-content">
+			<h2 class="epd-title">请设置您的基本信息</h2>
+			<img src="../../assets/3x/epd-top-pic@3x.png" id="top-pic" />
+			<div @click="openBirthPicker" class="div-input">
+				<img src="../../assets/2x/epd-birth-icon@2x.png" class="icon" />
+				<div>
+					<input placeholder="您的生日" type="text" v-model="yourBirth" readonly="readonly" class="mt-field-yourBirth" />
+					<span class="el-icon-arrow-right float-right right-arrow"></span>
+				</div>
+			</div>
+			
+			<div @click="countEPD" class="div-input">
+				<img src="../../assets/2x/epd-calculate-icon@2x.png" class="icon" />
+				<div id="epddd">
+					<input placeholder="计算预产期" type="text" readonly="readonly" class="mt-field-yourBirth" />
+					<span class="el-icon-arrow-right float-right right-arrow" v-if="countEPDFlag == false"></span>
+					<span class="el-icon-arrow-down float-right right-arrow" v-if="countEPDFlag == true"></span>
+				</div>
+			</div>
+			
+			<div @click="openEndMensesPicker" class="div-input" v-if="countEPDFlag == true">
+				<div>
+					<input placeholder="设置末次月经" type="text" v-model="endMenses" readonly="readonly" class="mt-field-yourBirth" />
+					<span class="el-icon-arrow-right float-right right-arrow"></span>
+				</div>
+			</div>
 			<span class="span-no-know-epd">不知道预产期?</span>
-			<div @click="countEPD">
-				<mt-field label="计算预产期" type="text" readonly="readonly" class="mt-field-countEPD">
-					<span class="el-icon-arrow-right" v-if="countEPDFlag == false"></span>
-					<span class="el-icon-arrow-down" v-if="countEPDFlag == true"></span>
-				</mt-field>
+			
+            <div @click="openEPDPicker" class="div-input">
+				<img src="../../assets/3x/epd-baby-icon@3x.png" class="icon" />
+				<div>
+					<input placeholder="设置预产期" type="text" v-model="expecDate" readonly="readonly" class="mt-field-yourBirth" />
+					<span class="el-icon-arrow-right float-right right-arrow"></span>
+				</div>
 			</div>
 
-			<mt-field label="末次月经" placeholder="请设置末次月经" type="text" v-model="endMenses" readonly="readonly" v-if="countEPDFlag == true">
-				<span class="el-icon-arrow-right"></span>
-				<p v-on:click="openEndMensesPicker" class="dianji"></p>
-			</mt-field>
-
-			<button class="btn-start-use" @click="jumpHome">开始使用</button>
-			<p class="p-register" @click="goRegister">注册账号,进行绑定</p>
+			<button class="btn-start-use" @click="jumpHome">立即使用</button>
+			<!--<p class="p-register" @click="goRegister">注册账号,进行绑定</p>-->
 
 			<mt-datetime-picker ref="birthPicker" type="date" v-model="birthValues" :startDate="startBirthDate" :endDate="endBirthDate" @confirm="handleBirthConfirm">
 			</mt-datetime-picker>
@@ -36,7 +47,7 @@
 			<mt-datetime-picker ref="epdPicker" type="date" v-model="epdValues" :startDate="startEPDDate" :endDate="endEPDDate" @confirm="handleEPDConfirm">
 			</mt-datetime-picker>
 
-			<mt-datetime-picker ref="endMensesPicker" type="date" v-model="endMensesValues" @confirm="handleEndMensesConfirm">
+			<mt-datetime-picker ref="endMensesPicker" type="date" v-model="endMensesValues" :startDate='startEMDate' :endDate="endEMDate" @confirm="handleEndMensesConfirm">
 			</mt-datetime-picker>
 		</div>
 	</div>
@@ -58,9 +69,11 @@
 				yourBirth: '', //生日
 				endMenses: '', //末次月经
 				startBirthDate: new Date('1970-01-01'),
-				endBirthDate: new Date(),
+				endBirthDate: new Date('2002-12-12'),
 				startEPDDate: new Date(),
 				endEPDDate: new Date('2050-01-01'),
+				startEMDate: new Date('2017-06-06'),
+				endEMDate: new Date(),
 				/* 返回参数 */
 				/* 计算预产期接口 end */
 			}
@@ -73,9 +86,9 @@
 					path: '/home/homepage'
 				})
 			}
-			this.yourBirth = this.getFormatDate(new Date());
-			this.endMenses = this.getFormatDate(new Date());
-			this.expecDate = this.getFormatDate(new Date());
+			//			this.yourBirth = this.getFormatDate(new Date());
+			//			this.endMenses = this.getFormatDate(new Date());
+			//			this.expecDate = this.getFormatDate(new Date());
 		},
 		methods: {
 
@@ -170,6 +183,12 @@
 			},
 
 			jumpHome() {
+				if(this.yourBirth.trim() == '') {
+					return plus.nativeUI.alert("请设置您的生日");
+				}
+				if(this.expecDate.trim() == '') {
+					return plus.nativeUI.alert("请设置您的预产期");
+				}
 				sessionStorage.setItem('homeSelect', 1);
 				this.$router.push({
 					path: '/home/homepage'
@@ -205,5 +224,54 @@
 	
 	.expecProductDate .mint-field-core {
 		margin-left: -0.5rem;
+	}
+	
+	.expecProductDate .mint-cell-wrapper {
+		padding: 0 0 0 10px;
+		line-height: 0;
+	}
+	
+	.expecProductDate ::-webkit-input-placeholder {
+		/* WebKit browsers */
+		color: #ccc;
+		font-size: 1.1rem;
+		height: 2rem;
+	}
+	
+	.expecProductDate :-moz-placeholder {
+		/* Mozilla Firefox 4 to 18 */
+		color: #ccc;
+		font-size: 1.1rem;
+		height: 2rem;
+	}
+	
+	.expecProductDate ::-moz-placeholder {
+		/* Mozilla Firefox 19+ */
+		color: #ccc;
+		font-size: 1.1rem;
+		height: 2rem;
+	}
+	
+	.expecProductDate :-ms-input-placeholder {
+		/* Internet Explorer 10+ */
+		color: #ccc;
+		font-size: 1.1rem;
+		height: 2rem;
+	}
+	
+	#epddd ::-webkit-input-placeholder {
+		color: #333;
+	}
+	
+	#epddd :-moz-placeholder {
+		color: #333;
+	}
+	
+	#epddd ::-moz-placeholder {
+		color: #333;
+	}
+	
+	#epddd :-ms-input-placeholder {
+		color: #333;
 	}
 </style>

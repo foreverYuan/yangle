@@ -10,24 +10,20 @@
 	overflow: hidden;
 }
 
-.expecProductDate h2 {
-	text-align: center;
-	color: #333;
+.expecProductDate .div-content {
+	height: 100%;
+	padding: 0 3%;
 }
 
-.expecProductDate .dianji {
-	position: absolute;
-	top: -0.5rem;
-	left: -16rem;
-	margin: 0;
-	padding: 0;
-	width: 15rem;
-	height: 2rem;
+.epd-title {
+	text-align: center;
+	margin-top: 1rem;
+	font-weight: normal;
+	color: #343434;
 }
 
 .div-content .mt-field-yourBirth {
 	width: 100%;
-	margin-top: 3rem;
 }
 
 .div-content .mt-field-setEPD {
@@ -35,8 +31,10 @@
 }
 
 .div-content .span-no-know-epd {
-	/*padding-left: 0.3rem;*/
-	color: #acacac;
+	padding-left: 3rem;
+	padding-top: 0.2rem;
+	color: #FC9FD7;
+	font-size: 0.6rem;
 }
 
 .div-content .mt-field-countEPD {
@@ -44,17 +42,71 @@
 }
 
 .div-content .btn-start-use {
-	width: 100%;
+	width: 86%;
+	text-align: center;
 	padding: 1rem 0;
-	background: #ffffff;
+	color: #fff;
 	outline: none;
 	border: none;
-	margin-top: 5rem;
-	font-weight: bold;
-	font-size: 1.1rem;
+	margin-top: 3rem;
+	margin-left: 7%;
+	margin-right: 7%;
+	border-radius: 2rem;
+	font-size: 1.2rem;
+	background: -webkit-linear-gradient(left, #FF6DB6, #FF96CD);
+	/* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(right, #FF6DB6, #FF96CD);
+	/* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(right, #FF6DB6, #FF96CD);
+	/* Firefox 3.6 - 15 */
+	background: linear-gradient(to right, #FF6DB6, #FF96CD);
+	/* 标准的语法（必须放在最后） */
 }
 
 .div-content .p-register {
 	text-align: center;
 	color: #888;
+	font-size: 0.7rem;
+}
+
+#top-pic {
+	width: 100%;
+	margin-top: 0.8rem;
+	border-radius: 0.5rem;
+}
+
+.div-input {
+	display: flex;
+	position: relative;
+	margin-top: 2rem;
+}
+
+.div-input .icon {
+	width: 1.7rem;
+	height: 1.7rem;
+	margin-left: 0.5rem;
+	position: absolute;
+	left: 0;
+	bottom: 0.6rem;
+}
+
+.div-input div {
+	display: flex;
+	width: 100%;
+	border-bottom: 0.5px solid #eee;
+	margin-left: 3rem;
+	padding-bottom: 0.5rem;
+}
+
+.div-input input {
+	border: none;
+	outline: none;
+	background: none;
+	font-size: 1.1rem;
+}
+
+.right-arrow {
+	font-size: 1rem;
+	color: #333;
+	padding-top: 0.6rem;
 }

@@ -407,16 +407,17 @@
 					userAccount: _this.phone,
 					userPassword: _this.regPwd,
 					userRole: '1',
-					birthday: localStorage.getItem('yourBirth'),
-					lastMenstruation: localStorage.getItem('endMenses'),
-					pregnancyDate: localStorage.getItem('pregnancyDate'),
+//					birthday: localStorage.getItem('yourBirth'),
+//					lastMenstruation: localStorage.getItem('endMenses'),
+//					pregnancyDate: localStorage.getItem('pregnancyDate'),
 					equipmentId: _this.base_uuid(),
 					smsCode: _this.itCode,
 				}).then(function(response) {
 					if(response.data.resultCode == 200) {
-						that.$router.push({
-							path: '/login'
-						})
+//						_this.$router.push({
+//							path: '/login'
+//						})
+                        _this.loginRegSwitch = 1;
 						plus.nativeUI.alert('注册成功，即将跳转登录页');
 					} else {
 						plus.nativeUI.alert(response.data.resultMsg);

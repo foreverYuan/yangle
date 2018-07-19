@@ -40,7 +40,7 @@
 			<transition enter-active-class="animated bounceInDown">
 				<!--动画效果放于transition中 -->
 				<div v-if='isShow' class="grad">
-					<h3 class="h_pd_title">妈妈,我们还有<span style="color: #FF8BC3;">{{babyStatus.babyBirth}}</span>就能见面啦</h3>
+					<h3 class="h_pd_title">妈妈,我们还有<span style="color: #FF8BC3;">{{meetDays}}</span>就能见面啦</h3>
 					<div style="text-align: center;">
 						<button style="background: none;border:0;" @click="c1"><img src="../../assets/3x/home-down-arrow@3x.png" style="width:1rem;" alt=""></button>
 					</div>
@@ -283,6 +283,7 @@
 				loadingTimerId: "",
 				isShowOpen: 1,
 				jumpId: localStorage.getItem('/home/homepage-id'),
+				meetDays: 0, //还有多少天出生
 			}
 		},
 
@@ -398,6 +399,7 @@
 							_this.babyStatus = response.data.BabyStatus, //婴儿状态
 							_this.knowledgeList = response.data.knowledgeList //知识列表
 						_this.showTaskNum = _this.taskList.length >= 3 ? 3 : _this.taskList.length
+						_this.meetDays = _this.babyStatus.babyBirth < 0 ? 0 : _this.babyStatus.babyBirth;
 						localStorage.setItem('pregnancyWeek', _this.babyStatus.pregnancyWeek);
 					} else {
 						_this.hiddenLoading();
@@ -628,7 +630,7 @@
 						this.isTodaySign = parseInt(response.data.isSign); //今日是否签到
 						this.getSignIntegral();
 					} else {
-						plus.nativeUI.alert(response.data.resultMsg);
+//						plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch((error) => {
 					//失败
