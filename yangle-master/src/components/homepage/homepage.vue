@@ -381,6 +381,7 @@
 			 */
 			getHomeData() {
 				var _this = this;
+//				alert(_this.base_uuid());
 				this.axios.post('/pregnancy/firstMenu', {
 					birthday: localStorage.getItem('yourBirth'),
 					lastMenstruation: localStorage.getItem('endMenses'),

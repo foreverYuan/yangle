@@ -90,6 +90,8 @@
 					value: '选项1',
 					label: '孕育中'
 				}],
+				pregnancyDate: localStorage.getItem('pregnancyDate'),
+				pregnancyWeek: localStorage.getItem('pregnancyWeek'),
 			}
 		},
 		components: {
@@ -183,7 +185,9 @@
 				}).then(function(response) {
 					if(response.data.resultCode == 200) {
 						if(!isShow) {
-							_this.countPreProdPeriod();
+							console.log('pregnancyDate', _this.pregnancyDate);
+                            localStorage.setItem('pregnancyDate', _this.pregnancyDate);
+                            localStorage.setItem('pregnancyWeek', _this.pregnancyWeek);
 						}
 						if(isShow) {
 							plus.nativeUI.alert('修改成功');
@@ -208,14 +212,14 @@
 			countPreProdPeriod() {
 				this.axios.post('/userControllerAPI/preProdPeriod', {
 					equipmentId: this.base_uuid(), //设备id
-					lastMenstruation: this.endMenses, //末次月经
+					lastMenstruation: localStorage.getItem('endMenses'), //末次月经
 				}).then((response) => {
 					console.log(response.data);
 					if(response.data.resultCode == 200) {
-						localStorage.setItem('pregnancyDate', response.data.pregnancyDate);
-						localStorage.setItem('pregnancyWeek', response.data.dataBirth);
+						this.pregnancyDate = response.data.pregnancyDate;
+						this.pregnancyWeek = response.data.dataBirth;
 					} else {
-						plus.nativeUI.alert(response.data.resultMsg);
+//						plus.nativeUI.alert(response.data.resultMsg);
 					}
 
 				}).catch((error) => {
@@ -237,6 +241,8 @@
 			handleEndMensesConfirm(value) {
 				this.endMenses = this.getFormatDate(value);
 				this.isSelectEndMenses = true;
+				localStorage.setItem('endMenses', this.endMenses); //末次月经放入本地缓存
+				this.countPreProdPeriod();
 			},
 
 			/**
