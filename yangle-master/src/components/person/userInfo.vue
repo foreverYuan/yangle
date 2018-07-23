@@ -124,7 +124,12 @@
 			 */
 			goBack() {
 				this.modifyInfo(false);
-				this.$router.go(-1);
+				this.$router.push({
+					path: 'home/person',
+					query: {
+						pregnancyWeek: this.pregnancyWeek
+					}
+				})
 			},
 
 			/**

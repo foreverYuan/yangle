@@ -75,6 +75,10 @@
 	height: 6rem;
 }
 
+.div-other {
+	padding-bottom: 1rem;
+}
+
 .div-service p.p-title,
 .div-other p.p-title {
 	border-bottom: 1px solid #EFEFEF;
@@ -126,4 +130,18 @@
 	background: none;
 	border: none;
 	color: #199077;
+}
+
+.gray {  /*给图片增加黑白滤镜*/
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(200%);
+    filter: gray;
+}
+
+.div-detail .person-order {
+	color: gray;
+	opacity: 0.7;
 }

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/components/home/home'
 import homepage from '@/components/homepage/homepage'
+import knowledgeList from '@/components/homepage/knowledgeList'
 import knowledgeDetail from '@/components/homepage/knowledgeDetail'
 import consult from '@/components/consult/consult'
 import fetalheart from '@/components/fetalheart/fetalheart'
@@ -45,6 +46,11 @@ export default new Router({
 			component: person,
 		}
 		]
+	},
+	{
+		path: '/knowledgeList', //知识列表
+		name: 'knowledgeList',
+		component: knowledgeList
 	},
 	{
 		path: '/knowledgeDetail', //知识详情

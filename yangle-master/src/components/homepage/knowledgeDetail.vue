@@ -13,19 +13,20 @@
 					<span v-if="userName != null && userName != ''">{{userName}}</span>
 					<span>进入社区能看到更多同类话题哟</span>
 				</div>
-				<button @click="noOpen">进入社区</button>
+				<button @click="toast">进入社区</button>
 			</div>
 			<div class="detail-bottom">
 				<p class="know-title">{{knowObj.knowName}}</p>
 				<p class="know-suoshu-time"><span>{{knowObj.author}}</span><span>{{knowObj.gmtCreate.split(" ")[0]}}</span></p>
-				<img :src="knowObj.knowBigPicture" />
-				<p class="text">{{knowObj.knowContent}}</p>
+				<!--<img :src="knowObj.knowBigPicture" />-->
+				<div v-html='knowObj.knowContent' style="width: 100%;margin-top: 2rem;" id="know-content"></div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import { Toast } from 'mint-ui';
 	export default {
 		name: "knowledgeDetail",
 		data() {
@@ -50,6 +51,12 @@
 		},
 
 		methods: {
+			toast() {
+				let instance = Toast('此功能尚未开通，请耐心等待～');
+				setTimeout(() => {
+					instance.close();
+				}, 2000);
+			},
 			/**
 			 * 返回上一级路由
 			 */

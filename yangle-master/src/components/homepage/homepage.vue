@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div style="width: 100%;overflow-x: hidden;">
 		<img src="../../../static/loading-icon-closeEye.png" class="loadingImg" id="loading-img1" v-if="netStatus" />
 		<img src="../../../static/loading-icon-openEye.png" class="loadingImg" id="loading-img2" v-if="netStatus" />
 
@@ -31,7 +31,7 @@
 			</div>-->
 				<span class="tip-left">
 				<div style="transform: rotate(-10deg);color: #fcfcfc;font-size: 0.8rem;width: 65%;padding-top: 0.2rem;">
-				<span>{{babyStatus.developFetal}}</span>
+				<span>{{babyStatus.fetalDetail}}</span>
 			</div>
 			</span>
 		</div>
@@ -40,7 +40,7 @@
 			<transition enter-active-class="animated bounceInDown">
 				<!--动画效果放于transition中 -->
 				<div v-if='isShow' class="grad">
-					<h3 class="h_pd_title">妈妈,我们还有<span style="color: #FF8BC3;">{{meetDays}}</span>就能见面啦</h3>
+					<h3 class="h_pd_title">妈妈,我们还有<span style="color: #FF8BC3;">{{meetDays}}天</span>就能见面啦</h3>
 					<div style="text-align: center;">
 						<button style="background: none;border:0;" @click="c1"><img src="../../assets/3x/home-down-arrow@3x.png" style="width:1rem;" alt=""></button>
 					</div>
@@ -126,7 +126,7 @@
 				<div class="div_pg_know_list">
 					<p>
 						<span class="home-title" style="font-weight: bold;">最新知识</span>
-						<!--<span style="float: right;"><span style="color: #aaa;" @click="goMoreKnow">更多知识</span><span class="el-icon-arrow-right"></span></span>-->
+						<span style="float: right;"><span style="color: #aaa;" @click="goMoreKnow">更多知识</span><span class="el-icon-arrow-right"></span></span>
 					</p>
 					<ul v-for="item in knowledgeList">
 						<li style="display: flex;" @click="goKnowDetail(item)">
@@ -136,8 +136,8 @@
 
 							<div class="div_pg_know">
 								<span class="knowledge-name">{{item.knowName}}</span>
-								<p class="desc" style="overflow: hidden;">{{item.knowContent}}</p>
-								<span style="color: #FC9FD7;font-size: 0.8rem;" v-if="item.knowTip != undefined && item.knowTip != null && item.knowTip != ''">{{item.knowTip}} #</span>
+								<p class="desc" style="overflow: hidden;">{{item.knowBrief}}</p>
+								<span style="color: #FC9FD7;font-size: 0.8rem;" v-if="item.knowTip != undefined && item.knowTip != null && item.knowTip != ''">{{item.knowTip}}</span>
 							</div>
 						</li>
 					</ul>
@@ -374,7 +374,7 @@
 			 * 跳转更多知识
 			 */
 			goMoreKnow() {
-				this.noOpen();
+				this.jumpNormalRouter('/knowledgeList');
 			},
 			/**
 			 * 首页

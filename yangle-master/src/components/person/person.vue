@@ -7,7 +7,7 @@
 			<span class="float-right span-modify" @click="goUserInfo">修改</span>
 			<div style="padding-top: 0.6rem;padding-bottom: 0.5rem;">
 				<h3 style="margin-left: 5.5rem;font-size: 1.2rem;color: #FCFCFC;">{{pregnancyWeek}}</h3>
-				<img src="../../assets/default-header-pic.jpg" class="userIcon" v-if="userInfo == '' || userInfo.userIcon == undefined || userInfo.userIcon == null || userInfo.userIcon == ''"/>
+				<img src="../../assets/default-header-pic.jpg" class="userIcon" v-if="userInfo == '' || userInfo.userIcon == undefined || userInfo.userIcon == null || userInfo.userIcon == ''" />
 				<img :src="userInfo.userIcon" class="userIcon" v-if="userInfo != '' && userInfo.userIcon != undefined && userInfo.userIcon != null && userInfo.userIcon != ''" />
 
 				<p class="p-userName">{{userInfo.userName}}</p>
@@ -27,19 +27,19 @@
 
 		<div class="div-detail" style="margin-top: -3rem;">
 			<div class="div-my-info">
-				<div class="div-small-block div-padding-top" @click="noOpen">
+				<div class="div-small-block div-padding-top " @click="toast">
 					<img src="../../assets/my_order.png" style="height: 1.5rem;" />
 					<p>我的订单</p>
 				</div>
-				<div class="div-small-block div-padding-top" @click="noOpen">
+				<div class="div-small-block div-padding-top" @click="toast">
 					<img src="../../assets/my_integral.png" style="height: 1.5rem;" />
 					<p>我的积分</p>
 				</div>
-				<div class="div-small-block div-padding-top" @click="noOpen">
+				<div class="div-small-block div-padding-top" @click="toast">
 					<img src="../../assets/my_message.png" style="height: 1.5rem;" />
 					<p>我的消息</p>
 				</div>
-				<div class="div-small-block div-padding-top" @click="noOpen">
+				<div class="div-small-block div-padding-top" @click="toast">
 					<img src="../../assets/my_collect.png" style="height: 1.5rem;" />
 					<p>我的收藏</p>
 				</div>
@@ -49,11 +49,11 @@
 				<div class="div-service">
 					<p class="p-title">服务</p>
 					<div class="div-big-block">
-						<div class="div-small-block" @click="noOpen">
+						<div class="div-small-block" @click="toast">
 							<img src="../../assets/community.png" />
 							<p>社区</p>
 						</div>
-						<div class="div-small-block" @click="noOpen">
+						<div class="div-small-block" @click="toast">
 							<img src="../../assets/shopping_mall.png" />
 							<p>商城</p>
 						</div>
@@ -62,15 +62,15 @@
 				<div class="div-other">
 					<p class="p-title">其他</p>
 					<div class="div-big-block">
-						<div class="div-small-block" @click="noOpen">
+						<div class="div-small-block" @click="toast">
 							<img src="../../assets/person_recommend.png" />
 							<p>推荐</p>
 						</div>
-						<div class="div-small-block" @click="noOpen">
+						<div class="div-small-block" @click="toast">
 							<img src="../../assets/person_feedback.png" />
 							<p>意见反馈</p>
 						</div>
-						<div class="div-small-block" @click="noOpen">
+						<div class="div-small-block" @click="toast">
 							<img src="../../assets/person_system_setting.png" />
 							<p>系统设置</p>
 						</div>
@@ -86,7 +86,7 @@
 </template>
 
 <script>
-	// import clicked from '../clickComponents/click'
+	import { Toast } from 'mint-ui';
 	export default {
 		name: 'person',
 		components: {
@@ -141,8 +141,8 @@
 					]
 
 				},
-				pregnancyWeek: localStorage.getItem('pregnancyWeek'), //孕育时长
-//				dialogVisible: false, //是否显示提示框
+				pregnancyWeek: !this.$route.query.pregnancyWeek ? localStorage.getItem('pregnancyWeek') : this.$route.query.pregnancyWeek, //孕育时长
+				dialogVisible: false, //是否显示提示框
 			}
 		},
 		created() {
@@ -152,15 +152,16 @@
 			} else {
 				this.getUserInfo();
 			}
+			console.log("aaa", this.$route.query.pregnancyWeek);
 		},
-		
-		watch: {
-			pregnancyWeek: function(val, oldval) {
-				this.pregnancyWeek = localStorage.getItem('pregnancyWeek');
-			}
-		},
-		
+
 		methods: {
+			toast() {
+				let instance = Toast('此功能尚未开通，请耐心等待～');
+				setTimeout(() => {
+					instance.close();
+				}, 2000);
+			},
 			/**
 			 * 跳转登录页
 			 */
@@ -227,14 +228,14 @@
 					path: '/userInfo'
 				})
 			},
-			
+
 			/**
 			 * 隐藏弹框
 			 */
-//			hiddenDialog() {
-//				this.dialogVisible = false;
-//			},
-			
+			hiddenDialog() {
+				this.dialogVisible = false;
+			},
+
 			/**
 			 * 获取用户基本信息接口
 			 */
