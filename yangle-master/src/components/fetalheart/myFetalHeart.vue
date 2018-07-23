@@ -81,6 +81,7 @@
 </template>
 
 <script>
+	import { Toast } from 'mint-ui';
 	export default {
 		name: 'myFetalHeart',
 		data() {
@@ -112,7 +113,7 @@
 		},
 
 		created() {
-			this.getMyFhrData(false);
+			this.getMyFhrData(false, true);
 			//			this.switchYtWt(1);
 			//		    this.back();
 		},
@@ -160,7 +161,7 @@
 					weiti.style.borderColor = '#fff';
 					weiti.style.fontWeight = 'bold';
 				}
-				this.getMyFhrData(false);
+				this.getMyFhrData(false, true);
 			},
 
 			/**
@@ -185,7 +186,7 @@
 			/**
 			 * 获取我的胎心数据
 			 */
-			getMyFhrData(isPush) {
+			getMyFhrData(isPush, errorTip) {
 				var _this = this;
 				this.axios.post('/yFetalMovement/yfetalmovement/myfetalHeart', {
 					page: this.page, //页码
@@ -214,7 +215,13 @@
 						$(".div-no-data").css("visibility", "visible");
 					} else {
 						_this.hiddenLoading();
-						plus.nativeUI.alert(response.data.resultMsg);
+						if(errorTip) {
+							let instance = Toast(response.data.resultMsg);
+							setTimeout(() => {
+								instance.close();
+							}, 2000);
+						}
+						//						plus.nativeUI.alert(response.data.resultMsg);
 					}
 
 				}).catch((error) => {
@@ -252,7 +259,7 @@
 
 				setTimeout(() => {
 					this.allFhrList = [];
-					_self.getMyFhrData();
+					_self.getMyFhrData(false, true);
 					_self.allLoaded = false;
 					_self.$refs.loadmore.onTopLoaded();
 				}, 1000);
@@ -266,7 +273,7 @@
 					this.bottomLoadingText = '没有更多内容';
 					return;
 				}
-				this.getMyFhrData(true);
+				this.getMyFhrData(true, true);
 				this.$refs.loadmore.onBottomLoaded();
 			},
 

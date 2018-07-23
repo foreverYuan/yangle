@@ -160,11 +160,11 @@ exports.install = function(Vue, options) {
 			console.log(response.data);
 			if(response.data.resultCode == 200) {
 				//				alert("同步完毕...");
-				this.getMyFhrData();
+				this.getMyFhrData(false, false);
 				var FileUtil = plus.android.importClass("com.ater.yangle.utils.FileUtil");
 				FileUtil.deleteFile(fhrFile);
 			} else {
-				plus.nativeUI.alert(response.data.resultMsg);
+//				plus.nativeUI.alert(response.data.resultMsg);
 			}
 
 		}).catch((error) => {
