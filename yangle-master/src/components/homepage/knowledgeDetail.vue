@@ -1,7 +1,7 @@
 <template>
 	<div class="knowledgeDetail">
-		<mt-header style="background: none;">
-			<mt-button icon="back" slot="left" style="color: #333;" @click="goBack"></mt-button>
+		<mt-header title="知识详情">
+			<mt-button icon="back" slot="left" @click="goBack"></mt-button>
 		</mt-header>
 
 		<div class="content">
