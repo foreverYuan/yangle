@@ -1,8 +1,11 @@
 exports.install = function(Vue, options) {
 	//获取设备UUID
 	Vue.prototype.base_uuid = function() {
-//						return '866146034068365,866146034068373';
-		return plus.device.uuid;
+		//						return '866146034068365,866146034068373';
+		if(!localStorage.getItem("uuid")) {
+			localStorage.setItem("uuid", plus.device.uuid);
+		}
+		return localStorage.getItem("uuid");
 	};
 
 	//	Vue.prototype.pregnancyDate = '2019-03-25';
@@ -28,12 +31,12 @@ exports.install = function(Vue, options) {
 			var appWindowObj = plus.ios.invoke(del, "window");
 			var appRootController = plus.ios.invoke(appWindowObj, "rootViewController");
 			var presentingViewController = plus.ios.invoke(appRootController, "presentingViewController");
-			
-			if(presentingViewController){
-				plus.ios.invoke(appRootController, "dismissViewControllerAnimated:completion:","NO",null);
+
+			if(presentingViewController) {
+				plus.ios.invoke(appRootController, "dismissViewControllerAnimated:completion:", "NO", null);
 			}
-			plus.ios.invoke(appRootController, "presentViewController:animated:completion:", newVCobj, "YES",null);
-			plus.ios.invoke(appWindowObj, "setRootViewController:",newVCobj);
+			plus.ios.invoke(appRootController, "presentViewController:animated:completion:", newVCobj, "YES", null);
+			plus.ios.invoke(appWindowObj, "setRootViewController:", newVCobj);
 		} else if(plus.os.name == "Android") {
 			//检测蓝牙是否打开,如果没有打开就打开蓝牙
 			var BluetoothAdapter = plus.android.importClass("android.bluetooth.BluetoothAdapter");
@@ -51,7 +54,7 @@ exports.install = function(Vue, options) {
 			//创建对象实例
 			var mHelper = new Helper();
 			//调用java中的跳转方法，并且传入当前activity实例
-//			mHelper.jump(main, 'f3e4b706-67ed-4fe0-b5d6-9aeb78cc35c5', '1');
+			//			mHelper.jump(main, 'f3e4b706-67ed-4fe0-b5d6-9aeb78cc35c5', '1');
 			mHelper.jump(main, localStorage.getItem('userId'), localStorage.getItem('userRole'));
 		}
 	};
@@ -71,12 +74,12 @@ exports.install = function(Vue, options) {
 			var appWindowObj = plus.ios.invoke(del, "window");
 			var appRootController = plus.ios.invoke(appWindowObj, "rootViewController");
 			var presentingViewController = plus.ios.invoke(appRootController, "presentingViewController");
-			
-			if(presentingViewController){
-				plus.ios.invoke(appRootController, "dismissViewControllerAnimated:completion:","NO",null);
+
+			if(presentingViewController) {
+				plus.ios.invoke(appRootController, "dismissViewControllerAnimated:completion:", "NO", null);
 			}
-			plus.ios.invoke(appRootController, "presentViewController:animated:completion:", newVCobj, "YES",null);
-			plus.ios.invoke(appWindowObj, "setRootViewController:",newVCobj);
+			plus.ios.invoke(appRootController, "presentViewController:animated:completion:", newVCobj, "YES", null);
+			plus.ios.invoke(appWindowObj, "setRootViewController:", newVCobj);
 		} else if(plus.os.name == "Android") { //跳转原生Android胎心详情页
 
 			//获取当前Activity
@@ -113,18 +116,18 @@ exports.install = function(Vue, options) {
 			//todo
 
 		} else if(plus.os.name == "Android") {
-//			alert("开始同步数据");
+			//			alert("开始同步数据");
 			var FileUtil = plus.android.importClass("com.ater.yangle.utils.FileUtil");
 			var fhrTxt = FileUtil.getFile(FileUtil.FHR_FILE_NAME);
-		    var fileNames = JSON.parse(fhrTxt);
-//		    alert("fileNames" + fileNames);
-//		    alert("fileNames.length" + fileNames.length);
+			var fileNames = JSON.parse(fhrTxt);
+			//		    alert("fileNames" + fileNames);
+			//		    alert("fileNames.length" + fileNames.length);
 			for(var i = 0; i < fileNames.length; i++) {
-//				alert(fileNames[i]);
+				//				alert(fileNames[i]);
 				var fhrFileContent = FileUtil.getFile(fileNames[i]);
-//				alert("json:" + fhrFileContent);
+				//				alert("json:" + fhrFileContent);
 				var fhrFileJson = JSON.parse(fhrFileContent); //转换成json对象
-//				alert("moveId:" + fhrFileJson.moveId);
+				//				alert("moveId:" + fhrFileJson.moveId);
 				if(fhrFileJson.moveId == null || fhrFileJson.moveId == undefined || fhrFileJson.moveId.length <= 0) {
 					this.uploadFhrData('/yFetalMovement/yfetalmovement/saveFetalHeart', fhrFileJson, fileNames[i]);
 				} else {
@@ -138,13 +141,13 @@ exports.install = function(Vue, options) {
 	 * 保存胎心数据
 	 */
 	Vue.prototype.uploadFhrData = function(url, fhrFileJson, fhrFile) {
-//		alert("moveId:" + fhrFileJson.moveId);
-//		alert("meanHeartRate:" + fhrFileJson.meanHeartRate);
-//		alert("monitoringTime:" + fhrFileJson.monitoringTime);
-//		alert("startTime:" + fhrFileJson.startTime);
-//		alert("heartRecord:" + fhrFileJson.heartRecord);
-//		alert("fetalMove:" + fhrFileJson.fetalMove);
-//		alert("userId:" + fhrFileJson.userId);
+		//		alert("moveId:" + fhrFileJson.moveId);
+		//		alert("meanHeartRate:" + fhrFileJson.meanHeartRate);
+		//		alert("monitoringTime:" + fhrFileJson.monitoringTime);
+		//		alert("startTime:" + fhrFileJson.startTime);
+		//		alert("heartRecord:" + fhrFileJson.heartRecord);
+		//		alert("fetalMove:" + fhrFileJson.fetalMove);
+		//		alert("userId:" + fhrFileJson.userId);
 		this.axios.post(url, {
 			moveId: fhrFileJson.moveId, //胎心id
 			meanHeartRate: fhrFileJson.meanHeartRate, //平均心率
@@ -156,7 +159,7 @@ exports.install = function(Vue, options) {
 		}).then((response) => {
 			console.log(response.data);
 			if(response.data.resultCode == 200) {
-//				alert("同步完毕...");
+				//				alert("同步完毕...");
 				this.getMyFhrData();
 				var FileUtil = plus.android.importClass("com.ater.yangle.utils.FileUtil");
 				FileUtil.deleteFile(fhrFile);
@@ -244,7 +247,7 @@ exports.install = function(Vue, options) {
 			this.$router.push({
 				path: routerName,
 				query: {
-//					id: this.jumpRouterIds[id]
+					//					id: this.jumpRouterIds[id]
 				}
 			});
 			localStorage.setItem(routerName + '-id', id);

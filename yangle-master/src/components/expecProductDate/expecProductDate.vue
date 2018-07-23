@@ -12,7 +12,7 @@
 					<span class="el-icon-arrow-right float-right right-arrow"></span>
 				</div>
 			</div>
-			
+
 			<div @click="countEPD" class="div-input">
 				<img src="../../assets/2x/epd-calculate-icon@2x.png" class="icon" />
 				<div id="epddd">
@@ -21,7 +21,7 @@
 					<span class="el-icon-arrow-down float-right right-arrow" v-if="countEPDFlag == true"></span>
 				</div>
 			</div>
-			
+
 			<div @click="openEndMensesPicker" class="div-input" v-if="countEPDFlag == true">
 				<div>
 					<input placeholder="设置末次月经" type="text" v-model="endMenses" readonly="readonly" class="mt-field-yourBirth" />
@@ -29,8 +29,8 @@
 				</div>
 			</div>
 			<span class="span-no-know-epd">不知道预产期?</span>
-			
-            <div @click="openEPDPicker" class="div-input">
+
+			<div @click="openEPDPicker" class="div-input">
 				<img src="../../assets/3x/epd-baby-icon@3x.png" class="icon" />
 				<div>
 					<input placeholder="设置预产期" type="text" v-model="expecDate" readonly="readonly" class="mt-field-yourBirth" />
@@ -80,6 +80,9 @@
 		},
 
 		created() {
+			if(!localStorage.getItem("uuid")) {
+				localStorage.setItem("uuid", plus.device.uuid);
+			}
 			if(localStorage.getItem("pregnancyDate") != null && localStorage.getItem("pregnancyDate") != "") {
 				sessionStorage.setItem('homeSelect', 1);
 				this.$router.push({
