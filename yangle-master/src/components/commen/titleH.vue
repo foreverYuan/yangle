@@ -36,6 +36,7 @@
 <style>
 	.mint-header {
 		background: #FF6DB6;
+		height: 3rem;
 	}
 	
 	.mintui {
@@ -45,6 +46,7 @@
 	.mint-header .mint-button {
 		font-size: 1.05rem;
 		color: #FCFCFC;
+		height: 2rem;
 	}
 	
 	.mint-header-title {

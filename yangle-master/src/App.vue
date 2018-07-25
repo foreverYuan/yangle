@@ -50,6 +50,7 @@
 	
 	.mint-header {
 		background: #FF6DB6;
+		height: 3rem;
 	}
 	
 	.mint-header-title {
@@ -68,6 +69,7 @@
 	.mint-header .mint-button {
 		font-size: 1.05rem;
 		color: #FCFCFC;
+		height: 2rem;
 	}
 	
 	.el-upload-list {

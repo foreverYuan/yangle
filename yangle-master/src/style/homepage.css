@@ -216,7 +216,7 @@ p.p_pg_desc {
 	color: #333;
 	font-size: 1.25rem;
 	font-weight: bold;
-	border-left: 3px solid #333;
+	border-left: 0.2rem solid #333;
 	padding-left: 0.3rem;
 }
 
@@ -275,6 +275,7 @@ p.p_pg_desc {
 	border-radius: 1rem;
 	padding: 0.65rem 0;
 	text-align: center;
+	font-size: 1rem;
 }
 
 .sign-red-point {
@@ -326,7 +327,7 @@ p.p_pg_desc {
 
 .knowledgeList {
 	position: fixed;
-	top: 40px;
+	top: 3rem;
 	bottom: 0;
 	left: 0;
 	width: 100%;

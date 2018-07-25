@@ -19,6 +19,11 @@
 	color: #FE88C3;
 }
 
+.navi-font {
+	-webkit-margin-before: 0.3rem;
+	font-size: 0.9rem;
+}
+
 .normal {
 	color: #333;
 }

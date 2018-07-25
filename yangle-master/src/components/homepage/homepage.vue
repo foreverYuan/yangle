@@ -7,13 +7,13 @@
 			<div class="top">
 				<mt-header style="background: none;">
 					<!--:title="babyStatus.pregnancyWeek"-->
-					<mt-button @click="showSignDialog" slot="right" style="color: #fff;padding-right: 3px;margin-top: 0.5rem;">签到
+					<mt-button @click="showSignDialog" slot="right" style="">签到
 						<img src="../../assets/red-point.png" v-if="isTodaySign == 0 && userId != null && userId != null" class="sign-red-point" /></mt-button>
 					<!--<mt-button @click="" slot="right">
 					<img src="../../assets/camera_icon.png" style="width: 1.5rem;" />
 				</mt-button>-->
 				</mt-header>
-				<img src="../../assets/1x/search-icon.png" style="position: absolute;top: 1.1rem;left: 18%;z-index: 1;" />
+				<img src="../../assets/1x/search-icon.png" style="position: absolute;top: 1.2rem;left: 18%;z-index: 1;width: 1rem;" />
 				<input placeholder="宝宝老是闹肚子怎么办?" class="home-search" @focus="focusInput" @blur="blurInput" />
 
 				<img src="../../assets/3x/home-top-background@3x.png" style="width:100%;height:12rem;margin-top: -13%;" alt="">
@@ -381,7 +381,7 @@
 			 */
 			getHomeData() {
 				var _this = this;
-//				alert(_this.base_uuid());
+				//				alert(_this.base_uuid());
 				this.axios.post('/pregnancy/firstMenu', {
 					birthday: localStorage.getItem('yourBirth'),
 					lastMenstruation: localStorage.getItem('endMenses'),
@@ -474,23 +474,23 @@
 						break;
 
 					case 2:
-					    this.todayIntegral = this.isTodaySign == 1 ? 3 : 5;
+						this.todayIntegral = this.isTodaySign == 1 ? 3 : 5;
 						break;
 
 					case 3:
-					    this.todayIntegral = this.isTodaySign == 1 ? 5 : 5;
+						this.todayIntegral = this.isTodaySign == 1 ? 5 : 5;
 						break;
 
 					case 4:
-					    this.todayIntegral = this.isTodaySign == 1 ? 5 : 10;
+						this.todayIntegral = this.isTodaySign == 1 ? 5 : 10;
 						break;
 
 					case 5:
-					    this.todayIntegral = this.isTodaySign == 1 ? 10 : 15;
+						this.todayIntegral = this.isTodaySign == 1 ? 10 : 15;
 						break;
 
 					case 6:
-					    this.todayIntegral = this.isTodaySign == 1 ? 15 : 20;
+						this.todayIntegral = this.isTodaySign == 1 ? 15 : 20;
 						break;
 				}
 				this.getIntegralState = this.isTodaySign == 1 ? '已' : '可';
@@ -631,7 +631,7 @@
 						this.isTodaySign = parseInt(response.data.isSign); //今日是否签到
 						this.getSignIntegral();
 					} else {
-//						plus.nativeUI.alert(response.data.resultMsg);
+						//						plus.nativeUI.alert(response.data.resultMsg);
 					}
 				}).catch((error) => {
 					//失败
@@ -695,6 +695,31 @@
 </style>
 
 <style>
+	
+	/*@media screen and (min-width: 760px) {
+		.homepage .mint-header .mint-button {
+			margin-top: 1.7rem;
+		}
+	}
+	
+	@media screen and (min-width: 1000px) {
+		.homepage .mint-header .mint-button {
+			margin-top: 2rem;
+		}
+	}
+	
+	@media screen and (max-width: 760px) {
+		.homepage .mint-header .mint-button {
+			margin-top: 0.5rem;
+		}
+	}*/
+	
+	.homepage .mint-header .mint-button {
+		color: #fff;
+		padding-right: 3px;
+		margin-top: 0.5rem;
+	}
+	
 	.homepage input::-webkit-input-placeholder {
 		color: #fcfcfc;
 	}
@@ -743,6 +768,7 @@
 	
 	.homepage .tip-left {
 		background: url(../../assets/1x/qipao.png) no-repeat;
+		background-size: 8rem;
 		text-align: center;
 		font-size: 0.85rem;
 		padding: 0.5rem;
