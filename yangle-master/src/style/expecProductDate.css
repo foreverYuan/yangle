@@ -7,7 +7,7 @@
 	-moz-background-size: 100% 100%;
 	-webkit-background-size: 100% 100%;
 	-o-background-size: 100% 100%;*/
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 .expecProductDate .div-content {
@@ -15,9 +15,21 @@
 	padding: 0 3%;
 }
 
+@media screen and (min-width: 760px) {
+	.epd-title {
+		margin-top: 5px;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	.epd-title {
+		margin-top: 3%;
+	}
+}
+
 .epd-title {
 	text-align: center;
-	margin-top: 3%;
+	/*margin-top: 3%;*/
 	font-weight: normal;
 	color: #343434;
 }
@@ -41,6 +53,19 @@
 	margin-top: 0.5rem;
 }
 
+@media screen and (min-width: 760px) {
+	.div-content .btn-start-use {
+		margin-top: 5%;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	.div-content .btn-start-use {
+		margin-top: 15%;
+	}
+}
+
+
 .div-content .btn-start-use {
 	width: 86%;
 	text-align: center;
@@ -48,7 +73,7 @@
 	color: #fff;
 	outline: none;
 	border: none;
-	margin-top: 10%;
+	/*margin-top: 10%;*/
 	margin-left: 7%;
 	margin-right: 7%;
 	border-radius: 2rem;
@@ -75,10 +100,22 @@
 	border-radius: 0.5rem;
 }
 
+@media screen and (min-width: 760px) {
+	.div-input {
+		margin-top: 3%;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	.div-input {
+		margin-top: 30px;
+	}
+}
+
 .div-input {
 	display: flex;
 	position: relative;
-	margin-top: 30px;
+	/*margin-top: 30px;*/
 }
 
 .div-input .icon {
