@@ -6,10 +6,10 @@
 		<div class="div-content">
 			<p class="p-info" style="height: 5rem;line-height: 5rem;">
 				<span>头像</span>
-				<span class="el-icon-arrow-right float-right" style="margin-top: 1.5rem;margin-left: 0.5rem;"></span>
+				<span class="el-icon-arrow-right float-right" style="margin-top: 1rem;margin-left: 0.5rem;"></span>
 				<el-upload action="http://118.31.66.193/yangle/pregnancy/fastdfsUpload" show-file-list="false" style="float: right;" v-model="userIcon" :on-success="handleSuccess">
-					<img :src="userInfo.userIcon" v-if="userInfo.userIcon != null && userInfo.userIcon != ''" class="float-right header-pic" size="small" type="primary" width="55" height="55" />
-					<img src="../../assets/default-header-pic.jpg" v-if="userInfo.userIcon == null || userInfo.userIcon == ''" class="float-right header-pic" width="55" height="55" />
+					<img :src="userInfo.userIcon" v-if="userInfo.userIcon != null && userInfo.userIcon != ''" class="float-right header-pic" size="small" type="primary" />
+					<img src="../../assets/default-header-pic.jpg" v-if="userInfo.userIcon == null || userInfo.userIcon == ''" class="float-right header-pic" />
 				</el-upload>
 			</p>
 			<p class="p-info" style="clear: both;" @click="dialogVisible = true"><span>昵称</span><span class="float-right">
