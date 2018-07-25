@@ -30,11 +30,11 @@
 								<p style="-webkit-margin-before: 0;color: #FF6DB7;">判读中</p>
 							</div>
 							<div class="div-state" v-if="item.state == 4 && item.resultState == 1">
-								<img src="../../assets/3x/normal-icon3x.png" />
+								<img src="../../assets/3x/normal-icon3x.png" style="width: 2rem;"/>
 								<p style="-webkit-margin-before: 0;color: #FF6CB4;">正常</p>
 							</div>
 							<div class="div-state" v-if="item.state == 4 && item.resultState == 2">
-								<img src="../../assets/3x/abnormal-icon@3x.png" />
+								<img src="../../assets/3x/abnormal-icon@3x.png" style="width: 2rem;"/>
 								<p style="-webkit-margin-before: 0;color: #EA9926;">异常</p>
 							</div>
 							<div class="div-fhr-data">

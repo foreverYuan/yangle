@@ -63,7 +63,7 @@
 	}
 	
 	.mintui {
-		font-size: 22px;
+		font-size: 1.1rem;
 	}
 	
 	.mint-header .mint-button {

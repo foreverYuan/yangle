@@ -51,9 +51,21 @@
 	height: auto;
 }
 
+@media screen and (min-width: 760px) {
+	.todayTask-background {
+		height: 130%;
+	}
+}
+
+@media screen and (min-width: 760px) {
+	.todayTask-background {
+		height: 100%;
+	}
+}
+
 .todayTask-background {
 	width: 100%;
-	height: 100%;
+	/*height: 100%;*/
 	overflow: hidden;
 	position: absolute;
 	left: 0;
@@ -96,13 +108,14 @@
 	font-weight: bold;
 }
 
-.gray {  /*给图片增加黑白滤镜*/
-    -webkit-filter: grayscale(30%);
-    -moz-filter: grayscale(30%);
-    -ms-filter: grayscale(30%);
-    -o-filter: grayscale(30%);
-    filter: grayscale(30%);
-    filter: gray;
+.gray {
+	/*给图片增加黑白滤镜*/
+	-webkit-filter: grayscale(30%);
+	-moz-filter: grayscale(30%);
+	-ms-filter: grayscale(30%);
+	-o-filter: grayscale(30%);
+	filter: grayscale(30%);
+	filter: gray;
 }
 
 .task-pic img {

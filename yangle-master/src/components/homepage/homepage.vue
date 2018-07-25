@@ -156,7 +156,7 @@
 					<span>今日{{getIntegralState}}获得</span>
 					<span style="margin-left: 0.3rem;"><img src="../../assets/my_integral.png" style="width: 1rem;"/><span style="color: #FC9FD7;">x{{todayIntegral}}</span><span style="margin-left: 0.3rem;">积分</span></span>
 				</div>
-				<img src="../../assets/sign-close.png" style="position: absolute;top: -1rem;right: -1rem;" @click="dialogVisible = false" />
+				<img src="../../assets/sign-close.png" style="position: absolute;top: -1rem;right: -1rem;width: 1.5rem;" @click="dialogVisible = false" />
 			</div>
 			<canvas id="myCanvas" :width="canvasWidth * dpr" :height="canvasHeight * dpr" style=""></canvas>
 			<!--<el-button @click="dialogVisible = false">已签到</el-button>-->
