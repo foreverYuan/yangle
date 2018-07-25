@@ -323,3 +323,17 @@ p.p_pg_desc {
 	top: 30%;
 	left: 25%;
 }
+
+.knowledgeList {
+	position: fixed;
+	top: 40px;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: left;
+	overflow-y: scroll;
+}
+
+.knowledgeList::-webkit-scrollbar {
+	display: none;
+}

@@ -1,6 +1,6 @@
 <template>
 	<div class="knowledgeDetail">
-		<mt-header title="知识详情">
+		<mt-header title="知识详情" style="position: fixed;width: 100%;top: 0;">
 			<mt-button icon="back" slot="left" @click="goBack"></mt-button>
 		</mt-header>
 

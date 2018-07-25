@@ -30,7 +30,7 @@
 				<p>请耐心<br>等候</p>
 			</div>-->
 				<span class="tip-left">
-				<div style="transform: rotate(-10deg);color: #fcfcfc;font-size: 0.8rem;width: 65%;padding-top: 0.2rem;">
+				<div style="transform: rotate(-10deg);color: #fcfcfc;font-size: 0.8rem;width: 70%;padding-top: 0.2rem;">
 				<span>{{babyStatus.fetalDetail}}</span>
 			</div>
 			</span>
@@ -84,8 +84,8 @@
 						<span class="el-icon-arrow-right"></span>-->
 						</span>
 					</p>
-					<ul v-for="item in taskList" class="ul-task">
-						<li style="display: flex;">
+					<ul class="ul-task">
+						<li style="display: flex;" v-for="item in taskList">
 							<div class="div-task-pic">
 								<img :src="item.taskPicture" id="task-left-pic" />
 							</div>
@@ -725,8 +725,8 @@
 	}
 	
 	.homepage .grad2 {
-		height: 5rem;
 		background: none;
+		margin-bottom: 0.5rem;
 		/*background: -webkit-linear-gradient(left, #FFF9FD, #FF6DB7, #FFF9FD);*/
 		/* Safari 5.1 - 6.0 */
 		/* background: -o-linear-gradient(right, red, blue); Opera 11.1 - 12.0 */

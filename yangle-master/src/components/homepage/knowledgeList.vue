@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mt-header title="知识列表">
+		<mt-header title="知识列表" style="position: fixed;width: 100%;top: 0;">
 			<mt-button icon="back" slot="left" @click="goBack"></mt-button>
 		</mt-header>
 		<div class="knowledgeList" v-if="netStatus">
