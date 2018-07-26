@@ -80,9 +80,11 @@
 		},
 
 		created() {
-			if(!localStorage.getItem("uuid")) {
-				localStorage.setItem("uuid", plus.device.uuid);
-			}
+//			if(!localStorage.getItem("uuid")) {
+//				localStorage.setItem("uuid", plus.device.uuid);
+//				alert(plus.device.uuid);
+//			}
+//			alert("哈哈哈");
 			if(localStorage.getItem("pregnancyDate") != null && localStorage.getItem("pregnancyDate") != "") {
 				sessionStorage.setItem('homeSelect', 1);
 				this.$router.push({

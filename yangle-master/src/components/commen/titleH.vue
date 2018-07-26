@@ -36,11 +36,12 @@
 <style>
 	.mint-header {
 		background: #FF6DB6;
-		height: 3rem;
+		height: 3.5rem;
+		z-index: 1;
 	}
 	
 	.mintui {
-		font-size: 1.1rem;
+		font-size: 1.5rem;
 	}
 	
 	.mint-header .mint-button {
@@ -50,8 +51,8 @@
 	}
 	
 	.mint-header-title {
-		font-weight: bold;
-		font-size: 1.2rem;
+		/*font-weight: bold;*/
+		font-size: 1.3rem;
 		color: #FCFCFC;
 		overflow: auto;
 		height: 1.5rem;

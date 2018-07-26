@@ -100,7 +100,7 @@ p.p_pg_desc {
 	line-height: 4rem;
 	border-radius: 5px;
 	color: #FC9FD7;
-	font-size: 1.5rem;
+	font-size: 2rem;
 }
 
 .div-sign-dialog .div-days {
@@ -266,7 +266,7 @@ p.p_pg_desc {
 }
 
 .home-search {
-	position: absolute;
+	position: fixed;
 	top: 0.6rem;
 	left: 1.5rem;
 	width: 80%;
@@ -277,6 +277,7 @@ p.p_pg_desc {
 	padding: 0.65rem 0;
 	text-align: center;
 	font-size: 1rem;
+	z-index: 2;
 }
 
 .sign-red-point {
@@ -328,7 +329,7 @@ p.p_pg_desc {
 
 .knowledgeList {
 	position: fixed;
-	top: 3rem;
+	top: 3.5rem;
 	bottom: 0;
 	left: 0;
 	width: 100%;

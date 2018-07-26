@@ -5,7 +5,7 @@
 
 		<div class="homepage" style="margin: 0;" v-if="netStatus">
 			<div class="top">
-				<mt-header style="background: none;">
+				<mt-header>
 					<!--:title="babyStatus.pregnancyWeek"-->
 					<mt-button @click="showSignDialog" slot="right" style="">签到
 						<img src="../../assets/red-point.png" v-if="isTodaySign == 0 && userId != null && userId != null" class="sign-red-point" /></mt-button>
@@ -13,10 +13,9 @@
 					<img src="../../assets/camera_icon.png" style="width: 1.5rem;" />
 				</mt-button>-->
 				</mt-header>
-				<img src="../../assets/1x/search-icon.png" style="position: absolute;top: 1.2rem;left: 18%;z-index: 1;width: 1rem;" />
+				<img src="../../assets/1x/search-icon.png" style="position: fixed;top: 1.2rem;left: 18%;z-index: 1;width: 1rem;z-index: 3;" />
 				<input placeholder="宝宝老是闹肚子怎么办?" class="home-search" @focus="focusInput" @blur="blurInput" />
-
-				<img src="../../assets/3x/home-top-background@3x.png" style="width:100%;height:12rem;margin-top: -13%;" alt="">
+				<img src="../../assets/3x/home-top-background@3x.png" style="width:100%;margin-top: 3.5rem;" alt="">
 				<div style="width:100%;text-align:center;margin-top:-15%;">
 					<img :src="babyStatus.badyPicture" style="width:20%;matgin-left:auto;margin-right:auto;" alt="">
 					<!--<img src="../../assets/1x/baby.png" style="width:20%;matgin-left:auto;margin-right:auto;" alt="">-->
@@ -156,7 +155,7 @@
 					<span>今日{{getIntegralState}}获得</span>
 					<span style="margin-left: 0.3rem;"><img src="../../assets/my_integral.png" style="width: 1rem;"/><span style="color: #FC9FD7;">x{{todayIntegral}}</span><span style="margin-left: 0.3rem;">积分</span></span>
 				</div>
-				<img src="../../assets/sign-close.png" style="position: absolute;top: -1rem;right: -1rem;width: 1.5rem;" @click="dialogVisible = false" />
+				<img src="../../assets/sign-close.png" style="position: absolute;top: -1rem;right: -1rem;width: 2rem;" @click="dialogVisible = false" />
 			</div>
 			<canvas id="myCanvas" :width="canvasWidth * dpr" :height="canvasHeight * dpr" style=""></canvas>
 			<!--<el-button @click="dialogVisible = false">已签到</el-button>-->
@@ -713,6 +712,15 @@
 		}
 	}*/
 	
+	.homepage .mint-header {
+		height: 3.5rem;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: 1;
+	}
+	
 	@media screen and (min-width: 760px) {
 		.homepage .mint-header .mint-button {
 			padding-right: 0.3rem;
@@ -728,7 +736,7 @@
 	.homepage .mint-header .mint-button {
 		color: #fff;
 		/*padding-right: 3px;*/
-		margin-top: 0.5rem;
+		margin-top: 0.2rem;
 	}
 	
 	.homepage input::-webkit-input-placeholder {
