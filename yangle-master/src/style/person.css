@@ -105,12 +105,24 @@
 	color: #333;
 }
 
+@media screen and (min-width: 760px) {
+	.div-service-other {
+		margin-bottom: 10rem;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	.div-service-other {
+		margin-bottom: 5rem;
+	}
+}
+
 .div-service-other {
 	background: white;
 	border: 1px solid #EFEFEF;
 	border-radius: 0.5rem;
 	margin-top: 1rem;
-	margin-bottom: 5rem;
+	/*margin-bottom: 5rem;*/
 }
 
 .div-padding-top {
@@ -132,13 +144,14 @@
 	color: #199077;
 }
 
-.gray {  /*给图片增加黑白滤镜*/
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    filter: grayscale(200%);
-    filter: gray;
+.gray {
+	/*给图片增加黑白滤镜*/
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(200%);
+	filter: gray;
 }
 
 .div-detail .person-order {

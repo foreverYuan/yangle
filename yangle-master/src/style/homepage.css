@@ -273,7 +273,7 @@ p.p_pg_desc {
 	background: #FE99CC;
 	outline: none;
 	border: none;
-	border-radius: 1rem;
+	border-radius: 2rem;
 	padding: 0.65rem 0;
 	text-align: center;
 	font-size: 1rem;
@@ -281,10 +281,10 @@ p.p_pg_desc {
 
 .sign-red-point {
 	position: absolute;
-	top: 7px;
+	top: 0.2rem;
 	right: 0;
-	width: 10px;
-	height: 10px;
+	width: 0.7rem;
+	height: 0.7rem;
 }
 
 .mint-header {

@@ -695,7 +695,6 @@
 </style>
 
 <style>
-	
 	/*@media screen and (min-width: 760px) {
 		.homepage .mint-header .mint-button {
 			margin-top: 1.7rem;
@@ -714,9 +713,21 @@
 		}
 	}*/
 	
+	@media screen and (min-width: 760px) {
+		.homepage .mint-header .mint-button {
+			padding-right: 0.3rem;
+		}
+	}
+	
+	@media screen and (max-width: 760px) {
+		.homepage .mint-header .mint-button {
+			padding-right: 3px;
+		}
+	}
+	
 	.homepage .mint-header .mint-button {
 		color: #fff;
-		padding-right: 3px;
+		/*padding-right: 3px;*/
 		margin-top: 0.5rem;
 	}
 	
