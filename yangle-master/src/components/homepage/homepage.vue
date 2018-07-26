@@ -157,7 +157,7 @@
 				</div>
 				<img src="../../assets/sign-close.png" style="position: absolute;top: -1rem;right: -1rem;width: 2rem;" @click="dialogVisible = false" />
 			</div>
-			<canvas id="myCanvas" :width="canvasWidth * dpr" :height="canvasHeight * dpr" style=""></canvas>
+			<canvas id="myCanvas" :width="canvasWidth * dpr" :height="canvasHeight * dpr"></canvas>
 			<!--<el-button @click="dialogVisible = false">已签到</el-button>-->
 			<button @click="signIn" class="btn-sign sign" v-if="isTodaySign == 0" style="height: 2rem;border-radius: 0.5rem;">签到</button>
 			<button @click="signIn" class="btn-sign signed" v-if="isTodaySign == 1" style="height: 2rem;border-radius: 0.5rem;">已签到</button>
@@ -287,9 +287,15 @@
 		},
 
 		created() {
+			//			alert(this.screenWidth)
 			//获取首页数据
 			this.getHomeData();
 			this.aaa();
+			if(this.screenWidth < 760) {
+				this.canvasWidth = window.screen.availWidth * 7 / 10;
+			} else {
+				this.canvasWidth = window.screen.availWidth * 5.5 / 10;
+			}
 			if(this.jumpId == 0) {
 				this.showSignDialog();
 			} else if(this.jumpId == 1) {
@@ -526,7 +532,8 @@
 
 				ctx.lineWidth = 3;
 				ctx.strokeStyle = this.lineColor[0];
-				ctx.font = "0.7rem  Arial";
+				ctx.fontSize = "0.7rem";
+				//				ctx.font = "0.7rem  Arial";
 				ctx.fillStyle = this.fontColor[0];
 				ctx.save();
 				ctx.scale(this.dpr, this.dpr);
@@ -736,7 +743,7 @@
 	.homepage .mint-header .mint-button {
 		color: #fff;
 		/*padding-right: 3px;*/
-		margin-top: 0.2rem;
+		margin-top: 0.1rem;
 	}
 	
 	.homepage input::-webkit-input-placeholder {
@@ -814,8 +821,20 @@
 		animation: float13 20s infinite linear;
 	}
 	
+	@media screen and (min-width: 760px) {
+		.homepage .el-dialog {
+			width: 60%;
+		}
+	}
+	
+	@media screen and (max-width: 760px) {
+		.homepage .el-dialog {
+			width: 80%;
+		}
+	}
+	
 	.homepage .el-dialog {
-		width: 80%;
+		/*width: 80%;*/
 		height: 60%;
 		border-radius: 10px;
 	}

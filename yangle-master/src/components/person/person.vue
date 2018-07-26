@@ -25,7 +25,7 @@
 			<p @click="goSetting"><img src="../../assets/setting.png" /><span>系统设置</span><span class="el-icon-arrow-right float-right"></span></p>
 		</div>-->
 
-		<div class="div-detail" style="margin-top: -3rem;">
+		<div class="div-detail" style="margin-top: -2.5rem;">
 			<div class="div-my-info">
 				<div class="div-small-block div-padding-top " @click="toast">
 					<img src="../../assets/my_order.png" style="height: 1.5rem;" />
