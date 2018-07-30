@@ -649,6 +649,7 @@
 			 * 签到
 			 */
 			signIn() {
+				var that = this;
 				if(this.isTodaySign) {
 					return plus.nativeUI.alert('今日已签到');
 				}
@@ -657,8 +658,8 @@
 					userRole: this.userRole, //用户角色
 				}).then((response) => {
 					if(response.data.resultCode == 200) {
-						this.getSignInfo();
-						this.addIntegralStyle();
+						that.getSignInfo();
+						that.addIntegralStyle();
 					} else {
 						plus.nativeUI.alert(response.data.resultMsg);
 					}
