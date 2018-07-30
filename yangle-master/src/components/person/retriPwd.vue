@@ -158,8 +158,6 @@
 				}).catch(function(error) {
 					plus.nativeUI.alert(error);
 				});
-				alert("userAccount   " + this.phone + "," + "smsType   " + this.smsType + "," + "uuid   " + this.base_uuid());
-
 			},
 			
 			/**
