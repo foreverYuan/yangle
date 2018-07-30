@@ -658,6 +658,7 @@
 				}).then((response) => {
 					if(response.data.resultCode == 200) {
 						this.getSignInfo();
+						this.addIntegralStyle();
 					} else {
 						plus.nativeUI.alert(response.data.resultMsg);
 					}
