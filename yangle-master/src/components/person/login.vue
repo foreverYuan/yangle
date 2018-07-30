@@ -29,13 +29,13 @@
 				<img src="../../assets/1x/login-person-normal.png" class="person-icon-focus" v-if="phoneFocus" />
 				<input placeholder="请输入手机号" v-model="phone" type="number" @focus="focusPhone" @blur="blurPhone" />
 				<!--<img v-if="isOnSwitch" style="padding-left: 3rem;"/>-->
-				<span v-if="loginOrIdCode == 2" style="color: #FC9FD7;" id="re-get-it" class="span-it" @click="getItCode">获取验证码</span>
+				<span v-if="loginRegSwitch == 1 && loginOrIdCode == 2" style="color: #FC9FD7;" id="re-get-it" class="float-right span-it" @click="getItCode">获取验证码</span>
 			</div>
 			<div class="div_password" v-if="loginRegSwitch == 1">
 				<img src="../../assets/1x/login-password-normal.png" id="pwd-icon-normal" v-if="!pwdFocus" />
 				<img src="../../assets/1x/login-password-normal.png" id="pwd-icon-focus" v-if="pwdFocus" />
 				<input :placeholder="pwdPlaceHolder" v-model="pwd" :type="pwdType" @focus="focusPwd" @blur="blurPwd" />
-				<span v-if="loginOrIdCode == 2" id="it-code" class="span-it" style="padding-left: 2.5rem;">600s</span>
+				<span v-if="loginOrIdCode == 2" id="it-code" class="float-right span-it">600s</span>
 			</div>
 			<div class="div_password" v-if="loginRegSwitch == 2">
 				<img src="../../assets/1x/login-password-normal.png" id="pwd-icon-normal" v-if="!pwdFocus" />
@@ -127,6 +127,7 @@
 				value2: true,
 
 				maxTime: 600, //倒计时的最大时间
+				maxTime1: 600, //倒计时的最大时间
 				loginRegSwitch: 1, //登录和注册的选择开关，1：登录 2：注册   默认1
 				btnText: '登录', //登录或注册按钮文本
 				forbidClickRegId: false, //是否禁止点击注册的获取验证码
@@ -135,6 +136,8 @@
 				loginText: '验证码登录', //登录显示的文字   密码登录或者是验证码登录
 				pwdPlaceHolder: '请输入密码', //输入密码的提示文案
 				jumpId: localStorage.getItem('/login-id'),
+				timeCountDown: '',
+				timeCountDown1: '',
 //				jumpId: this.$route.query.id,
 			}
 		},
@@ -178,19 +181,20 @@
 			 * 点击获取验证码
 			 */
 			clickGetIdCode() {
+				var that = this;
 				if(this.forbidClickRegId) {
 					return;
 				}
 				if(this.phone == '' || this.phone.length != 11) {
 					return plus.nativeUI.alert('请输入正确的手机号码');
 				}
-				this.countDownTime1(); //开始倒计时
 				this.axios.post('/userControllerAPI/getSmsCode', {
 					userAccount: this.phone,
 					smsType: '1'
 				}).then(function(response) {
 					if(response.data.resultCode == 200) {
 						let instance = Toast('验证码已发送~');
+						that.countDownTime1(); //开始倒计时
 						setTimeout(() => {
 							instance.close();
 						}, 2000);
@@ -210,15 +214,19 @@
 			 */
 			countDownTime1() {
 				this.forbidClickRegId = true;
-				this.maxTime--;
+				this.maxTime1--;
+//				var timeCountDown1;
+//				if(!timeCountDown1) {
+//					clearTimeout(timeCountDown1);
+//				}
 				var idCodeBtn = document.getElementById('getIdCode');
-				idCodeBtn.innerHTML = this.maxTime + 's';
-				var time = setTimeout(() => {
+				idCodeBtn.innerHTML = this.maxTime1 + 's';
+				this.timeCountDown1 = setTimeout(() => {
 					this.countDownTime1();
 				}, 1000);
-				if(this.maxTime == 0) {
-					clearTimeout(time);
-					this.maxTime = 600;
+				if(this.maxTime1 == 0) {
+					clearTimeout(this.timeCountDown1);
+					this.maxTime1 = 600;
 					idCodeBtn.innerHTML = '重新获取';
 					this.forbidClickRegId = false;
 				}
@@ -303,6 +311,8 @@
 			switchLogin1() {
 				this.loginRegSwitch = 1;
 				this.forbidClickRegId = false;
+				clearTimeout(this.timeCountDown1);
+				this.maxTime1 = 600;
 			},
 
 			/**
@@ -311,25 +321,28 @@
 			switchRegister() {
 				this.loginRegSwitch = 2;
 				this.forbidClickLoginId = false;
+				clearTimeout(this.timeCountDown);
+				this.maxTime = 600;
 			},
 
 			/**
 			 * 获取验证码
 			 */
 			getItCode() {
+				var that = this;
 				if(this.forbidClickLoginId) {
 					return;
 				}
 				if(this.phone == '' || this.phone.length != 11) {
 					return plus.nativeUI.alert('请输入正确的手机号码');
 				}
-				this.countDownTime(); //开始倒计时
 				this.axios.post('/userControllerAPI/getSmsCode', {
 					userAccount: this.phone,
 					smsType: '2'
 				}).then(function(response) {
 					if(response.data.resultCode == 200) {
 						let instance = Toast('验证码已发送~');
+						that.countDownTime(); //开始倒计时
 						setTimeout(() => {
 							instance.close();
 						}, 2000);
@@ -377,15 +390,20 @@
 			countDownTime() {
 				this.forbidClickLoginId = true;
 				this.maxTime--;
+//				var timeCountDown;
+//				if(!timeCountDown) {
+//					clearTimeout(timeCountDown);
+//				}
 				var itCode = document.getElementById('it-code');
 				var reGetIt = document.getElementById('re-get-it');
 				itCode.innerHTML = this.maxTime + 's';
-				var time = setTimeout(() => {
+				this.timeCountDown = setTimeout(() => {
 					this.countDownTime();
 				}, 1000);
 				if(this.maxTime == 0) {
-					clearTimeout(time);
+					clearTimeout(this.timeCountDown);
 					this.maxTime = 600;
+					itCode.innerHTML = this.maxTime + 's';
 					reGetIt.innerHTML = '重新获取';
 					this.forbidClickLoginId = false;
 				}

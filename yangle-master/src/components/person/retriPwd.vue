@@ -132,19 +132,20 @@
 			 * 获取验证码
 			 */
 			getItCode() {
+				var that = this;
 				if(this.forbidClickLoginId) {
 					return;
 				}
 				if(this.phone == '' || this.phone.length != 11) {
 					return plus.nativeUI.alert('请输入正确的手机号码');
 				}
-				this.countDownTime(); //开始倒计时
 				this.axios.post('/userControllerAPI/getSmsCode', {
 					userAccount: this.phone, //用户账号
 					smsType: this.smsType //短信类型   1：注册发验证码 填1 2：登录发送验证码 填2 3：找回密码发送验证码 填3
 				}).then(function(response) {
 					if(response.data.resultCode == 200) {
 					let instance = Toast('验证码已发送~');
+					that.countDownTime(); //开始倒计时
 					setTimeout(() => {
 						instance.close();
 					}, 2000);
@@ -157,6 +158,7 @@
 				}).catch(function(error) {
 					plus.nativeUI.alert(error);
 				});
+				alert("userAccount   " + this.phone + "," + "smsType   " + this.smsType + "," + "uuid   " + this.base_uuid());
 
 			},
 			
@@ -169,11 +171,11 @@
 				var itCode = document.getElementById('id-code');
 				var reGetIt = document.getElementById('re-get-id');
 				itCode.innerHTML = this.maxTime + 's';
-				var time = setTimeout(() => {
+				var timeCountDown = setTimeout(() => {
 					this.countDownTime();
 				}, 1000);
 				if(this.maxTime == 0) {
-					clearTimeout(time);
+					clearTimeout(timeCountDown);
 					this.maxTime = 600;
 					reGetIt.innerHTML = '重新获取';
 					this.forbidClickLoginId = false;
